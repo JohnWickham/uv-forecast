@@ -1,0 +1,570 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		522CE7AD242526520079CDEE /* UV Forecast WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 522CE7AC242526520079CDEE /* UV Forecast WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		522CE7B3242526520079CDEE /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 522CE7B1242526520079CDEE /* Interface.storyboard */; };
+		522CE7B5242526530079CDEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 522CE7B4242526530079CDEE /* Assets.xcassets */; };
+		522CE7BC242526530079CDEE /* UV Forecast WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 522CE7BB242526530079CDEE /* UV Forecast WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		522CE7C1242526530079CDEE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522CE7C0242526530079CDEE /* ContentView.swift */; };
+		522CE7C3242526530079CDEE /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522CE7C2242526530079CDEE /* HostingController.swift */; };
+		522CE7C5242526530079CDEE /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522CE7C4242526530079CDEE /* ExtensionDelegate.swift */; };
+		522CE7C7242526530079CDEE /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522CE7C6242526530079CDEE /* ComplicationController.swift */; };
+		522CE7C9242526540079CDEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 522CE7C8242526540079CDEE /* Assets.xcassets */; };
+		522CE7CC242526540079CDEE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 522CE7CB242526540079CDEE /* Preview Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		522CE7AE242526520079CDEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 522CE7A2242526520079CDEE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 522CE7AB242526520079CDEE;
+			remoteInfo = "UV Forecast WatchKit App";
+		};
+		522CE7BD242526530079CDEE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 522CE7A2242526520079CDEE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 522CE7BA242526530079CDEE;
+			remoteInfo = "UV Forecast WatchKit Extension";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		522CE7D3242526540079CDEE /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				522CE7BC242526530079CDEE /* UV Forecast WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		522CE7D7242526540079CDEE /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				522CE7AD242526520079CDEE /* UV Forecast WatchKit App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		522CE7A8242526520079CDEE /* UV Forecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UV Forecast.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		522CE7AC242526520079CDEE /* UV Forecast WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UV Forecast WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		522CE7B2242526520079CDEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		522CE7B4242526530079CDEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		522CE7B6242526530079CDEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		522CE7BB242526530079CDEE /* UV Forecast WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "UV Forecast WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		522CE7C0242526530079CDEE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		522CE7C2242526530079CDEE /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
+		522CE7C4242526530079CDEE /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		522CE7C6242526530079CDEE /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		522CE7C8242526540079CDEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		522CE7CB242526540079CDEE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		522CE7CD242526540079CDEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		522CE7B8242526530079CDEE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		522CE7A1242526520079CDEE = {
+			isa = PBXGroup;
+			children = (
+				522CE7B0242526520079CDEE /* UV Forecast WatchKit App */,
+				522CE7BF242526530079CDEE /* UV Forecast WatchKit Extension */,
+				522CE7A9242526520079CDEE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		522CE7A9242526520079CDEE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				522CE7A8242526520079CDEE /* UV Forecast.app */,
+				522CE7AC242526520079CDEE /* UV Forecast WatchKit App.app */,
+				522CE7BB242526530079CDEE /* UV Forecast WatchKit Extension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		522CE7B0242526520079CDEE /* UV Forecast WatchKit App */ = {
+			isa = PBXGroup;
+			children = (
+				522CE7B1242526520079CDEE /* Interface.storyboard */,
+				522CE7B4242526530079CDEE /* Assets.xcassets */,
+				522CE7B6242526530079CDEE /* Info.plist */,
+			);
+			path = "UV Forecast WatchKit App";
+			sourceTree = "<group>";
+		};
+		522CE7BF242526530079CDEE /* UV Forecast WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				522CE7C0242526530079CDEE /* ContentView.swift */,
+				522CE7C2242526530079CDEE /* HostingController.swift */,
+				522CE7C4242526530079CDEE /* ExtensionDelegate.swift */,
+				522CE7C6242526530079CDEE /* ComplicationController.swift */,
+				522CE7C8242526540079CDEE /* Assets.xcassets */,
+				522CE7CD242526540079CDEE /* Info.plist */,
+				522CE7CA242526540079CDEE /* Preview Content */,
+			);
+			path = "UV Forecast WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		522CE7CA242526540079CDEE /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				522CE7CB242526540079CDEE /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		522CE7A7242526520079CDEE /* UV Forecast */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 522CE7D8242526540079CDEE /* Build configuration list for PBXNativeTarget "UV Forecast" */;
+			buildPhases = (
+				522CE7A6242526520079CDEE /* Resources */,
+				522CE7D7242526540079CDEE /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				522CE7AF242526520079CDEE /* PBXTargetDependency */,
+			);
+			name = "UV Forecast";
+			productName = "UV Forecast";
+			productReference = 522CE7A8242526520079CDEE /* UV Forecast.app */;
+			productType = "com.apple.product-type.application.watchapp2-container";
+		};
+		522CE7AB242526520079CDEE /* UV Forecast WatchKit App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 522CE7D4242526540079CDEE /* Build configuration list for PBXNativeTarget "UV Forecast WatchKit App" */;
+			buildPhases = (
+				522CE7AA242526520079CDEE /* Resources */,
+				522CE7D3242526540079CDEE /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				522CE7BE242526530079CDEE /* PBXTargetDependency */,
+			);
+			name = "UV Forecast WatchKit App";
+			productName = "UV Forecast WatchKit App";
+			productReference = 522CE7AC242526520079CDEE /* UV Forecast WatchKit App.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		522CE7BA242526530079CDEE /* UV Forecast WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 522CE7D0242526540079CDEE /* Build configuration list for PBXNativeTarget "UV Forecast WatchKit Extension" */;
+			buildPhases = (
+				522CE7B7242526530079CDEE /* Sources */,
+				522CE7B8242526530079CDEE /* Frameworks */,
+				522CE7B9242526530079CDEE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "UV Forecast WatchKit Extension";
+			productName = "UV Forecast WatchKit Extension";
+			productReference = 522CE7BB242526530079CDEE /* UV Forecast WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		522CE7A2242526520079CDEE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = Wickham;
+				TargetAttributes = {
+					522CE7A7242526520079CDEE = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					522CE7AB242526520079CDEE = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					522CE7BA242526530079CDEE = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+				};
+			};
+			buildConfigurationList = 522CE7A5242526520079CDEE /* Build configuration list for PBXProject "UV Forecast" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 522CE7A1242526520079CDEE;
+			productRefGroup = 522CE7A9242526520079CDEE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				522CE7A7242526520079CDEE /* UV Forecast */,
+				522CE7AB242526520079CDEE /* UV Forecast WatchKit App */,
+				522CE7BA242526530079CDEE /* UV Forecast WatchKit Extension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		522CE7A6242526520079CDEE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		522CE7AA242526520079CDEE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				522CE7B5242526530079CDEE /* Assets.xcassets in Resources */,
+				522CE7B3242526520079CDEE /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		522CE7B9242526530079CDEE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				522CE7CC242526540079CDEE /* Preview Assets.xcassets in Resources */,
+				522CE7C9242526540079CDEE /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		522CE7B7242526530079CDEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				522CE7C3242526530079CDEE /* HostingController.swift in Sources */,
+				522CE7C7242526530079CDEE /* ComplicationController.swift in Sources */,
+				522CE7C1242526530079CDEE /* ContentView.swift in Sources */,
+				522CE7C5242526530079CDEE /* ExtensionDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		522CE7AF242526520079CDEE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 522CE7AB242526520079CDEE /* UV Forecast WatchKit App */;
+			targetProxy = 522CE7AE242526520079CDEE /* PBXContainerItemProxy */;
+		};
+		522CE7BE242526530079CDEE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 522CE7BA242526530079CDEE /* UV Forecast WatchKit Extension */;
+			targetProxy = 522CE7BD242526530079CDEE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		522CE7B1242526520079CDEE /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				522CE7B2242526520079CDEE /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		522CE7CE242526540079CDEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		522CE7CF242526540079CDEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		522CE7D1242526540079CDEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"UV Forecast WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = QEQ6263LD9;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "UV Forecast WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham..UV-Forecast.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Debug;
+		};
+		522CE7D2242526540079CDEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"UV Forecast WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = QEQ6263LD9;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "UV Forecast WatchKit Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham..UV-Forecast.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Release;
+		};
+		522CE7D5242526540079CDEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QEQ6263LD9;
+				IBSC_MODULE = UV_Forecast_WatchKit_Extension;
+				INFOPLIST_FILE = "UV Forecast WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham..UV-Forecast.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Debug;
+		};
+		522CE7D6242526540079CDEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QEQ6263LD9;
+				IBSC_MODULE = UV_Forecast_WatchKit_Extension;
+				INFOPLIST_FILE = "UV Forecast WatchKit App/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham..UV-Forecast.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 6.1;
+			};
+			name = Release;
+		};
+		522CE7D9242526540079CDEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QEQ6263LD9;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham..UV-Forecast";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		522CE7DA242526540079CDEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QEQ6263LD9;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham..UV-Forecast";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		522CE7A5242526520079CDEE /* Build configuration list for PBXProject "UV Forecast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				522CE7CE242526540079CDEE /* Debug */,
+				522CE7CF242526540079CDEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		522CE7D0242526540079CDEE /* Build configuration list for PBXNativeTarget "UV Forecast WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				522CE7D1242526540079CDEE /* Debug */,
+				522CE7D2242526540079CDEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		522CE7D4242526540079CDEE /* Build configuration list for PBXNativeTarget "UV Forecast WatchKit App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				522CE7D5242526540079CDEE /* Debug */,
+				522CE7D6242526540079CDEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		522CE7D8242526540079CDEE /* Build configuration list for PBXNativeTarget "UV Forecast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				522CE7D9242526540079CDEE /* Debug */,
+				522CE7DA242526540079CDEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 522CE7A2242526520079CDEE /* Project object */;
+}
