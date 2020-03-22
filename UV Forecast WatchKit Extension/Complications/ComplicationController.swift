@@ -31,36 +31,19 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     }
     
     // MARK: - Timeline Population
-	
-	func complicationTemplate(for uvIndex: UVIndex) -> CLKComplicationTemplate {
-		
-		let complicationTemplate = CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText()
-		
-		let gaugeColors = [
-			UVIndex.lowColor,// Green (start)
-			UVIndex.moderateColor,// Yellow
-			UVIndex.highColor,// Orange
-			UVIndex.veryHighColor,// Red
-			UVIndex.extremeColor// Purple (stop)
-		]
-		let gaugeColorLocations: [NSNumber] = [0.0, 0.2, 0.4, 0.6, 1.0]
-		let gaugeProvider = CLKSimpleGaugeProvider(style: .ring, gaugeColors: gaugeColors, gaugeColorLocations: gaugeColorLocations, fillFraction: Float(uvIndex.value / 13.0))// Using 13 as the max here even though there technically isn't a max.
-		complicationTemplate.gaugeProvider = gaugeProvider
-		
-		complicationTemplate.centerTextProvider = CLKSimpleTextProvider(text: "\(uvIndex.value)")
-		complicationTemplate.bottomTextProvider = CLKSimpleTextProvider(text: "UV")
-		
-		return complicationTemplate
-	}
-	
-	func timelineEntry(for uvIndex: UVIndex) -> CLKComplicationTimelineEntry {
-		let template = complicationTemplate(for: uvIndex)
-		return CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
-	}
     
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
+		
 		let currentForecast = DataStore.shared.currentUVIndex
-		let entry = timelineEntry(for: currentForecast)
+		var entry: CLKComplicationTimelineEntry? = nil
+		
+		switch complication.family {
+		case .graphicCircular:
+			entry = OpenGaugeComplicationHelper.timelineEntry(for: currentForecast)
+		default:
+			entry = GaugeComplicationHelper.timelineEntry(for: currentForecast)
+		}
+		
         handler(entry)
     }
     
@@ -76,7 +59,14 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 		}
 		
 		let entries = filteredForecasts.map { (forecast) -> CLKComplicationTimelineEntry in
-			return timelineEntry(for: forecast.uvIndex)
+			
+			switch complication.family {
+			case .graphicCircular:
+				return OpenGaugeComplicationHelper.timelineEntry(for: forecast.uvIndex)
+			default:
+				return GaugeComplicationHelper.timelineEntry(for: forecast.uvIndex)
+			}
+			
 		}
 		
         handler(entries)
@@ -86,8 +76,15 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
 		
+		var template: CLKComplicationTemplate? = nil
 		let sampleUVIndex = UVIndex(value: 7.0)
-		let template = complicationTemplate(for: sampleUVIndex)
+		
+		switch complication.family {
+		case .graphicCircular:
+			template = OpenGaugeComplicationHelper.complicationTemplate(for: sampleUVIndex)
+		default:
+			template = GaugeComplicationHelper.complicationTemplate(for: sampleUVIndex)
+		}
 		
 		handler(template)
     }

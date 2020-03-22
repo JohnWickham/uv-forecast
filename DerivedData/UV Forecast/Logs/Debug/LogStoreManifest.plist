@@ -34,6 +34,40 @@
 			<key>uniqueIdentifier</key>
 			<string>0334F9AF-4C8D-4F12-B6E1-FE8E93BD1831</string>
 		</dict>
+		<key>03B2C065-8D15-4903-AB10-D19B2D735410</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>03B2C065-8D15-4903-AB10-D19B2D735410.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>UV Forecast project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>UV Forecast WatchKit App</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Debug $(PRODUCT_NAME)</string>
+			<key>timeStartedRecording</key>
+			<real>606592826.02071702</real>
+			<key>timeStoppedRecording</key>
+			<real>606593019.06118798</real>
+			<key>title</key>
+			<string>Debug $(PRODUCT_NAME)</string>
+			<key>uniqueIdentifier</key>
+			<string>03B2C065-8D15-4903-AB10-D19B2D735410</string>
+		</dict>
 		<key>11B92661-4BDE-47E3-8615-9EA0DC05F1B4</key>
 		<dict>
 			<key>className</key>
@@ -61,6 +95,40 @@
 			<string>Debug com.Wickham.UV-Forecast.watchkitapp.watchkitextension</string>
 			<key>uniqueIdentifier</key>
 			<string>11B92661-4BDE-47E3-8615-9EA0DC05F1B4</string>
+		</dict>
+		<key>1857A62F-ECD2-471B-94B9-DA8193A4BD84</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>1857A62F-ECD2-471B-94B9-DA8193A4BD84.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>UV Forecast project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>UV Forecast WatchKit App</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Debug $(PRODUCT_NAME)</string>
+			<key>timeStartedRecording</key>
+			<real>606592807.60568702</real>
+			<key>timeStoppedRecording</key>
+			<real>606592826.00502503</real>
+			<key>title</key>
+			<string>Debug $(PRODUCT_NAME)</string>
+			<key>uniqueIdentifier</key>
+			<string>1857A62F-ECD2-471B-94B9-DA8193A4BD84</string>
 		</dict>
 		<key>19160E97-3FC6-4CB9-828F-5182AA92F792</key>
 		<dict>
@@ -158,6 +226,34 @@
 			<key>uniqueIdentifier</key>
 			<string>1A81BA52-0B6D-46ED-8D4A-3E9F98DC8933</string>
 		</dict>
+		<key>2C0405DA-D1CE-4F23-A04D-2A416265F206</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>2C0405DA-D1CE-4F23-A04D-2A416265F206.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>signature</key>
+			<string>Debug com.Wickham.UV-Forecast.watchkitapp.watchkitextension</string>
+			<key>timeStartedRecording</key>
+			<real>606592826.64489901</real>
+			<key>timeStoppedRecording</key>
+			<real>606593019.11494899</real>
+			<key>title</key>
+			<string>Debug com.Wickham.UV-Forecast.watchkitapp.watchkitextension</string>
+			<key>uniqueIdentifier</key>
+			<string>2C0405DA-D1CE-4F23-A04D-2A416265F206</string>
+		</dict>
 		<key>2D2B9364-3A20-44B2-A086-0D0F8FD1BD8B</key>
 		<dict>
 			<key>className</key>
@@ -254,6 +350,40 @@
 			<key>uniqueIdentifier</key>
 			<string>3784B956-D87D-454C-801D-5EA9ABF8F9BB</string>
 		</dict>
+		<key>3DD2A98A-F55F-4279-94AD-09546CC50A25</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>3DD2A98A-F55F-4279-94AD-09546CC50A25.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>UV Forecast project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>UV Forecast WatchKit App</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Debug $(PRODUCT_NAME)</string>
+			<key>timeStartedRecording</key>
+			<real>606592281.10205305</real>
+			<key>timeStoppedRecording</key>
+			<real>606592807.68375194</real>
+			<key>title</key>
+			<string>Debug $(PRODUCT_NAME)</string>
+			<key>uniqueIdentifier</key>
+			<string>3DD2A98A-F55F-4279-94AD-09546CC50A25</string>
+		</dict>
 		<key>4D504B95-9C52-48D9-8FA9-09608A5ECF56</key>
 		<dict>
 			<key>className</key>
@@ -288,6 +418,34 @@
 			<key>uniqueIdentifier</key>
 			<string>4D504B95-9C52-48D9-8FA9-09608A5ECF56</string>
 		</dict>
+		<key>5DDD617D-9FF4-4314-BC57-065026B192B3</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>5DDD617D-9FF4-4314-BC57-065026B192B3.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>signature</key>
+			<string>Debug com.Wickham.UV-Forecast.watchkitapp.watchkitextension</string>
+			<key>timeStartedRecording</key>
+			<real>606592058.48876703</real>
+			<key>timeStoppedRecording</key>
+			<real>606592280.42551303</real>
+			<key>title</key>
+			<string>Debug com.Wickham.UV-Forecast.watchkitapp.watchkitextension</string>
+			<key>uniqueIdentifier</key>
+			<string>5DDD617D-9FF4-4314-BC57-065026B192B3</string>
+		</dict>
 		<key>69AA7164-4C3C-489A-9574-CE6B5216793A</key>
 		<dict>
 			<key>className</key>
@@ -315,6 +473,68 @@
 			<string>Debug com.Wickham.UV-Forecast.watchkitapp.watchkitextension</string>
 			<key>uniqueIdentifier</key>
 			<string>69AA7164-4C3C-489A-9574-CE6B5216793A</string>
+		</dict>
+		<key>7B79F142-9627-480E-B714-CECF34689149</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>7B79F142-9627-480E-B714-CECF34689149.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>UV Forecast project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>UV Forecast WatchKit App</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Debug $(PRODUCT_NAME)</string>
+			<key>timeStartedRecording</key>
+			<real>606593020.08380497</real>
+			<key>timeStoppedRecording</key>
+			<real>606593078.91877401</real>
+			<key>title</key>
+			<string>Debug $(PRODUCT_NAME)</string>
+			<key>uniqueIdentifier</key>
+			<string>7B79F142-9627-480E-B714-CECF34689149</string>
+		</dict>
+		<key>8CE2BC09-F296-4074-AEF9-447C235DB022</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>8CE2BC09-F296-4074-AEF9-447C235DB022.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>signature</key>
+			<string>Debug com.Wickham.UV-Forecast.watchkitapp.watchkitextension</string>
+			<key>timeStartedRecording</key>
+			<real>606592808.25723195</real>
+			<key>timeStoppedRecording</key>
+			<real>606592826.14318895</real>
+			<key>title</key>
+			<string>Debug com.Wickham.UV-Forecast.watchkitapp.watchkitextension</string>
+			<key>uniqueIdentifier</key>
+			<string>8CE2BC09-F296-4074-AEF9-447C235DB022</string>
 		</dict>
 		<key>95387C76-44E5-4727-AB44-18AE457B908D</key>
 		<dict>
@@ -446,6 +666,34 @@
 			<key>uniqueIdentifier</key>
 			<string>B1BAA807-0916-4E10-8BDD-74F891A32C99</string>
 		</dict>
+		<key>B3EFFECE-D13A-4E73-9123-712BFE34B3EC</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>B3EFFECE-D13A-4E73-9123-712BFE34B3EC.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>signature</key>
+			<string>Debug com.Wickham.UV-Forecast.watchkitapp.watchkitextension</string>
+			<key>timeStartedRecording</key>
+			<real>606593020.68741405</real>
+			<key>timeStoppedRecording</key>
+			<real>606593078.99461102</real>
+			<key>title</key>
+			<string>Debug com.Wickham.UV-Forecast.watchkitapp.watchkitextension</string>
+			<key>uniqueIdentifier</key>
+			<string>B3EFFECE-D13A-4E73-9123-712BFE34B3EC</string>
+		</dict>
 		<key>BCBA3E01-40A0-4015-BD26-593EB6045DCE</key>
 		<dict>
 			<key>className</key>
@@ -513,6 +761,40 @@
 			<string>Debug $(PRODUCT_NAME)</string>
 			<key>uniqueIdentifier</key>
 			<string>BDF32D81-1C2E-4F12-B3DC-C4F422BCEC5C</string>
+		</dict>
+		<key>C0213D97-8669-434D-AAA2-02B5BA942564</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>C0213D97-8669-434D-AAA2-02B5BA942564.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>UV Forecast project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>UV Forecast WatchKit App</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Debug $(PRODUCT_NAME)</string>
+			<key>timeStartedRecording</key>
+			<real>606592010.83130503</real>
+			<key>timeStoppedRecording</key>
+			<real>606592280.39048004</real>
+			<key>title</key>
+			<string>Debug $(PRODUCT_NAME)</string>
+			<key>uniqueIdentifier</key>
+			<string>C0213D97-8669-434D-AAA2-02B5BA942564</string>
 		</dict>
 		<key>CACB77D5-AAB4-4B43-B1A2-EE36CC319D9F</key>
 		<dict>
@@ -699,6 +981,34 @@
 			<string>Debug com.Wickham.UV-Forecast.watchkitapp.watchkitextension</string>
 			<key>uniqueIdentifier</key>
 			<string>ECA4DBE6-0B16-4BA6-9A48-E9BF888FA88A</string>
+		</dict>
+		<key>F38E3CBD-7F09-4C9E-98C2-9BBB34125196</key>
+		<dict>
+			<key>className</key>
+			<string>DBGConsoleLog</string>
+			<key>documentTypeString</key>
+			<string>com.apple.dt.IDE.DebuggerLogContentType</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.DebugLog</string>
+			<key>fileName</key>
+			<string>F38E3CBD-7F09-4C9E-98C2-9BBB34125196.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>signature</key>
+			<string>Debug com.Wickham.UV-Forecast.watchkitapp.watchkitextension</string>
+			<key>timeStartedRecording</key>
+			<real>606592281.75727797</real>
+			<key>timeStoppedRecording</key>
+			<real>606592807.70946002</real>
+			<key>title</key>
+			<string>Debug com.Wickham.UV-Forecast.watchkitapp.watchkitextension</string>
+			<key>uniqueIdentifier</key>
+			<string>F38E3CBD-7F09-4C9E-98C2-9BBB34125196</string>
 		</dict>
 	</dict>
 </dict>

@@ -25,6 +25,7 @@
 	<key>CLKComplicationSupportedFamilies</key>
 	<array>
 		<string>CLKComplicationFamilyGraphicCircular</string>
+		<string>CLKComplicationFamilyGraphicCorner</string>
 	</array>
 	<key>NSExtension</key>
 	<dict>
