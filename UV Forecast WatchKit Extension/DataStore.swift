@@ -70,7 +70,7 @@ extension DataStore {
 						self.dailyForecast = resultValue.dailyForecastList
 				}
 				
-				//self.loadingState = (isLoading: false, hasLoaded: true)
+				self.loadingState = (isLoading: false, hasLoaded: true)
 			}
 			
 		}

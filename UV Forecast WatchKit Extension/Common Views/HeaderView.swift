@@ -17,8 +17,8 @@ struct HeaderView: View {
 		VStack(alignment: .leading, spacing: -5, content: {
 			Text(title.uppercased()).font(.system(.caption))
 			HStack(alignment: .firstTextBaseline, spacing: 5, content: {
-				Text(String(format: "%.1f", uvIndex.value)).font(.system(size: 45, weight: .medium, design: .default)).foregroundColor(uvIndex.color)
-				Text(uvIndex.description).fontWeight(.medium).foregroundColor(uvIndex.color)
+				Text(String(format: "%.1f", uvIndex.value)).font(.system(size: 45, weight: .medium, design: .default)).foregroundColor(Color(uvIndex.color))
+				Text(uvIndex.description).fontWeight(.medium).foregroundColor(Color(uvIndex.color))
 			})
 		})
 		.padding(EdgeInsets(top: 5, leading: 8, bottom: 0, trailing: 8))

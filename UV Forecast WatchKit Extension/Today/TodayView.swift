@@ -36,7 +36,7 @@ struct TodayView: View, LocationManagerDelegate {
 				VStack{
 					Image(systemName: "arrow.clockwise")
 						.font(.title)
-					Text("Refresh view")
+					Text("Refresh")
 				}
 			})
 		})
