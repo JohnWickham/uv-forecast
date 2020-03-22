@@ -39,13 +39,13 @@ class DataStore: ObservableObject {
 	   }
 	}
 	
-	@Published var hourlyForecast: ForecastList = ForecastList(forecasts: []) {
+	@Published var hourlyForecasts: [Forecast] = [] {
 	   willSet {
 		   objectWillChange.send()
 	   }
 	}
 	
-	@Published var dailyForecast: ForecastList = ForecastList(forecasts: []) {
+	@Published var dailyForecasts: [Forecast] = [] {
 		willSet {
 			objectWillChange.send()
 		}
@@ -65,9 +65,9 @@ extension DataStore {
 						self.error = error
 					case .success(let resultValue):
 						self.currentUVIndex = resultValue.currentUVIndex
-						self.hourlyForecast = resultValue.currentHourlyForecastList
+						self.hourlyForecasts = resultValue.currentHourlyForecasts
 						self.todayHighForecast = resultValue.highForToday
-						self.dailyForecast = resultValue.dailyForecastList
+						self.dailyForecasts = resultValue.dailyForecasts
 				}
 				
 				self.loadingState = (isLoading: false, hasLoaded: true)

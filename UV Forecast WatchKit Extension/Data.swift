@@ -25,10 +25,6 @@ struct Forecast: Comparable {
 	}
 }
 
-struct ForecastList {
-	var forecasts: [Forecast]
-}
-
 struct UVIndex: Comparable {
 	
 	var value: Double = 0.0

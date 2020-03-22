@@ -51,11 +51,11 @@ struct ForecastView: View, LocationManagerDelegate {
 	var dataLoadedView: some View {
 		ScrollView {
 			VStack(alignment: HorizontalAlignment.leading, spacing: 5) {
-				HeaderView(title: "8-Day High", uvIndex: dataStore.dailyForecast.forecasts.max()!.uvIndex)
+				HeaderView(title: "8-Day High", uvIndex: dataStore.dailyForecasts.max()!.uvIndex)
 				
 				SeparatorView()
 				
-				ForEach(dataStore.dailyForecast.forecasts, id: \.date) { forecast in
+				ForEach(dataStore.dailyForecasts, id: \.date) { forecast in
 					ForecastRowView(uvIndex: forecast.uvIndex, title: (forecast.date.isToday ? "Today" : forecast.date.shortWeekDayString).uppercased(), detail: (forecast.highIndexDate?.shortTimeString ?? ""))
 				}
 				

@@ -58,7 +58,7 @@ struct TodayView: View, LocationManagerDelegate {
 				
 				SeparatorView()
 				
-				ForEach(dataStore.hourlyForecast.forecasts, id: \.date) { forecast in
+				ForEach(dataStore.hourlyForecasts, id: \.date) { forecast in
 					ForecastRowView(uvIndex: forecast.uvIndex, title: (forecast.date.isAtMidnight ? forecast.date.shortWeekDayString.uppercased() + " " : "") + forecast.date.shortTimeString, detail: "")
 				}
 				

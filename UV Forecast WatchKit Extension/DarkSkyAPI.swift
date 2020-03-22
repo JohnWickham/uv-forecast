@@ -36,7 +36,7 @@ class APIClient {
 	
 	var state: APIClientState = .loading
 	
-	typealias ForecastFetchResult = (currentUVIndex: UVIndex, currentHourlyForecastList: ForecastList, highForToday: Forecast, dailyForecastList: ForecastList)
+	typealias ForecastFetchResult = (currentUVIndex: UVIndex, currentHourlyForecasts: [Forecast], highForToday: Forecast, dailyForecasts: [Forecast])
 	
 	func loadCurrentForecast(for location: (latitude: Double, longitude: Double), result: @escaping ((_ result: Result<ForecastFetchResult, APIError>) -> Void)) {
 		
@@ -104,7 +104,7 @@ class APIClient {
 			
 			let highForToday = dailyForecastList.first!
 			
-			result(.success(ForecastFetchResult(currentUVIndex, ForecastList(forecasts: currentHourlyForecast), highForToday, ForecastList(forecasts: dailyForecastList))))
+			result(.success(ForecastFetchResult(currentUVIndex, currentHourlyForecast, highForToday, dailyForecastList)))
 			
 		}.resume()
 		
