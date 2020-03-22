@@ -7,16 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		522CE7AD242526520079CDEE /* UV Forecast WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 522CE7AC242526520079CDEE /* UV Forecast WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5201DA8D2425F17500CC104E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201DA8C2425F17500CC104E /* LocationManager.swift */; };
+		5228ACDB2425A80100642DE1 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228ACDA2425A80100642DE1 /* Data.swift */; };
+		5228ACDD2425AFFB00642DE1 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228ACDC2425AFFB00642DE1 /* FoundationExtensions.swift */; };
+		522CE7AD242526520079CDEE /* UV Forecast.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 522CE7AC242526520079CDEE /* UV Forecast.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		522CE7B3242526520079CDEE /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 522CE7B1242526520079CDEE /* Interface.storyboard */; };
 		522CE7B5242526530079CDEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 522CE7B4242526530079CDEE /* Assets.xcassets */; };
-		522CE7BC242526530079CDEE /* UV Forecast WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 522CE7BB242526530079CDEE /* UV Forecast WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		522CE7C1242526530079CDEE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522CE7C0242526530079CDEE /* ContentView.swift */; };
+		522CE7BC242526530079CDEE /* UV Forecast.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 522CE7BB242526530079CDEE /* UV Forecast.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		522CE7C3242526530079CDEE /* HostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522CE7C2242526530079CDEE /* HostingController.swift */; };
 		522CE7C5242526530079CDEE /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522CE7C4242526530079CDEE /* ExtensionDelegate.swift */; };
 		522CE7C7242526530079CDEE /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522CE7C6242526530079CDEE /* ComplicationController.swift */; };
 		522CE7C9242526540079CDEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 522CE7C8242526540079CDEE /* Assets.xcassets */; };
 		522CE7CC242526540079CDEE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 522CE7CB242526540079CDEE /* Preview Assets.xcassets */; };
+		522CE7DE24252EE10079CDEE /* TodayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522CE7DD24252EE10079CDEE /* TodayView.swift */; };
+		522CE7E024252EF80079CDEE /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522CE7DF24252EF80079CDEE /* ForecastView.swift */; };
+		522CE7E2242530E30079CDEE /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522CE7E1242530E30079CDEE /* HeaderView.swift */; };
+		522CE7E524253D890079CDEE /* DarkSkyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522CE7E424253D890079CDEE /* DarkSkyAPI.swift */; };
+		529E6F8F24270A590017D512 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E6F8E24270A590017D512 /* DataStore.swift */; };
+		52BCC43E2426D7F400B67BBB /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BCC43D2426D7F400B67BBB /* ErrorView.swift */; };
+		52BCC4402426D83D00B67BBB /* ForecastRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BCC43F2426D83D00B67BBB /* ForecastRowView.swift */; };
+		52BCC4432426D87600B67BBB /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BCC4422426D87600B67BBB /* LoadingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +53,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				522CE7BC242526530079CDEE /* UV Forecast WatchKit Extension.appex in Embed App Extensions */,
+				522CE7BC242526530079CDEE /* UV Forecast.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -54,7 +64,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				522CE7AD242526520079CDEE /* UV Forecast WatchKit App.app in Embed Watch Content */,
+				522CE7AD242526520079CDEE /* UV Forecast.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,19 +72,29 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5201DA8C2425F17500CC104E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		5228ACDA2425A80100642DE1 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		5228ACDC2425AFFB00642DE1 /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
 		522CE7A8242526520079CDEE /* UV Forecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UV Forecast.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		522CE7AC242526520079CDEE /* UV Forecast WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UV Forecast WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		522CE7AC242526520079CDEE /* UV Forecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UV Forecast.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		522CE7B2242526520079CDEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		522CE7B4242526530079CDEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		522CE7B6242526530079CDEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		522CE7BB242526530079CDEE /* UV Forecast WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "UV Forecast WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		522CE7C0242526530079CDEE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		522CE7BB242526530079CDEE /* UV Forecast.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "UV Forecast.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		522CE7C2242526530079CDEE /* HostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostingController.swift; sourceTree = "<group>"; };
 		522CE7C4242526530079CDEE /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		522CE7C6242526530079CDEE /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		522CE7C8242526540079CDEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		522CE7CB242526540079CDEE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		522CE7CD242526540079CDEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		522CE7DD24252EE10079CDEE /* TodayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayView.swift; sourceTree = "<group>"; };
+		522CE7DF24252EF80079CDEE /* ForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastView.swift; sourceTree = "<group>"; };
+		522CE7E1242530E30079CDEE /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		522CE7E424253D890079CDEE /* DarkSkyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkSkyAPI.swift; sourceTree = "<group>"; };
+		529E6F8E24270A590017D512 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		52BCC43D2426D7F400B67BBB /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		52BCC43F2426D83D00B67BBB /* ForecastRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastRowView.swift; sourceTree = "<group>"; };
+		52BCC4422426D87600B67BBB /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,8 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				522CE7A8242526520079CDEE /* UV Forecast.app */,
-				522CE7AC242526520079CDEE /* UV Forecast WatchKit App.app */,
-				522CE7BB242526530079CDEE /* UV Forecast WatchKit Extension.appex */,
+				522CE7AC242526520079CDEE /* UV Forecast.app */,
+				522CE7BB242526530079CDEE /* UV Forecast.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -120,13 +140,20 @@
 		522CE7BF242526530079CDEE /* UV Forecast WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				522CE7C0242526530079CDEE /* ContentView.swift */,
+				52BCC4412426D86000B67BBB /* Common Views */,
+				522CE7DB24252EBB0079CDEE /* Today */,
+				522CE7DC24252EC00079CDEE /* Forecast */,
 				522CE7C2242526530079CDEE /* HostingController.swift */,
 				522CE7C4242526530079CDEE /* ExtensionDelegate.swift */,
 				522CE7C6242526530079CDEE /* ComplicationController.swift */,
 				522CE7C8242526540079CDEE /* Assets.xcassets */,
 				522CE7CD242526540079CDEE /* Info.plist */,
 				522CE7CA242526540079CDEE /* Preview Content */,
+				5228ACDA2425A80100642DE1 /* Data.swift */,
+				522CE7E424253D890079CDEE /* DarkSkyAPI.swift */,
+				529E6F8E24270A590017D512 /* DataStore.swift */,
+				5228ACDC2425AFFB00642DE1 /* FoundationExtensions.swift */,
+				5201DA8C2425F17500CC104E /* LocationManager.swift */,
 			);
 			path = "UV Forecast WatchKit Extension";
 			sourceTree = "<group>";
@@ -137,6 +164,33 @@
 				522CE7CB242526540079CDEE /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		522CE7DB24252EBB0079CDEE /* Today */ = {
+			isa = PBXGroup;
+			children = (
+				522CE7DD24252EE10079CDEE /* TodayView.swift */,
+			);
+			path = Today;
+			sourceTree = "<group>";
+		};
+		522CE7DC24252EC00079CDEE /* Forecast */ = {
+			isa = PBXGroup;
+			children = (
+				522CE7DF24252EF80079CDEE /* ForecastView.swift */,
+			);
+			path = Forecast;
+			sourceTree = "<group>";
+		};
+		52BCC4412426D86000B67BBB /* Common Views */ = {
+			isa = PBXGroup;
+			children = (
+				522CE7E1242530E30079CDEE /* HeaderView.swift */,
+				52BCC43F2426D83D00B67BBB /* ForecastRowView.swift */,
+				52BCC43D2426D7F400B67BBB /* ErrorView.swift */,
+				52BCC4422426D87600B67BBB /* LoadingView.swift */,
+			);
+			path = "Common Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,7 +227,7 @@
 			);
 			name = "UV Forecast WatchKit App";
 			productName = "UV Forecast WatchKit App";
-			productReference = 522CE7AC242526520079CDEE /* UV Forecast WatchKit App.app */;
+			productReference = 522CE7AC242526520079CDEE /* UV Forecast.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
 		522CE7BA242526530079CDEE /* UV Forecast WatchKit Extension */ = {
@@ -190,7 +244,7 @@
 			);
 			name = "UV Forecast WatchKit Extension";
 			productName = "UV Forecast WatchKit Extension";
-			productReference = 522CE7BB242526530079CDEE /* UV Forecast WatchKit Extension.appex */;
+			productReference = 522CE7BB242526530079CDEE /* UV Forecast.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
@@ -269,8 +323,18 @@
 			files = (
 				522CE7C3242526530079CDEE /* HostingController.swift in Sources */,
 				522CE7C7242526530079CDEE /* ComplicationController.swift in Sources */,
-				522CE7C1242526530079CDEE /* ContentView.swift in Sources */,
+				5201DA8D2425F17500CC104E /* LocationManager.swift in Sources */,
+				522CE7E524253D890079CDEE /* DarkSkyAPI.swift in Sources */,
+				522CE7DE24252EE10079CDEE /* TodayView.swift in Sources */,
 				522CE7C5242526530079CDEE /* ExtensionDelegate.swift in Sources */,
+				52BCC4402426D83D00B67BBB /* ForecastRowView.swift in Sources */,
+				529E6F8F24270A590017D512 /* DataStore.swift in Sources */,
+				522CE7E024252EF80079CDEE /* ForecastView.swift in Sources */,
+				522CE7E2242530E30079CDEE /* HeaderView.swift in Sources */,
+				5228ACDB2425A80100642DE1 /* Data.swift in Sources */,
+				5228ACDD2425AFFB00642DE1 /* FoundationExtensions.swift in Sources */,
+				52BCC4432426D87600B67BBB /* LoadingView.swift in Sources */,
+				52BCC43E2426D7F400B67BBB /* ErrorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,8 +491,8 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham..UV-Forecast.watchkitapp.watchkitextension";
-				PRODUCT_NAME = "${TARGET_NAME}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham.UV-Forecast.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "UV Forecast";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -451,8 +515,8 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham..UV-Forecast.watchkitapp.watchkitextension";
-				PRODUCT_NAME = "${TARGET_NAME}";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham.UV-Forecast.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "UV Forecast";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -470,8 +534,8 @@
 				DEVELOPMENT_TEAM = QEQ6263LD9;
 				IBSC_MODULE = UV_Forecast_WatchKit_Extension;
 				INFOPLIST_FILE = "UV Forecast WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham..UV-Forecast.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham.UV-Forecast.watchkitapp";
+				PRODUCT_NAME = "UV Forecast";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -489,8 +553,8 @@
 				DEVELOPMENT_TEAM = QEQ6263LD9;
 				IBSC_MODULE = UV_Forecast_WatchKit_Extension;
 				INFOPLIST_FILE = "UV Forecast WatchKit App/Info.plist";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham..UV-Forecast.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham.UV-Forecast.watchkitapp";
+				PRODUCT_NAME = "UV Forecast";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -506,7 +570,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QEQ6263LD9;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham..UV-Forecast";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham.UV-Forecast";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -519,7 +583,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = QEQ6263LD9;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham..UV-Forecast";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham.UV-Forecast";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};

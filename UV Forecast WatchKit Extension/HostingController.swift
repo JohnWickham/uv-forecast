@@ -10,8 +10,16 @@ import WatchKit
 import Foundation
 import SwiftUI
 
-class HostingController: WKHostingController<ContentView> {
-    override var body: ContentView {
-        return ContentView()
+class TodayHostingController: WKHostingController<TodayView> {
+    override var body: TodayView {
+        self.setTitle("Today")
+		return TodayView(dataStore: DataStore.shared)
+    }
+}
+
+class ForecastHostingController: WKHostingController<ForecastView> {
+    override var body: ForecastView {
+        self.setTitle("Forecast")
+		return ForecastView(dataStore: DataStore.shared)
     }
 }
