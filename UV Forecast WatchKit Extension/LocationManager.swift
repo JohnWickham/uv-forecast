@@ -47,6 +47,12 @@ class LocationManager: NSObject, ObservableObject {
         }
     }
 	
+	@Published var locationName: String? {
+		willSet {
+			objectWillChange.send()
+		}
+	}
+	
 	var delegate: LocationManagerDelegate?
 	
 	func getCurrentLocation() {
@@ -76,11 +82,28 @@ extension LocationManager: CLLocationManagerDelegate {
 			return
 		}
 		
+		getLocationName(location)
+		
 		delegate?.locationManagerDidGetLocation(.success(location))
     }
 	
 	func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
 		delegate?.locationManagerDidGetLocation(.failure(.failedToLocate))
+	}
+	
+	func getLocationName(_ location: CLLocation) {
+		
+		let geocoder = CLGeocoder()
+		geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
+
+			if error != nil {
+				self.locationName = nil
+			}
+			
+			self.locationName = placemarks?.first?.locality
+			
+		}
+		
 	}
 	
 	func abortIfPermissionDenied() {

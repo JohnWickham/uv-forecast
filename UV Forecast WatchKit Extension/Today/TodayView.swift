@@ -50,11 +50,11 @@ struct TodayView: View, LocationManagerDelegate {
 	private var dataLoadedView: some View {
 		ScrollView {
 			VStack(alignment: HorizontalAlignment.leading, spacing: 5) {
-				HeaderView(title: "Now", uvIndex: dataStore.currentUVIndex)
+				HeaderView(title: "Now", detail: locationManager.locationName, uvIndex: dataStore.currentUVIndex)
 				
 				SeparatorView()
 				
-				HeaderView(title: "High", uvIndex: dataStore.todayHighForecast.uvIndex)
+				HeaderView(title: "High", detail: dataStore.todayHighForecast.highIndexDate!.shortTimeString, uvIndex: dataStore.todayHighForecast.uvIndex)
 				
 				SeparatorView()
 				
