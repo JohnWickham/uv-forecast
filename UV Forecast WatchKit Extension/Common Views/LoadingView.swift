@@ -10,14 +10,18 @@ import SwiftUI
 
 struct LoadingView: View {
 	
+	@State var iconRotationAngle: Float = 0
+	
 	var body: some View {
 		VStack {
 			Image(systemName: "sun.max.fill")
 				.foregroundColor(.orange)
-				.imageScale(.large)
-				.rotationEffect(.degrees(120))
-				.animation(Animation.linear(duration: 3).repeatForever())//FIXME: This animation doesn't work.
+				.font(.system(size: 25))
+				.rotationEffect(.degrees(Double(iconRotationAngle)))
+				.animation(Animation.linear(duration: 4.0).repeatForever(autoreverses: false))
 			Text("Loading…")
+		}.onAppear {
+			self.iconRotationAngle = 360
 		}
 	}
 	
