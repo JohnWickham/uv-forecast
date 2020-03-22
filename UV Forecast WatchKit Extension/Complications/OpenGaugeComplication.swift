@@ -30,7 +30,10 @@ class OpenGaugeComplicationHelper {
 		let gaugeProvider = CLKSimpleGaugeProvider(style: .ring, gaugeColors: gaugeColors, gaugeColorLocations: gaugeColorLocations, fillFraction: Float(uvIndex.value / 13.0))// Using 13 as the max here even though there technically isn't a max.
 		complicationTemplate.gaugeProvider = gaugeProvider
 		
-		complicationTemplate.centerTextProvider = CLKSimpleTextProvider(text: "\(uvIndex.value)")
+		let centerTextProvider = CLKSimpleTextProvider(text: "\(uvIndex.value)")
+		centerTextProvider.tintColor = uvIndex.color
+		complicationTemplate.centerTextProvider = centerTextProvider
+		
 		complicationTemplate.bottomTextProvider = CLKSimpleTextProvider(text: "UV")
 		
 		return complicationTemplate

@@ -48,6 +48,21 @@ struct UVIndex: Comparable {
 		}
 	}
 	
+	var shortDescription: String {
+		switch value {
+		case _ where value < 2.99:
+			return "Low"
+		case 3.0 ... 5.99:
+			return "Mod"
+		case 6.0 ... 7.99:
+			return "Hi"
+		case 8.0 ... 10.99:
+			return "V Hi"
+		default:
+			return "X"
+		}
+	}
+	
 	static let lowColor = UIColor(red:0.016, green:0.871, blue:0.443, alpha:1.00)
 	static let moderateColor = UIColor(red:1.000, green:0.804, blue:0.086, alpha:1.00)
 	static let highColor = UIColor(red:1.000, green:0.584, blue:0.000, alpha:1.00)

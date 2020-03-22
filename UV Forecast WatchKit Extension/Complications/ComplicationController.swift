@@ -42,6 +42,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 			entry = OpenGaugeComplicationHelper.timelineEntry(for: currentForecast)
 		case .circularSmall:
 			entry = CircularSmallComplicationHelper.timelineEntry(for: currentForecast)
+		case .modularSmall:
+			entry = ModularSmallComplicationHelper.timelineEntry(for: currentForecast)
 		default:
 			entry = GaugeComplicationHelper.timelineEntry(for: currentForecast)
 		}
@@ -67,6 +69,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 				return OpenGaugeComplicationHelper.timelineEntry(for: forecast.uvIndex)
 			case .circularSmall:
 				return CircularSmallComplicationHelper.timelineEntry(for: forecast.uvIndex)
+			case .modularSmall:
+				return ModularSmallComplicationHelper.timelineEntry(for: forecast.uvIndex)
 			default:
 				return GaugeComplicationHelper.timelineEntry(for: forecast.uvIndex)
 			}
@@ -88,6 +92,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 			template = OpenGaugeComplicationHelper.complicationTemplate(for: sampleUVIndex)
 		case .circularSmall:
 			template = CircularSmallComplicationHelper.complicationTemplate(for: sampleUVIndex)
+		case .modularSmall:
+			template = ModularSmallComplicationHelper.complicationTemplate(for: sampleUVIndex)
 		default:
 			template = GaugeComplicationHelper.complicationTemplate(for: sampleUVIndex)
 		}

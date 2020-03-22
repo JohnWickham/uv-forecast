@@ -11,6 +11,7 @@
 		5215AC072427D9BA003F3344 /* GaugeComplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215AC062427D9BA003F3344 /* GaugeComplication.swift */; };
 		5215AC092427DB0C003F3344 /* OpenGaugeComplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215AC082427DB0C003F3344 /* OpenGaugeComplication.swift */; };
 		5215AC0B2427E4A6003F3344 /* CircularSmallComplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215AC0A2427E4A6003F3344 /* CircularSmallComplication.swift */; };
+		5215AC0D2427E7C5003F3344 /* ModularSmallComplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215AC0C2427E7C5003F3344 /* ModularSmallComplication.swift */; };
 		5228ACDB2425A80100642DE1 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228ACDA2425A80100642DE1 /* Data.swift */; };
 		5228ACDD2425AFFB00642DE1 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228ACDC2425AFFB00642DE1 /* FoundationExtensions.swift */; };
 		522CE7AD242526520079CDEE /* UV Forecast.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 522CE7AC242526520079CDEE /* UV Forecast.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -79,6 +80,7 @@
 		5215AC062427D9BA003F3344 /* GaugeComplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeComplication.swift; sourceTree = "<group>"; };
 		5215AC082427DB0C003F3344 /* OpenGaugeComplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenGaugeComplication.swift; sourceTree = "<group>"; };
 		5215AC0A2427E4A6003F3344 /* CircularSmallComplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularSmallComplication.swift; sourceTree = "<group>"; };
+		5215AC0C2427E7C5003F3344 /* ModularSmallComplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModularSmallComplication.swift; sourceTree = "<group>"; };
 		5228ACDA2425A80100642DE1 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		5228ACDC2425AFFB00642DE1 /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
 		522CE7A8242526520079CDEE /* UV Forecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UV Forecast.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +123,7 @@
 				5215AC082427DB0C003F3344 /* OpenGaugeComplication.swift */,
 				5215AC062427D9BA003F3344 /* GaugeComplication.swift */,
 				5215AC0A2427E4A6003F3344 /* CircularSmallComplication.swift */,
+				5215AC0C2427E7C5003F3344 /* ModularSmallComplication.swift */,
 			);
 			path = Complications;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 				52BCC4402426D83D00B67BBB /* ForecastRowView.swift in Sources */,
 				529E6F8F24270A590017D512 /* DataStore.swift in Sources */,
 				522CE7E024252EF80079CDEE /* ForecastView.swift in Sources */,
+				5215AC0D2427E7C5003F3344 /* ModularSmallComplication.swift in Sources */,
 				5215AC0B2427E4A6003F3344 /* CircularSmallComplication.swift in Sources */,
 				5215AC072427D9BA003F3344 /* GaugeComplication.swift in Sources */,
 				522CE7E2242530E30079CDEE /* HeaderView.swift in Sources */,

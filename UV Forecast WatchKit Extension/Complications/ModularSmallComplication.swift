@@ -1,5 +1,5 @@
 //
-//  CircularSmallComplication.swift
+//  ModularSmallComplication.swift
 //  UV Forecast WatchKit Extension
 //
 //  Created by John Wickham on 3/22/20.
@@ -8,7 +8,7 @@
 
 import ClockKit
 
-class CircularSmallComplicationHelper {
+class ModularSmallComplicationHelper {
 	
 	class func timelineEntry(for uvIndex: UVIndex) -> CLKComplicationTimelineEntry {
 		let template = complicationTemplate(for: uvIndex)
@@ -17,7 +17,7 @@ class CircularSmallComplicationHelper {
 	
 	class func complicationTemplate(for uvIndex: UVIndex) -> CLKComplicationTemplate {
 		
-		let complicationTemplate = CLKComplicationTemplateCircularSmallSimpleText()
+		let complicationTemplate = CLKComplicationTemplateModularSmallSimpleText()
 		
 		let textProvider = CLKSimpleTextProvider(text: "\(uvIndex.value)")
 		textProvider.tintColor = uvIndex.color
