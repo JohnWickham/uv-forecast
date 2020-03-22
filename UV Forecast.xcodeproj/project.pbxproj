@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		5201DA8D2425F17500CC104E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201DA8C2425F17500CC104E /* LocationManager.swift */; };
 		5215AC072427D9BA003F3344 /* GaugeComplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215AC062427D9BA003F3344 /* GaugeComplication.swift */; };
-		5215AC092427DB0C003F3344 /* OpenGaugeComplication copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215AC082427DB0C003F3344 /* OpenGaugeComplication copy.swift */; };
+		5215AC092427DB0C003F3344 /* OpenGaugeComplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215AC082427DB0C003F3344 /* OpenGaugeComplication.swift */; };
+		5215AC0B2427E4A6003F3344 /* CircularSmallComplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215AC0A2427E4A6003F3344 /* CircularSmallComplication.swift */; };
 		5228ACDB2425A80100642DE1 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228ACDA2425A80100642DE1 /* Data.swift */; };
 		5228ACDD2425AFFB00642DE1 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228ACDC2425AFFB00642DE1 /* FoundationExtensions.swift */; };
 		522CE7AD242526520079CDEE /* UV Forecast.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 522CE7AC242526520079CDEE /* UV Forecast.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -76,7 +77,8 @@
 /* Begin PBXFileReference section */
 		5201DA8C2425F17500CC104E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		5215AC062427D9BA003F3344 /* GaugeComplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeComplication.swift; sourceTree = "<group>"; };
-		5215AC082427DB0C003F3344 /* OpenGaugeComplication copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OpenGaugeComplication copy.swift"; sourceTree = "<group>"; };
+		5215AC082427DB0C003F3344 /* OpenGaugeComplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenGaugeComplication.swift; sourceTree = "<group>"; };
+		5215AC0A2427E4A6003F3344 /* CircularSmallComplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularSmallComplication.swift; sourceTree = "<group>"; };
 		5228ACDA2425A80100642DE1 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		5228ACDC2425AFFB00642DE1 /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
 		522CE7A8242526520079CDEE /* UV Forecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UV Forecast.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,8 +118,9 @@
 			isa = PBXGroup;
 			children = (
 				522CE7C6242526530079CDEE /* ComplicationController.swift */,
-				5215AC082427DB0C003F3344 /* OpenGaugeComplication copy.swift */,
+				5215AC082427DB0C003F3344 /* OpenGaugeComplication.swift */,
 				5215AC062427D9BA003F3344 /* GaugeComplication.swift */,
+				5215AC0A2427E4A6003F3344 /* CircularSmallComplication.swift */,
 			);
 			path = Complications;
 			sourceTree = "<group>";
@@ -341,10 +344,11 @@
 				522CE7E524253D890079CDEE /* DarkSkyAPI.swift in Sources */,
 				522CE7DE24252EE10079CDEE /* TodayView.swift in Sources */,
 				522CE7C5242526530079CDEE /* ExtensionDelegate.swift in Sources */,
-				5215AC092427DB0C003F3344 /* OpenGaugeComplication copy.swift in Sources */,
+				5215AC092427DB0C003F3344 /* OpenGaugeComplication.swift in Sources */,
 				52BCC4402426D83D00B67BBB /* ForecastRowView.swift in Sources */,
 				529E6F8F24270A590017D512 /* DataStore.swift in Sources */,
 				522CE7E024252EF80079CDEE /* ForecastView.swift in Sources */,
+				5215AC0B2427E4A6003F3344 /* CircularSmallComplication.swift in Sources */,
 				5215AC072427D9BA003F3344 /* GaugeComplication.swift in Sources */,
 				522CE7E2242530E30079CDEE /* HeaderView.swift in Sources */,
 				5228ACDB2425A80100642DE1 /* Data.swift in Sources */,
