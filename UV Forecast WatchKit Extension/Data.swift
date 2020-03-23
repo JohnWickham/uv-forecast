@@ -34,7 +34,7 @@ struct Forecast: Comparable {
 
 struct UVIndex: Comparable {
 	
-	var uvValue: Double = 0.0
+	var uvValue: Double
 	
 	var description: String {
 		switch uvValue {
