@@ -45,14 +45,21 @@ struct ForecastRowView: View {
 				Text(title)
 					.font(.system(.body))
 				Spacer()
-				Text(detail)
-					.font(.system(.body))
-				Spacer()
-				UVIndexLabelView(uvIndex: uvIndex)
+				detailGroup
 			}
 			.padding(EdgeInsets(top: 5, leading: 8, bottom: 0, trailing: 8))
 			
 			SeparatorView()
 		}
+	}
+	
+	var detailGroup: some View {
+		HStack(alignment: .firstTextBaseline, spacing: 0) {
+			Text(detail)
+				.font(.system(.body))
+			Spacer()
+			UVIndexLabelView(uvIndex: uvIndex)
+		}
+		.frame(maxWidth: 85)
 	}
 }
