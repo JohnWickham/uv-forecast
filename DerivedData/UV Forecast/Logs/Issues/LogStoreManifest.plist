@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>11DD326A-5B38-4148-830D-8347936899CF</key>
+		<key>14CF3CE9-0FFA-4808-B540-F70A959DACC6</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogMajorGroupSection</string>
@@ -15,7 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.target.product-type.target</string>
 			<key>fileName</key>
-			<string>11DD326A-5B38-4148-830D-8347936899CF.xcactivitylog</string>
+			<string>14CF3CE9-0FFA-4808-B540-F70A959DACC6.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -26,15 +26,15 @@
 			<key>signature</key>
 			<string>UV_Forecast_WatchKit_App-athqnpftlcfrhwdkxkvgmfbryngt</string>
 			<key>timeStartedRecording</key>
-			<real>606613868.98136199</real>
+			<real>606618090.15475798</real>
 			<key>timeStoppedRecording</key>
-			<real>606613868.98954999</real>
+			<real>606618090.16326106</real>
 			<key>title</key>
 			<string>Build target UV Forecast WatchKit App</string>
 			<key>uniqueIdentifier</key>
-			<string>11DD326A-5B38-4148-830D-8347936899CF</string>
+			<string>14CF3CE9-0FFA-4808-B540-F70A959DACC6</string>
 		</dict>
-		<key>BAF3745E-2227-4962-B4A1-2DA14B9DE59B</key>
+		<key>8E70B3F8-2B4C-4362-84EA-D3694412AE60</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogMajorGroupSection</string>
@@ -43,7 +43,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.target.product-type.target</string>
 			<key>fileName</key>
-			<string>BAF3745E-2227-4962-B4A1-2DA14B9DE59B.xcactivitylog</string>
+			<string>8E70B3F8-2B4C-4362-84EA-D3694412AE60.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -54,15 +54,15 @@
 			<key>signature</key>
 			<string>UV_Forecast-athqnpftlcfrhwdkxkvgmfbryngt</string>
 			<key>timeStartedRecording</key>
-			<real>606613868.99013603</real>
+			<real>606618090.16407204</real>
 			<key>timeStoppedRecording</key>
-			<real>606613868.99732006</real>
+			<real>606618090.17166698</real>
 			<key>title</key>
 			<string>Build target UV Forecast</string>
 			<key>uniqueIdentifier</key>
-			<string>BAF3745E-2227-4962-B4A1-2DA14B9DE59B</string>
+			<string>8E70B3F8-2B4C-4362-84EA-D3694412AE60</string>
 		</dict>
-		<key>CE835B5E-CD77-4E03-A1C5-4D9C8AAF5487</key>
+		<key>99B4D35B-ED9E-424C-AC5E-5AF32A7C9D20</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogMajorGroupSection</string>
@@ -71,7 +71,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.target.product-type.target</string>
 			<key>fileName</key>
-			<string>CE835B5E-CD77-4E03-A1C5-4D9C8AAF5487.xcactivitylog</string>
+			<string>99B4D35B-ED9E-424C-AC5E-5AF32A7C9D20.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -82,13 +82,13 @@
 			<key>signature</key>
 			<string>UV_Forecast_WatchKit_Extension-athqnpftlcfrhwdkxkvgmfbryngt</string>
 			<key>timeStartedRecording</key>
-			<real>606613868.13723195</real>
+			<real>606618089.21976304</real>
 			<key>timeStoppedRecording</key>
-			<real>606613868.98072803</real>
+			<real>606618090.15423405</real>
 			<key>title</key>
 			<string>Build target UV Forecast WatchKit Extension</string>
 			<key>uniqueIdentifier</key>
-			<string>CE835B5E-CD77-4E03-A1C5-4D9C8AAF5487</string>
+			<string>99B4D35B-ED9E-424C-AC5E-5AF32A7C9D20</string>
 		</dict>
 	</dict>
 	<key>preserveOldLogs</key>

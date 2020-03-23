@@ -12,7 +12,10 @@
 		5215AC092427DB0C003F3344 /* OpenGaugeComplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215AC082427DB0C003F3344 /* OpenGaugeComplication.swift */; };
 		5215AC0B2427E4A6003F3344 /* CircularSmallComplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215AC0A2427E4A6003F3344 /* CircularSmallComplication.swift */; };
 		5215AC0D2427E7C5003F3344 /* ModularSmallComplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215AC0C2427E7C5003F3344 /* ModularSmallComplication.swift */; };
-		5215AC0F2427EB38003F3344 /* UtilitarianSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215AC0E2427EB38003F3344 /* UtilitarianSmall.swift */; };
+		5215AC0F2427EB38003F3344 /* UtilitarianComplications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215AC0E2427EB38003F3344 /* UtilitarianComplications.swift */; };
+		5216B52A242831D500A23802 /* GraphicRectangularComplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5216B529242831D500A23802 /* GraphicRectangularComplication.swift */; };
+		5216B52C2428372700A23802 /* GraphicBezelComplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5216B52B2428372700A23802 /* GraphicBezelComplication.swift */; };
+		5216B52E24283B2C00A23802 /* ModularLargeComplicationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5216B52D24283B2C00A23802 /* ModularLargeComplicationHelper.swift */; };
 		5228ACDB2425A80100642DE1 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228ACDA2425A80100642DE1 /* Data.swift */; };
 		5228ACDD2425AFFB00642DE1 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228ACDC2425AFFB00642DE1 /* FoundationExtensions.swift */; };
 		522CE7AD242526520079CDEE /* UV Forecast.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 522CE7AC242526520079CDEE /* UV Forecast.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -82,7 +85,10 @@
 		5215AC082427DB0C003F3344 /* OpenGaugeComplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenGaugeComplication.swift; sourceTree = "<group>"; };
 		5215AC0A2427E4A6003F3344 /* CircularSmallComplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularSmallComplication.swift; sourceTree = "<group>"; };
 		5215AC0C2427E7C5003F3344 /* ModularSmallComplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModularSmallComplication.swift; sourceTree = "<group>"; };
-		5215AC0E2427EB38003F3344 /* UtilitarianSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilitarianSmall.swift; sourceTree = "<group>"; };
+		5215AC0E2427EB38003F3344 /* UtilitarianComplications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilitarianComplications.swift; sourceTree = "<group>"; };
+		5216B529242831D500A23802 /* GraphicRectangularComplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicRectangularComplication.swift; sourceTree = "<group>"; };
+		5216B52B2428372700A23802 /* GraphicBezelComplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicBezelComplication.swift; sourceTree = "<group>"; };
+		5216B52D24283B2C00A23802 /* ModularLargeComplicationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModularLargeComplicationHelper.swift; sourceTree = "<group>"; };
 		5228ACDA2425A80100642DE1 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		5228ACDC2425AFFB00642DE1 /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
 		522CE7A8242526520079CDEE /* UV Forecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UV Forecast.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,7 +132,10 @@
 				5215AC062427D9BA003F3344 /* GaugeComplication.swift */,
 				5215AC0A2427E4A6003F3344 /* CircularSmallComplication.swift */,
 				5215AC0C2427E7C5003F3344 /* ModularSmallComplication.swift */,
-				5215AC0E2427EB38003F3344 /* UtilitarianSmall.swift */,
+				5216B52D24283B2C00A23802 /* ModularLargeComplicationHelper.swift */,
+				5215AC0E2427EB38003F3344 /* UtilitarianComplications.swift */,
+				5216B529242831D500A23802 /* GraphicRectangularComplication.swift */,
+				5216B52B2428372700A23802 /* GraphicBezelComplication.swift */,
 			);
 			path = Complications;
 			sourceTree = "<group>";
@@ -351,6 +360,8 @@
 				522CE7DE24252EE10079CDEE /* TodayView.swift in Sources */,
 				522CE7C5242526530079CDEE /* ExtensionDelegate.swift in Sources */,
 				5215AC092427DB0C003F3344 /* OpenGaugeComplication.swift in Sources */,
+				5216B52A242831D500A23802 /* GraphicRectangularComplication.swift in Sources */,
+				5216B52C2428372700A23802 /* GraphicBezelComplication.swift in Sources */,
 				52BCC4402426D83D00B67BBB /* ForecastRowView.swift in Sources */,
 				529E6F8F24270A590017D512 /* DataStore.swift in Sources */,
 				522CE7E024252EF80079CDEE /* ForecastView.swift in Sources */,
@@ -360,7 +371,8 @@
 				522CE7E2242530E30079CDEE /* HeaderView.swift in Sources */,
 				5228ACDB2425A80100642DE1 /* Data.swift in Sources */,
 				5228ACDD2425AFFB00642DE1 /* FoundationExtensions.swift in Sources */,
-				5215AC0F2427EB38003F3344 /* UtilitarianSmall.swift in Sources */,
+				5216B52E24283B2C00A23802 /* ModularLargeComplicationHelper.swift in Sources */,
+				5215AC0F2427EB38003F3344 /* UtilitarianComplications.swift in Sources */,
 				52BCC4432426D87600B67BBB /* LoadingView.swift in Sources */,
 				52BCC43E2426D7F400B67BBB /* ErrorView.swift in Sources */,
 			);

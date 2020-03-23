@@ -15,7 +15,7 @@ class OpenGaugeComplicationHelper {
 		return CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
 	}
 	
-	class func complicationTemplate(for uvIndex: UVIndex) -> CLKComplicationTemplate {
+	class func complicationTemplate(for uvIndex: UVIndex) -> CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText {
 		
 		let complicationTemplate = CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText()
 		
