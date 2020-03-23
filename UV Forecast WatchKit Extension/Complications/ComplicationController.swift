@@ -121,7 +121,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "h:mm a"
 		let sampleHighDate = formatter.date(from: "1:00 PM")!
-		let sampleHighForecast = Forecast(date: sampleHighDate, uvIndex: UVIndex(uvValue: 10))
+		let sampleHighForecast = UVForecast(date: sampleHighDate, uvIndex: UVIndex(uvValue: 10))
 		
 		switch complication.family {
 		case .graphicCircular:

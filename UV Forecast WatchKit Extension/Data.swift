@@ -19,7 +19,7 @@ import SwiftUI
 //	case sunEvent(_: SunEvent)
 //}
 
-struct Forecast: Comparable {
+struct UVForecast: Comparable {
 	
 	/// The day that the forecast is for
 	var date: Date
@@ -27,7 +27,7 @@ struct Forecast: Comparable {
 	/// The UV index at the given `date`
 	var uvIndex: UVIndex
 	
-	static func < (lhs: Forecast, rhs: Forecast) -> Bool {
+	static func < (lhs: UVForecast, rhs: UVForecast) -> Bool {
 		return lhs.uvIndex < rhs.uvIndex
 	}
 }

@@ -34,12 +34,12 @@ class UtilitarianSmallComplicationHelper {
 
 class UtilitarianLargeComplicationHelper {
 	
-	class func timelineEntry(for currentUVIndex: UVIndex, highUVForecast: Forecast) -> CLKComplicationTimelineEntry {
+	class func timelineEntry(for currentUVIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTimelineEntry {
 		let template = complicationTemplate(for: currentUVIndex, highUVForecast: highUVForecast)
 		return CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
 	}
 	
-	class func complicationTemplate(for currentUVIndex: UVIndex, highUVForecast: Forecast) -> CLKComplicationTemplate {
+	class func complicationTemplate(for currentUVIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTemplate {
 		
 		let complicationTemplate = CLKComplicationTemplateUtilitarianLargeFlat()
 		

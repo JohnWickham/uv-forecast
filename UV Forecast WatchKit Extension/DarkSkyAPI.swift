@@ -36,7 +36,7 @@ class APIClient {
 	
 	var state: APIClientState = .loading
 	
-	typealias ForecastFetchResult = (currentUVIndex: UVIndex, currentHourlyForecasts: [Forecast], highForToday: Forecast, dailyForecasts: [Forecast])
+	typealias ForecastFetchResult = (currentUVIndex: UVIndex, currentHourlyForecasts: [UVForecast], highForToday: UVForecast, dailyForecasts: [UVForecast])
 	
 	func loadCurrentForecast(for location: (latitude: Double, longitude: Double), result: @escaping ((_ result: Result<ForecastFetchResult, APIError>) -> Void)) {
 		
@@ -66,7 +66,7 @@ class APIClient {
 			
 			let currentUVIndex = UVIndex(uvValue: resultValue)
 			
-			let currentHourlyForecast = rawHourlyForecast.compactMap { (rawForecast) -> Forecast? in
+			let currentHourlyForecast = rawHourlyForecast.compactMap { (rawForecast) -> UVForecast? in
 				
 				guard let rawDate = rawForecast["time"] as? TimeInterval else {
 					return nil
@@ -78,10 +78,10 @@ class APIClient {
 				}
 				let uvIndex = UVIndex(uvValue: rawUVIndex)
 				
-				return Forecast(date: date, uvIndex: uvIndex)
+				return UVForecast(date: date, uvIndex: uvIndex)
 			}
 			
-			let dailyForecastList = rawDailyForecast.compactMap { (rawForecast) -> Forecast? in
+			let dailyForecastList = rawDailyForecast.compactMap { (rawForecast) -> UVForecast? in
 				
 				guard let rawDate = rawForecast["time"] as? TimeInterval else {
 					return nil
@@ -93,7 +93,7 @@ class APIClient {
 				}
 				let uvIndex = UVIndex(uvValue: rawUVIndex)
 				
-				var forecast = Forecast(date: date, uvIndex: uvIndex)
+				var forecast = UVForecast(date: date, uvIndex: uvIndex)
 				
 				if let rawHighIndexDate = rawForecast["uvIndexTime"] as? TimeInterval {
 					forecast.date = Date(timeIntervalSince1970: rawHighIndexDate)

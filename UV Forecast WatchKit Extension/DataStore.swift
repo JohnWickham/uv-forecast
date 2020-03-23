@@ -33,19 +33,19 @@ class DataStore: ObservableObject {
 		}
 	}
 	
-	@Published var todayHighForecast: Forecast = Forecast(date: Date(), uvIndex: UVIndex(uvValue: 0.0)) {
+	@Published var todayHighForecast: UVForecast = UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 0.0)) {
 	   willSet {
 		   objectWillChange.send()
 	   }
 	}
 	
-	@Published var hourlyForecasts: [Forecast] = [] {
+	@Published var hourlyForecasts: [UVForecast] = [] {
 	   willSet {
 		   objectWillChange.send()
 	   }
 	}
 	
-	@Published var dailyForecasts: [Forecast] = [] {
+	@Published var dailyForecasts: [UVForecast] = [] {
 		willSet {
 			objectWillChange.send()
 		}
