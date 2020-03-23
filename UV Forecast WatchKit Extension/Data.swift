@@ -9,15 +9,42 @@
 import Foundation
 import SwiftUI
 
-//enum SunEvent {
-//	case sunrise(_ date: Date)
-//	case sunset(_ date: Date)
-//}
-//
-//enum ForecastTimelineEntry {
-//	case uvIndex(_: UVIndex)
-//	case sunEvent(_: SunEvent)
-//}
+enum ForecastTimelineEntry: Comparable {
+	case uvForecast(_: UVForecast)
+	case sunEvent(_: SunEvent)
+	
+	static func < (lhs: ForecastTimelineEntry, rhs: ForecastTimelineEntry) -> Bool {
+		
+		switch (lhs, rhs) {
+		case (.uvForecast(let lhsForecast), .uvForecast(let rhsForecast)):
+			return lhsForecast.date < rhsForecast.date
+		case (.uvForecast(let lhsForecast), .sunEvent(let rhsSunEvent)):
+			return lhsForecast.date < rhsSunEvent.date
+		case (.sunEvent(let lhsSunEvent), .sunEvent(let rhsSunEvent)):
+			return lhsSunEvent.date < rhsSunEvent.date
+		case (.sunEvent(let lhsSunEvent), .uvForecast(let rhsForecast)):
+			return lhsSunEvent.date < rhsForecast.date
+		}
+		
+	}
+	
+}
+
+struct SunEvent: Comparable {
+	
+	enum SunEventType {
+		case sunrise, sunset
+	}
+	
+	var date: Date
+	
+	var eventType: SunEventType
+	
+	static func < (lhs: SunEvent, rhs: SunEvent) -> Bool {
+		lhs.date < rhs.date
+	}
+	
+}
 
 struct UVForecast: Comparable {
 	

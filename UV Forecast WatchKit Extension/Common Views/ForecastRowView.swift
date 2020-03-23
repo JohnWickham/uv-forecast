@@ -22,12 +22,14 @@ struct UVIndexLabelView: View {
 	
 	var body: some View {
 		HStack {
-			Text(String(format: "%.f", uvIndex.uvValue.rounded())).fontWeight(.semibold).foregroundColor(Color(uvIndex.color))
+			Text(String(format: "%.f", uvIndex.uvValue.rounded()))
+				.fontWeight(.semibold)
+				.foregroundColor(Color(uvIndex.color))
 		}
 		.padding(EdgeInsets(top: 2, leading: 7, bottom: 2, trailing: 7))
-		.background(Color(uvIndex.color).opacity(0.15))
+		.background(Color(uvIndex.color)
+		.opacity(0.15))
 		.cornerRadius(5, antialiased: true)
-		
 	}
 }
 
@@ -40,9 +42,11 @@ struct ForecastRowView: View {
 	var body: some View {
 		VStack {
 			HStack(alignment: .firstTextBaseline, spacing: 0) {
-				Text(title).font(.system(.body))
+				Text(title)
+					.font(.system(.body))
 				Spacer()
-				Text(detail).font(.system(.body))
+				Text(detail)
+					.font(.system(.body))
 				Spacer()
 				UVIndexLabelView(uvIndex: uvIndex)
 			}
