@@ -40,7 +40,7 @@ class ModularLargeComplicationHelper {
 		highForecastLabelTextProvider.tintColor = .white
 		complicationTemplate.row2Column1TextProvider = highForecastLabelTextProvider
 		
-		let highForecastValueTextProvider = CLKSimpleTextProvider(text: "\(highUVForecast.uvIndex.value) at \(highUVForecast.highIndexDate!.shortTimeString)")
+		let highForecastValueTextProvider = CLKSimpleTextProvider(text: "\(highUVForecast.uvIndex.value) at \(highUVForecast.date.shortTimeString)")
 		highForecastValueTextProvider.tintColor = .white
 		complicationTemplate.row2Column2TextProvider = highForecastValueTextProvider
 		

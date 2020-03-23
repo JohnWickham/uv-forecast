@@ -54,7 +54,7 @@ struct TodayView: View, LocationManagerDelegate {
 				
 				SeparatorView()
 				
-				HeaderView(title: "High", detail: dataStore.todayHighForecast.highIndexDate!.shortTimeString, uvIndex: dataStore.todayHighForecast.uvIndex)
+				HeaderView(title: "High", detail: dataStore.todayHighForecast.date.shortTimeString, uvIndex: dataStore.todayHighForecast.uvIndex)
 				
 				SeparatorView()
 				

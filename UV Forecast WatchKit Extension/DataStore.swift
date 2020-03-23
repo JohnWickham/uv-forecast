@@ -33,7 +33,7 @@ class DataStore: ObservableObject {
 		}
 	}
 	
-	@Published var todayHighForecast: Forecast = Forecast(date: Date(), highIndexDate: nil, uvIndex: UVIndex(value: 0.0)) {
+	@Published var todayHighForecast: Forecast = Forecast(date: Date(), uvIndex: UVIndex(value: 0.0)) {
 	   willSet {
 		   objectWillChange.send()
 	   }

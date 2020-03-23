@@ -21,7 +21,7 @@ class GraphicBezelComplicationHelper {
 		
 		complicationTemplate.circularTemplate = OpenGaugeComplicationHelper.complicationTemplate(for: uvIndex)
 		
-		complicationTemplate.textProvider = CLKSimpleTextProvider(text: "Now \(uvIndex.value) High \(highUVForecast.uvIndex.value) at \(highUVForecast.highIndexDate!.shortTimeString)")
+		complicationTemplate.textProvider = CLKSimpleTextProvider(text: "Now \(uvIndex.value) High \(highUVForecast.uvIndex.value) at \(highUVForecast.date.shortTimeString)")
 				
 		return complicationTemplate
 	}

@@ -9,13 +9,20 @@
 import Foundation
 import SwiftUI
 
+//enum SunEvent {
+//	case sunrise(_ date: Date)
+//	case sunset(_ date: Date)
+//}
+//
+//enum ForecastTimelineEntry {
+//	case uvIndex(_: UVIndex)
+//	case sunEvent(_: SunEvent)
+//}
+
 struct Forecast: Comparable {
 	
 	/// The day that the forecast is for
 	var date: Date
-	
-	/// The time that the UV index will be highest
-	var highIndexDate: Date?
 	
 	/// The UV index at the given `date`
 	var uvIndex: UVIndex

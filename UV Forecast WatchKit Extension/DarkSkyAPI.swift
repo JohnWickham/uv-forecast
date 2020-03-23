@@ -96,7 +96,7 @@ class APIClient {
 				var forecast = Forecast(date: date, uvIndex: uvIndex)
 				
 				if let rawHighIndexDate = rawForecast["uvIndexTime"] as? TimeInterval {
-					forecast.highIndexDate = Date(timeIntervalSince1970: rawHighIndexDate)
+					forecast.date = Date(timeIntervalSince1970: rawHighIndexDate)
 				}
 				
 				return forecast
