@@ -52,6 +52,8 @@
 	<string>Get UV Index forecasts for your current location.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Get UV Index forecasts for your current location.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Get UV Index forecasts for your current location.</string>
 	<key>WKExtensionDelegateClassName</key>
 	<string>$(PRODUCT_MODULE_NAME).ExtensionDelegate</string>
 	<key>WKWatchOnly</key>
