@@ -42,10 +42,9 @@ struct ForecastRowView: View {
 	var body: some View {
 		VStack {
 			HStack(alignment: .firstTextBaseline, spacing: 0) {
-				Text(title)
-					.font(.system(.body))
+				textGroup
 				Spacer()
-				detailGroup
+				UVIndexLabelView(uvIndex: uvIndex)
 			}
 			.padding(EdgeInsets(top: 5, leading: 8, bottom: 0, trailing: 8))
 			
@@ -53,13 +52,14 @@ struct ForecastRowView: View {
 		}
 	}
 	
-	var detailGroup: some View {
+	var textGroup: some View {
 		HStack(alignment: .firstTextBaseline, spacing: 0) {
-			Text(detail)
+			Text(title)
 				.font(.system(.body))
 			Spacer()
-			UVIndexLabelView(uvIndex: uvIndex)
+			Text(detail)
+				.font(.system(.body))
 		}
-		.frame(maxWidth: 85)
+		.frame(maxWidth: 100)
 	}
 }
