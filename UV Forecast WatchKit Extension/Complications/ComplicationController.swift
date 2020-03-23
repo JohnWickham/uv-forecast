@@ -57,6 +57,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 			entry = GraphicRectangularComplicationHelper.timelineEntry(for: currentForecast, highUVForecast: highForecast)
 		case .graphicBezel:
 			entry = GraphicBezelComplicationHelper.timelineEntry(for: currentForecast, highUVForecast: highForecast)
+		case .extraLarge:
+			entry = ExtraLargeComplicationHelper.timelineEntry(for: currentForecast)
 		default:
 			entry = nil
 		}
@@ -98,6 +100,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 				return GraphicRectangularComplicationHelper.timelineEntry(for: forecast.uvIndex, highUVForecast: highUVForecast)
 			case .graphicBezel:
 				return GraphicBezelComplicationHelper.timelineEntry(for: forecast.uvIndex, highUVForecast: highUVForecast)
+			case .extraLarge:
+				return ExtraLargeComplicationHelper.timelineEntry(for: forecast.uvIndex)
 			default:
 				return nil
 			}
@@ -138,6 +142,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 			template = GraphicRectangularComplicationHelper.complicationTemplate(for: sampleUVIndex, highUVForecast: sampleHighForecast)
 		case .graphicBezel:
 			template = GraphicBezelComplicationHelper.complicationTemplate(for: sampleUVIndex, highUVForecast: sampleHighForecast)
+		case .extraLarge:
+			template = ExtraLargeComplicationHelper.complicationTemplate(for: sampleUVIndex)
 		default:
 			template = nil
 		}
