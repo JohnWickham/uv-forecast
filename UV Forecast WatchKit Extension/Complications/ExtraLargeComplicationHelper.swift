@@ -19,7 +19,7 @@ class ExtraLargeComplicationHelper {
 		
 		let complicationTemplate = CLKComplicationTemplateExtraLargeSimpleText()
 		
-		let valueTextProvider = CLKSimpleTextProvider(text: "\(uvIndex.value)")
+		let valueTextProvider = CLKSimpleTextProvider(text: "\(uvIndex.uvValue)")
 		valueTextProvider.tintColor = uvIndex.color
 		complicationTemplate.textProvider = valueTextProvider
 		

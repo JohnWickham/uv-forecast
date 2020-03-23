@@ -27,13 +27,13 @@ class DataStore: ObservableObject {
 	   }
 	}
 	
-	@Published var currentUVIndex: UVIndex = UVIndex(value: 0.0) {
+	@Published var currentUVIndex: UVIndex = UVIndex(uvValue: 0.0) {
 		willSet {
 			objectWillChange.send()
 		}
 	}
 	
-	@Published var todayHighForecast: Forecast = Forecast(date: Date(), uvIndex: UVIndex(value: 0.0)) {
+	@Published var todayHighForecast: Forecast = Forecast(date: Date(), uvIndex: UVIndex(uvValue: 0.0)) {
 	   willSet {
 		   objectWillChange.send()
 	   }

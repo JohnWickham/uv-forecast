@@ -19,7 +19,7 @@ class CircularSmallComplicationHelper {
 		
 		let complicationTemplate = CLKComplicationTemplateCircularSmallSimpleText()
 		
-		let textProvider = CLKSimpleTextProvider(text: "\(uvIndex.value)")
+		let textProvider = CLKSimpleTextProvider(text: "\(uvIndex.uvValue)")
 		textProvider.tintColor = uvIndex.color
 		complicationTemplate.textProvider = textProvider
 		

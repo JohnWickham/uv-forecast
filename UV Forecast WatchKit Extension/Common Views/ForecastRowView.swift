@@ -22,7 +22,7 @@ struct UVIndexLabelView: View {
 	
 	var body: some View {
 		HStack {
-			Text(String(format: "%.f", uvIndex.value.rounded())).fontWeight(.semibold).foregroundColor(Color(uvIndex.color))
+			Text(String(format: "%.f", uvIndex.uvValue.rounded())).fontWeight(.semibold).foregroundColor(Color(uvIndex.color))
 		}
 		.padding(EdgeInsets(top: 2, leading: 7, bottom: 2, trailing: 7))
 		.background(Color(uvIndex.color).opacity(0.15))

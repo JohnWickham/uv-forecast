@@ -34,11 +34,11 @@ struct Forecast: Comparable {
 
 struct UVIndex: Comparable {
 	
-	var value: Double = 0.0
+	var uvValue: Double = 0.0
 	
 	var description: String {
-		switch value {
-		case _ where value < 2.99:
+		switch uvValue {
+		case _ where uvValue < 2.99:
 			return "Low"
 		case 3.0 ... 5.99:
 			return "Moderate"
@@ -52,8 +52,8 @@ struct UVIndex: Comparable {
 	}
 	
 	var shortDescription: String {
-		switch value {
-		case _ where value < 2.99:
+		switch uvValue {
+		case _ where uvValue < 2.99:
 			return "Low"
 		case 3.0 ... 5.99:
 			return "Mod"
@@ -73,8 +73,8 @@ struct UVIndex: Comparable {
 	static let extremeColor = UIColor(red:0.667, green:0.000, blue:0.996, alpha:1.00)
 	
 	var color: UIColor {
-		switch value {
-		case _ where value < 2.99:
+		switch uvValue {
+		case _ where uvValue < 2.99:
 			return UVIndex.lowColor
 		case 3.0 ... 5.99:
 			return UVIndex.moderateColor
@@ -88,7 +88,7 @@ struct UVIndex: Comparable {
 	}
 	
 	static func < (lhs: UVIndex, rhs: UVIndex) -> Bool {
-		lhs.value < rhs.value
+		lhs.uvValue < rhs.uvValue
 	}
 	
 }

@@ -19,7 +19,7 @@ class UtilitarianSmallComplicationHelper {
 		
 		let complicationTemplate = CLKComplicationTemplateUtilitarianSmallFlat()
 		
-		let textProvider = CLKSimpleTextProvider(text: "\(uvIndex.value)")
+		let textProvider = CLKSimpleTextProvider(text: "\(uvIndex.uvValue)")
 		textProvider.tintColor = uvIndex.color
 		complicationTemplate.textProvider = textProvider
 		
@@ -43,7 +43,7 @@ class UtilitarianLargeComplicationHelper {
 		
 		let complicationTemplate = CLKComplicationTemplateUtilitarianLargeFlat()
 		
-		let textProvider = CLKSimpleTextProvider(text: "Now \(currentUVIndex.value) High \(highUVForecast.uvIndex.value) at \(highUVForecast.date.shortTimeString)")
+		let textProvider = CLKSimpleTextProvider(text: "Now \(currentUVIndex.uvValue) High \(highUVForecast.uvIndex.uvValue) at \(highUVForecast.date.shortTimeString)")
 		complicationTemplate.textProvider = textProvider
 		
 		return complicationTemplate

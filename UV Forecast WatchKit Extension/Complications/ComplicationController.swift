@@ -116,12 +116,12 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
 		
 		var template: CLKComplicationTemplate? = nil
-		let sampleUVIndex = UVIndex(value: 7.0)
+		let sampleUVIndex = UVIndex(uvValue: 7.0)
 		
 		let formatter = DateFormatter()
 		formatter.dateFormat = "h:mm a"
 		let sampleHighDate = formatter.date(from: "1:00 PM")!
-		let sampleHighForecast = Forecast(date: sampleHighDate, uvIndex: UVIndex(value: 10))
+		let sampleHighForecast = Forecast(date: sampleHighDate, uvIndex: UVIndex(uvValue: 10))
 		
 		switch complication.family {
 		case .graphicCircular:

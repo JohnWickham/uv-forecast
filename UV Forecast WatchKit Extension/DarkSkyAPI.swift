@@ -64,7 +64,7 @@ class APIClient {
 				return
 			}
 			
-			let currentUVIndex = UVIndex(value: resultValue)
+			let currentUVIndex = UVIndex(uvValue: resultValue)
 			
 			let currentHourlyForecast = rawHourlyForecast.compactMap { (rawForecast) -> Forecast? in
 				
@@ -76,7 +76,7 @@ class APIClient {
 				guard let rawUVIndex = rawForecast["uvIndex"] as? Double else {
 					return nil
 				}
-				let uvIndex = UVIndex(value: rawUVIndex)
+				let uvIndex = UVIndex(uvValue: rawUVIndex)
 				
 				return Forecast(date: date, uvIndex: uvIndex)
 			}
@@ -91,7 +91,7 @@ class APIClient {
 				guard let rawUVIndex = rawForecast["uvIndex"] as? Double else {
 					return nil
 				}
-				let uvIndex = UVIndex(value: rawUVIndex)
+				let uvIndex = UVIndex(uvValue: rawUVIndex)
 				
 				var forecast = Forecast(date: date, uvIndex: uvIndex)
 				

@@ -23,11 +23,11 @@ class GraphicRectangularComplicationHelper {
 		titleTextProvider.tintColor = .white
 		complicationTemplate.headerTextProvider = titleTextProvider
 
-		let currentForecastTextProvider = CLKSimpleTextProvider(text: "Now: \(uvIndex.value) \(uvIndex.description)")
+		let currentForecastTextProvider = CLKSimpleTextProvider(text: "Now: \(uvIndex.uvValue) \(uvIndex.description)")
 		currentForecastTextProvider.tintColor = uvIndex.color
 		complicationTemplate.body1TextProvider = currentForecastTextProvider
 		
-		let highForecastTextProvider = CLKSimpleTextProvider(text: "High: \(highUVForecast.uvIndex.value) at \(highUVForecast.date.shortTimeString)")
+		let highForecastTextProvider = CLKSimpleTextProvider(text: "High: \(highUVForecast.uvIndex.uvValue) at \(highUVForecast.date.shortTimeString)")
 		highForecastTextProvider.tintColor = highUVForecast.uvIndex.color
 		complicationTemplate.body2TextProvider = highForecastTextProvider
 				

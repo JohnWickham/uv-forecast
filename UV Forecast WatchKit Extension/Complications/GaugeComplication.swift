@@ -27,10 +27,10 @@ class GaugeComplicationHelper {
 			UVIndex.extremeColor// Purple (stop)
 		]
 		let gaugeColorLocations: [NSNumber] = [0.0, 0.2, 0.4, 0.6, 1.0]
-		let gaugeProvider = CLKSimpleGaugeProvider(style: .ring, gaugeColors: gaugeColors, gaugeColorLocations: gaugeColorLocations, fillFraction: Float(uvIndex.value / 13.0))// Using 13 as the max here even though there technically isn't a max.
+		let gaugeProvider = CLKSimpleGaugeProvider(style: .ring, gaugeColors: gaugeColors, gaugeColorLocations: gaugeColorLocations, fillFraction: Float(uvIndex.uvValue / 13.0))// Using 13 as the max here even though there technically isn't a max.
 		complicationTemplate.gaugeProvider = gaugeProvider
 		
-		let outerTextProvider = CLKSimpleTextProvider(text: "\(uvIndex.value)")
+		let outerTextProvider = CLKSimpleTextProvider(text: "\(uvIndex.uvValue)")
 		outerTextProvider.tintColor = uvIndex.color
 		complicationTemplate.outerTextProvider = outerTextProvider
 		

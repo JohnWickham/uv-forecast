@@ -28,7 +28,7 @@ struct HeaderView: View {
 			}
 
 			HStack(alignment: .firstTextBaseline, spacing: 5, content: {
-				Text(String(format: "%.1f", uvIndex.value))
+				Text(String(format: "%.1f", uvIndex.uvValue))
 					.font(.system(size: 45, weight: .medium, design: .default))
 					.foregroundColor(Color(uvIndex.color))
 				Text(uvIndex.description)
