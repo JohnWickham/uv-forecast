@@ -41,31 +41,31 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
 		
-		let currentForecast = DataStore.shared.currentUVIndex
+		let currentUVIndex = DataStore.shared.currentUVIndex
 		let highForecast = DataStore.shared.todayHighForecast
 		var entry: CLKComplicationTimelineEntry? = nil
 		
 		switch complication.family {
 		case .graphicCircular:
-			entry = OpenGaugeComplicationHelper.timelineEntry(for: currentForecast)
+			entry = OpenGaugeComplicationHelper.timelineEntry(for: Date(), uvIndex: currentUVIndex)
 		case .circularSmall:
-			entry = CircularSmallComplicationHelper.timelineEntry(for: currentForecast)
+			entry = CircularSmallComplicationHelper.timelineEntry(for: Date(), uvIndex: currentUVIndex)
 		case .modularSmall:
-			entry = ModularSmallComplicationHelper.timelineEntry(for: currentForecast)
+			entry = ModularSmallComplicationHelper.timelineEntry(for: Date(), uvIndex: currentUVIndex)
 		case .modularLarge:
-			entry = ModularLargeComplicationHelper.timelineEntry(for: currentForecast, highUVForecast: highForecast)
+			entry = ModularLargeComplicationHelper.timelineEntry(for: Date(), currentUVIndex: currentUVIndex, highUVForecast: highForecast)
 		case .utilitarianSmall, .utilitarianSmallFlat:
-			entry = UtilitarianSmallComplicationHelper.timelineEntry(for: currentForecast)
+			entry = UtilitarianSmallComplicationHelper.timelineEntry(for: Date(), uvIndex: currentUVIndex)
 		case .utilitarianLarge:
-			entry = UtilitarianLargeComplicationHelper.timelineEntry(for: currentForecast, highUVForecast: highForecast)
+			entry = UtilitarianLargeComplicationHelper.timelineEntry(for: Date(), currentUVIndex: currentUVIndex, highUVForecast: highForecast)
 		case .graphicCorner:
-			entry = GaugeComplicationHelper.timelineEntry(for: currentForecast)
+			entry = GaugeComplicationHelper.timelineEntry(for: Date(), uvIndex: currentUVIndex)
 		case .graphicRectangular:
-			entry = GraphicRectangularComplicationHelper.timelineEntry(for: currentForecast, highUVForecast: highForecast)
+			entry = GraphicRectangularComplicationHelper.timelineEntry(for: Date(), currentUVIndex: currentUVIndex, highUVForecast: highForecast)
 		case .graphicBezel:
-			entry = GraphicBezelComplicationHelper.timelineEntry(for: currentForecast, highUVForecast: highForecast)
+			entry = GraphicBezelComplicationHelper.timelineEntry(for: Date(), currentUVIndex: currentUVIndex, highUVForecast: highForecast)
 		case .extraLarge:
-			entry = ExtraLargeComplicationHelper.timelineEntry(for: currentForecast)
+			entry = ExtraLargeComplicationHelper.timelineEntry(for: Date(), uvIndex: currentUVIndex)
 		default:
 			entry = nil
 		}
@@ -90,25 +90,25 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 			
 			switch complication.family {
 			case .graphicCircular:
-				return OpenGaugeComplicationHelper.timelineEntry(for: forecast.uvIndex)
+				return OpenGaugeComplicationHelper.timelineEntry(for: forecast.date, uvIndex: forecast.uvIndex)
 			case .circularSmall:
-				return CircularSmallComplicationHelper.timelineEntry(for: forecast.uvIndex)
+				return CircularSmallComplicationHelper.timelineEntry(for: forecast.date, uvIndex: forecast.uvIndex)
 			case .modularSmall:
-				return ModularSmallComplicationHelper.timelineEntry(for: forecast.uvIndex)
+				return ModularSmallComplicationHelper.timelineEntry(for: forecast.date, uvIndex: forecast.uvIndex)
 			case .modularLarge:
-				return ModularLargeComplicationHelper.timelineEntry(for: forecast.uvIndex, highUVForecast: highUVForecast)
+				return ModularLargeComplicationHelper.timelineEntry(for: forecast.date, currentUVIndex: forecast.uvIndex, highUVForecast: highUVForecast)
 			case .utilitarianSmall, .utilitarianSmallFlat:
-				return UtilitarianSmallComplicationHelper.timelineEntry(for: forecast.uvIndex)
+				return UtilitarianSmallComplicationHelper.timelineEntry(for: forecast.date, uvIndex: forecast.uvIndex)
 			case .utilitarianLarge:
-				return UtilitarianLargeComplicationHelper.timelineEntry(for: forecast.uvIndex, highUVForecast: highUVForecast)
+				return UtilitarianLargeComplicationHelper.timelineEntry(for: forecast.date, currentUVIndex: forecast.uvIndex, highUVForecast: highUVForecast)
 			case .graphicCorner:
-				return GaugeComplicationHelper.timelineEntry(for: forecast.uvIndex)
+				return GaugeComplicationHelper.timelineEntry(for: forecast.date, uvIndex: forecast.uvIndex)
 			case .graphicRectangular:
-				return GraphicRectangularComplicationHelper.timelineEntry(for: forecast.uvIndex, highUVForecast: highUVForecast)
+				return GraphicRectangularComplicationHelper.timelineEntry(for: forecast.date, currentUVIndex: forecast.uvIndex, highUVForecast: highUVForecast)
 			case .graphicBezel:
-				return GraphicBezelComplicationHelper.timelineEntry(for: forecast.uvIndex, highUVForecast: highUVForecast)
+				return GraphicBezelComplicationHelper.timelineEntry(for: forecast.date, currentUVIndex: forecast.uvIndex, highUVForecast: highUVForecast)
 			case .extraLarge:
-				return ExtraLargeComplicationHelper.timelineEntry(for: forecast.uvIndex)
+				return ExtraLargeComplicationHelper.timelineEntry(for: forecast.date, uvIndex: forecast.uvIndex)
 			default:
 				return nil
 			}

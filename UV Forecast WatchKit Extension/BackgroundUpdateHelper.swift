@@ -12,8 +12,8 @@ class BackgroundUpdateHelper {
 	
 	class func scheduleBackgroundUpdate(with location: Location, preferredDate: Date?) {
 		
-		let preferredDate = preferredDate ?? Date().addingTimeInterval(60 * 60)
-		
+		// By default, schedule the next update for the start of the next hour
+		let preferredDate = preferredDate ?? Date().startOfNextHour
 		let userInfo = ["latitude" : 0.0, "longitude" : 0.0] as (NSSecureCoding & NSObjectProtocol)
 		
 		WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: preferredDate, userInfo: userInfo) { (error) in
@@ -21,6 +21,8 @@ class BackgroundUpdateHelper {
 			if error != nil {
 				print("Couldn't schedule background update task: \(error!.localizedDescription)")
 			}
+			
+			print("Scheduled next background update task for: \(preferredDate)")
 			
 		}
 		

@@ -31,18 +31,19 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
                 
 				guard let userInfo = backgroundTask.userInfo as? [String : Double], let latitude = userInfo["latitude"], let longitude = userInfo["longitude"] else {
+					NSLog("Refusing to schedule background update: couldn't determine location from userInfo.")
 					backgroundTask.setTaskCompletedWithSnapshot(false)
 					return
 				}
 				
-				//TODO: Instead of calling a normal load, schedule a background URLSession task to load.
+				// Instead of calling a normal load, schedule a background URLSession task to load.
 				// This background URLSession task will call the WKURLSessionRefreshBackgroundTask case later in this method.
 				APIClient().scheduleBackgroundUpdate(for: (latitude: latitude, longitude: longitude))
                 backgroundTask.setTaskCompletedWithSnapshot(true)
 				
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
                 // Snapshot tasks have a unique completion call, make sure to set your expiration date
-				snapshotTask.setTaskCompleted(restoredDefaultState: true, estimatedSnapshotExpiration: Date().oneHourFromNow, userInfo: nil)
+				snapshotTask.setTaskCompleted(restoredDefaultState: true, estimatedSnapshotExpiration: Date().startOfNextHour, userInfo: nil)
 				
             case let connectivityTask as WKWatchConnectivityRefreshBackgroundTask:
                 // Be sure to complete the connectivity task once you’re done.
@@ -50,7 +51,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 				
             case let urlSessionTask as WKURLSessionRefreshBackgroundTask:
                 // Be sure to complete the URL session task once you’re done.
-                urlSessionTask.setTaskCompletedWithSnapshot(false)
+                urlSessionTask.setTaskCompletedWithSnapshot(true)
 				
             case let relevantShortcutTask as WKRelevantShortcutRefreshBackgroundTask:
                 // Be sure to complete the relevant-shortcut task once you're done.

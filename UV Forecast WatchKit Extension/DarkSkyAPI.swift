@@ -24,7 +24,7 @@ enum APIError: LocalizedError {
 	var errorDescription: String? {
 		switch self {
 		default:
-			return "An error occurred loading UV Index information."
+			return "An error occurred loading UV index information."
 		}
 	}
 }
@@ -48,6 +48,7 @@ class APIClient {
 		let urlRequest = makeURLRequest(for: location)
 		URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
 			self.handleResponse(data: data, response: response, error: error, result: resultHandler)
+			ComplicationController().reloadComplicationTimeline()
 		}.resume()
 	}
 	
@@ -57,6 +58,7 @@ class APIClient {
 		let urlRequest = makeURLRequest(for: location)
 		backgroundSession.dataTask(with: urlRequest) { (data, response, error) in
 			self.handleResponse(data: data, response: response, error: error, result: nil)
+			ComplicationController().reloadComplicationTimeline()
 		}.resume()
 		
 	}

@@ -10,9 +10,9 @@ import ClockKit
 
 class ExtraLargeComplicationHelper {
 	
-	class func timelineEntry(for uvIndex: UVIndex) -> CLKComplicationTimelineEntry {
+	class func timelineEntry(for date: Date, uvIndex: UVIndex) -> CLKComplicationTimelineEntry {
 		let template = complicationTemplate(for: uvIndex)
-		return CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
+		return CLKComplicationTimelineEntry(date: date, complicationTemplate: template)
 	}
 	
 	class func complicationTemplate(for uvIndex: UVIndex) -> CLKComplicationTemplate {

@@ -10,9 +10,9 @@ import ClockKit
 
 class GraphicRectangularComplicationHelper {
 	
-	class func timelineEntry(for currentUVIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTimelineEntry {
+	class func timelineEntry(for date: Date, currentUVIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTimelineEntry {
 		let template = complicationTemplate(for: currentUVIndex, highUVForecast: highUVForecast)
-		return CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
+		return CLKComplicationTimelineEntry(date: date, complicationTemplate: template)
 	}
 	
 	class func complicationTemplate(for uvIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTemplate {

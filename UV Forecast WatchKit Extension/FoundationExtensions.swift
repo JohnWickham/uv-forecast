@@ -39,8 +39,11 @@ extension Date {
 		return (day == nowDay && week == nowWeek && month == nowMonth && year == nowYear)
 	}
 	
-	var oneHourFromNow: Date {
-		return Date().addingTimeInterval(60 * 30)
+	var startOfNextHour: Date {
+		let currentMinutes = Calendar.current.component(.minute, from: Date())
+		let minutesTillNextHour = 60 - currentMinutes
+		let startOfNextHour = Calendar.current.date(byAdding: .minute, value: minutesTillNextHour, to: Date())!
+		return startOfNextHour
 	}
 	
 	var shortTimeString: String {
