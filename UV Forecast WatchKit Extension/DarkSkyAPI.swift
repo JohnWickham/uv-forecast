@@ -16,10 +16,7 @@ enum APIError: LocalizedError {
     case unknown
 	
 	var errorDescription: String? {
-		switch self {
-		default:
-			return "There was a problem loading UV index information."
-		}
+		return "There was a problem loading UV index information."
 	}
 }
 
