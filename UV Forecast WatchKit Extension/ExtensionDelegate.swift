@@ -29,23 +29,37 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             // Use a switch statement to check the task type
             switch task {
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
-                // Be sure to complete the background task once you’re done.
-                backgroundTask.setTaskCompletedWithSnapshot(false)
+                
+				guard let userInfo = backgroundTask.userInfo as? [String : Double], let latitude = userInfo["latitude"], let longitude = userInfo["longitude"] else {
+					backgroundTask.setTaskCompletedWithSnapshot(false)
+					return
+				}
+				
+				//TODO: Instead of calling a normal load, schedule a background URLSession task to load.
+				// This background URLSession task will call the WKURLSessionRefreshBackgroundTask case later in this method.
+				APIClient().scheduleBackgroundUpdate(for: (latitude: latitude, longitude: longitude))
+                backgroundTask.setTaskCompletedWithSnapshot(true)
+				
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
                 // Snapshot tasks have a unique completion call, make sure to set your expiration date
-                snapshotTask.setTaskCompleted(restoredDefaultState: true, estimatedSnapshotExpiration: Date.distantFuture, userInfo: nil)
+				snapshotTask.setTaskCompleted(restoredDefaultState: true, estimatedSnapshotExpiration: Date().oneHourFromNow, userInfo: nil)
+				
             case let connectivityTask as WKWatchConnectivityRefreshBackgroundTask:
                 // Be sure to complete the connectivity task once you’re done.
                 connectivityTask.setTaskCompletedWithSnapshot(false)
+				
             case let urlSessionTask as WKURLSessionRefreshBackgroundTask:
                 // Be sure to complete the URL session task once you’re done.
                 urlSessionTask.setTaskCompletedWithSnapshot(false)
+				
             case let relevantShortcutTask as WKRelevantShortcutRefreshBackgroundTask:
                 // Be sure to complete the relevant-shortcut task once you're done.
                 relevantShortcutTask.setTaskCompletedWithSnapshot(false)
+				
             case let intentDidRunTask as WKIntentDidRunRefreshBackgroundTask:
                 // Be sure to complete the intent-did-run task once you're done.
                 intentDidRunTask.setTaskCompletedWithSnapshot(false)
+				
             default:
                 // make sure to complete unhandled task types
                 task.setTaskCompletedWithSnapshot(false)

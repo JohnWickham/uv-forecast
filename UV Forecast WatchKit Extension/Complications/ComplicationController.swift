@@ -10,7 +10,14 @@ import ClockKit
 
 
 class ComplicationController: NSObject, CLKComplicationDataSource {
-    
+	
+	func reloadComplicationTimeline() {
+		let complicationServer = CLKComplicationServer.sharedInstance()
+		complicationServer.activeComplications?.forEach({ (complication) in
+			complicationServer.reloadTimeline(for: complication)
+		})
+	}
+	
     // MARK: - Timeline Configuration
     
     func getSupportedTimeTravelDirections(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimeTravelDirections) -> Void) {

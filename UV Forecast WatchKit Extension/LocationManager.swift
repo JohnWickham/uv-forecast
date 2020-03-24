@@ -10,6 +10,8 @@ import Foundation
 import CoreLocation
 import Combine
 
+typealias Location = (latitude: Double, longitude: Double)
+
 enum LocationError: LocalizedError {
 	case permissionNotDetermined
 	case permissionDenied

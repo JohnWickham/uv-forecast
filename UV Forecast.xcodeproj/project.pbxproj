@@ -19,6 +19,7 @@
 		5216B5302428429800A23802 /* ExtraLargeComplicationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5216B52F2428429800A23802 /* ExtraLargeComplicationHelper.swift */; };
 		5228ACDB2425A80100642DE1 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228ACDA2425A80100642DE1 /* Data.swift */; };
 		5228ACDD2425AFFB00642DE1 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228ACDC2425AFFB00642DE1 /* FoundationExtensions.swift */; };
+		5229DD8D242925D1008FBCF3 /* BackgroundUpdateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5229DD8C242925D1008FBCF3 /* BackgroundUpdateHelper.swift */; };
 		522CE7AD242526520079CDEE /* UV Forecast.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 522CE7AC242526520079CDEE /* UV Forecast.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		522CE7B3242526520079CDEE /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 522CE7B1242526520079CDEE /* Interface.storyboard */; };
 		522CE7B5242526530079CDEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 522CE7B4242526530079CDEE /* Assets.xcassets */; };
@@ -93,6 +94,7 @@
 		5216B52F2428429800A23802 /* ExtraLargeComplicationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraLargeComplicationHelper.swift; sourceTree = "<group>"; };
 		5228ACDA2425A80100642DE1 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		5228ACDC2425AFFB00642DE1 /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
+		5229DD8C242925D1008FBCF3 /* BackgroundUpdateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundUpdateHelper.swift; sourceTree = "<group>"; };
 		522CE7A8242526520079CDEE /* UV Forecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UV Forecast.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		522CE7AC242526520079CDEE /* UV Forecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UV Forecast.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		522CE7B2242526520079CDEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				5228ACDA2425A80100642DE1 /* Data.swift */,
 				522CE7E424253D890079CDEE /* DarkSkyAPI.swift */,
 				529E6F8E24270A590017D512 /* DataStore.swift */,
+				5229DD8C242925D1008FBCF3 /* BackgroundUpdateHelper.swift */,
 				5228ACDC2425AFFB00642DE1 /* FoundationExtensions.swift */,
 				5201DA8C2425F17500CC104E /* LocationManager.swift */,
 			);
@@ -374,6 +377,7 @@
 				5215AC072427D9BA003F3344 /* GaugeComplication.swift in Sources */,
 				522CE7E2242530E30079CDEE /* HeaderView.swift in Sources */,
 				5228ACDB2425A80100642DE1 /* Data.swift in Sources */,
+				5229DD8D242925D1008FBCF3 /* BackgroundUpdateHelper.swift in Sources */,
 				5228ACDD2425AFFB00642DE1 /* FoundationExtensions.swift in Sources */,
 				5216B52E24283B2C00A23802 /* ModularLargeComplicationHelper.swift in Sources */,
 				5215AC0F2427EB38003F3344 /* UtilitarianComplications.swift in Sources */,

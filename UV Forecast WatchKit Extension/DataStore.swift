@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import ClockKit
 
 class DataStore: ObservableObject {
 	
@@ -71,6 +72,11 @@ extension DataStore {
 				}
 				
 				self.loadingState = (isLoading: false, hasLoaded: true)
+				
+				ComplicationController().reloadComplicationTimeline()
+				
+				BackgroundUpdateHelper.scheduleBackgroundUpdate(with: location, preferredDate: nil)
+				
 			}
 			
 		}

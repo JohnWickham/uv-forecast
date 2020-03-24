@@ -39,6 +39,10 @@ extension Date {
 		return (day == nowDay && week == nowWeek && month == nowMonth && year == nowYear)
 	}
 	
+	var oneHourFromNow: Date {
+		return Date().addingTimeInterval(60 * 30)
+	}
+	
 	var shortTimeString: String {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "h a"
