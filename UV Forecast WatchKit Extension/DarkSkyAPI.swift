@@ -9,12 +9,6 @@
 import SwiftUI
 import Combine
 
-enum APIClientState {
-	case loading
-	case failed(error: Error)
-	case loaded
-}
-
 enum APIError: LocalizedError {
     case request(code: Int, error: Error?)
 	case noData
@@ -33,8 +27,6 @@ class APIClient {
 	
 	static let APIKey: String = "accbf73888a364be5659f3fb1f453e8d"
 	static let baseURL: URL = URL(string: "https://api.darksky.net/forecast/\(APIClient.APIKey)/")!
-	
-	var state: APIClientState = .loading
 	
 	typealias ForecastFetchResult = (currentUVIndex: UVIndex, currentHourlyForecasts: [UVForecast], highForToday: UVForecast, dailyForecasts: [UVForecast])
 	typealias ForecastFetchResultHandler = ((_ result: Result<ForecastFetchResult, APIError>) -> Void)
