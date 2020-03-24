@@ -24,7 +24,7 @@ enum APIError: LocalizedError {
 	var errorDescription: String? {
 		switch self {
 		default:
-			return "An error occurred loading UV index information."
+			return "There was a problem loading UV index information."
 		}
 	}
 }
