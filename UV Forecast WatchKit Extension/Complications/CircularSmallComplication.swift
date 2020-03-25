@@ -17,11 +17,16 @@ class CircularSmallComplicationHelper {
 	
 	class func complicationTemplate(for uvIndex: UVIndex) -> CLKComplicationTemplate {
 		
-		let complicationTemplate = CLKComplicationTemplateCircularSmallSimpleText()
+		let complicationTemplate = CLKComplicationTemplateCircularSmallStackImage()
+		
+		let image = UIImage(systemName: "sun.max.fill")!
+		let imageProvider = CLKImageProvider(onePieceImage: image)
+		imageProvider.tintColor = uvIndex.color
+		complicationTemplate.line1ImageProvider = imageProvider
 		
 		let textProvider = CLKSimpleTextProvider(text: "\(uvIndex.uvValue)")
 		textProvider.tintColor = uvIndex.color
-		complicationTemplate.textProvider = textProvider
+		complicationTemplate.line2TextProvider = textProvider
 		
 		return complicationTemplate
 	}

@@ -8,6 +8,8 @@
 
 import SwiftUI
 
+// TODO: ForecastView and TodayView are basically the exact same. Try to share a little more code between the two
+
 struct ForecastView: View, LocationManagerDelegate {
 	
 	@ObservedObject var locationManager = LocationManager()
