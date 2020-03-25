@@ -51,7 +51,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 		case .circularSmall:
 			entry = CircularSmallComplicationHelper.timelineEntry(for: Date(), uvIndex: currentUVIndex)
 		case .modularSmall:
-			entry = ModularSmallComplicationHelper.timelineEntry(for: Date(), uvIndex: currentUVIndex)
+			entry = ModularSmallComplicationHelper.timelineEntry(for: Date(), uvIndex: currentUVIndex, highUVForecast: highForecast)
 		case .modularLarge:
 			entry = ModularLargeComplicationHelper.timelineEntry(for: Date(), currentUVIndex: currentUVIndex, highUVForecast: highForecast)
 		case .utilitarianSmall, .utilitarianSmallFlat:
@@ -94,7 +94,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 			case .circularSmall:
 				return CircularSmallComplicationHelper.timelineEntry(for: forecast.date, uvIndex: forecast.uvIndex)
 			case .modularSmall:
-				return ModularSmallComplicationHelper.timelineEntry(for: forecast.date, uvIndex: forecast.uvIndex)
+				return ModularSmallComplicationHelper.timelineEntry(for: forecast.date, uvIndex: forecast.uvIndex, highUVForecast: highUVForecast)
 			case .modularLarge:
 				return ModularLargeComplicationHelper.timelineEntry(for: forecast.date, currentUVIndex: forecast.uvIndex, highUVForecast: highUVForecast)
 			case .utilitarianSmall, .utilitarianSmallFlat:
@@ -136,7 +136,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 		case .circularSmall:
 			template = CircularSmallComplicationHelper.complicationTemplate(for: sampleUVIndex)
 		case .modularSmall:
-			template = ModularSmallComplicationHelper.complicationTemplate(for: sampleUVIndex)
+			template = ModularSmallComplicationHelper.complicationTemplate(for: sampleUVIndex, highUVForecast: sampleHighForecast)
 		case .modularLarge:
 			template = ModularLargeComplicationHelper.complicationTemplate(for: sampleUVIndex, highUVForecast: sampleHighForecast)
 		case .utilitarianSmall, .utilitarianSmallFlat:
