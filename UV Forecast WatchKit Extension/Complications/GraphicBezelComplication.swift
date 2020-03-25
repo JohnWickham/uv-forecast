@@ -8,18 +8,13 @@
 
 import ClockKit
 
-class GraphicBezelComplicationHelper {
+class GraphicBezelComplicationHelper: ComplicationHelper {
 	
-	class func timelineEntry(for date: Date, currentUVIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTimelineEntry {
-		let template = complicationTemplate(for: currentUVIndex, highUVForecast: highUVForecast)
-		return CLKComplicationTimelineEntry(date: date, complicationTemplate: template)
-	}
-	
-	class func complicationTemplate(for uvIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTemplate {
+	func complicationTemplate(for uvIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTemplate {
 		
 		let complicationTemplate = CLKComplicationTemplateGraphicBezelCircularText()
 		
-		complicationTemplate.circularTemplate = OpenGaugeComplicationHelper.complicationTemplate(for: uvIndex)
+		complicationTemplate.circularTemplate = OpenGaugeComplicationHelper().complicationTemplate(for: uvIndex, highUVForecast: highUVForecast) as! CLKComplicationTemplateGraphicCircular
 		
 		complicationTemplate.textProvider = CLKSimpleTextProvider(text: "Now \(uvIndex.uvValue) High \(highUVForecast.uvIndex.uvValue) at \(highUVForecast.date.shortTimeString)")
 				

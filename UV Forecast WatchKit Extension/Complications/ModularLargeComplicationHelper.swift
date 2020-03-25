@@ -8,14 +8,9 @@
 
 import ClockKit
 
-class ModularLargeComplicationHelper {
+class ModularLargeComplicationHelper: ComplicationHelper {
 	
-	class func timelineEntry(for date: Date, currentUVIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTimelineEntry {
-		let template = complicationTemplate(for: currentUVIndex, highUVForecast: highUVForecast)
-		return CLKComplicationTimelineEntry(date: date, complicationTemplate: template)
-	}
-	
-	class func complicationTemplate(for currentUVIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTemplate {
+	func complicationTemplate(for currentUVIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTemplate {
 		
 		let complicationTemplate = CLKComplicationTemplateModularLargeTable()
 		

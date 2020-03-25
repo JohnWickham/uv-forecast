@@ -8,24 +8,19 @@
 
 import ClockKit
 
-class CircularSmallComplicationHelper {
+class CircularSmallComplicationHelper: ComplicationHelper {
 	
-	class func timelineEntry(for date: Date, uvIndex: UVIndex) -> CLKComplicationTimelineEntry {
-		let template = complicationTemplate(for: uvIndex)
-		return CLKComplicationTimelineEntry(date: date, complicationTemplate: template)
-	}
-	
-	class func complicationTemplate(for uvIndex: UVIndex) -> CLKComplicationTemplate {
+	func complicationTemplate(for currentUVIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTemplate {
 		
 		let complicationTemplate = CLKComplicationTemplateCircularSmallStackImage()
 		
 		let image = UIImage(systemName: "sun.max.fill")!
 		let imageProvider = CLKImageProvider(onePieceImage: image)
-		imageProvider.tintColor = uvIndex.color
+		imageProvider.tintColor = currentUVIndex.color
 		complicationTemplate.line1ImageProvider = imageProvider
 		
-		let textProvider = CLKSimpleTextProvider(text: "\(uvIndex.uvValue)")
-		textProvider.tintColor = uvIndex.color
+		let textProvider = CLKSimpleTextProvider(text: "\(currentUVIndex.uvValue)")
+		textProvider.tintColor = currentUVIndex.color
 		complicationTemplate.line2TextProvider = textProvider
 		
 		return complicationTemplate

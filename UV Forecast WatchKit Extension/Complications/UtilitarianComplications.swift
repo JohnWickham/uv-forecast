@@ -8,23 +8,18 @@
 
 import ClockKit
 
-class UtilitarianSmallComplicationHelper {
+class UtilitarianSmallComplicationHelper: ComplicationHelper {
 	
-	class func timelineEntry(for date: Date, uvIndex: UVIndex) -> CLKComplicationTimelineEntry {
-		let template = complicationTemplate(for: uvIndex)
-		return CLKComplicationTimelineEntry(date: date, complicationTemplate: template)
-	}
-	
-	class func complicationTemplate(for uvIndex: UVIndex) -> CLKComplicationTemplate {
+	func complicationTemplate(for currentUVIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTemplate {
 		
 		let complicationTemplate = CLKComplicationTemplateUtilitarianSmallFlat()
 		
-		let textProvider = CLKSimpleTextProvider(text: "\(uvIndex.uvValue)")
-		textProvider.tintColor = uvIndex.color
+		let textProvider = CLKSimpleTextProvider(text: "\(currentUVIndex.uvValue)")
+		textProvider.tintColor = currentUVIndex.color
 		complicationTemplate.textProvider = textProvider
 		
 		let imageProvider = CLKImageProvider(onePieceImage: UIImage(systemName: "sun.max.fill")!)
-		imageProvider.tintColor = uvIndex.color
+		imageProvider.tintColor = currentUVIndex.color
 		complicationTemplate.imageProvider = imageProvider
 		
 		return complicationTemplate
@@ -32,14 +27,9 @@ class UtilitarianSmallComplicationHelper {
 	
 }
 
-class UtilitarianLargeComplicationHelper {
+class UtilitarianLargeComplicationHelper: ComplicationHelper {
 	
-	class func timelineEntry(for date: Date, currentUVIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTimelineEntry {
-		let template = complicationTemplate(for: currentUVIndex, highUVForecast: highUVForecast)
-		return CLKComplicationTimelineEntry(date: date, complicationTemplate: template)
-	}
-	
-	class func complicationTemplate(for currentUVIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTemplate {
+	func complicationTemplate(for currentUVIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTemplate {
 		
 		let complicationTemplate = CLKComplicationTemplateUtilitarianLargeFlat()
 		

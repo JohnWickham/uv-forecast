@@ -8,14 +8,9 @@
 
 import ClockKit
 
-class GaugeComplicationHelper {
+class GaugeComplicationHelper: ComplicationHelper {
 	
-	class func timelineEntry(for date: Date, uvIndex: UVIndex) -> CLKComplicationTimelineEntry {
-		let template = complicationTemplate(for: uvIndex)
-		return CLKComplicationTimelineEntry(date: date, complicationTemplate: template)
-	}
-	
-	class func complicationTemplate(for uvIndex: UVIndex) -> CLKComplicationTemplate {
+	func complicationTemplate(for currentUVIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTemplate {
 		
 		let complicationTemplate = CLKComplicationTemplateGraphicCornerGaugeText()
 		
@@ -27,11 +22,11 @@ class GaugeComplicationHelper {
 			UVIndex.extremeColor// Purple (stop)
 		]
 		let gaugeColorLocations: [NSNumber] = [0.0, 0.2, 0.4, 0.6, 1.0]
-		let gaugeProvider = CLKSimpleGaugeProvider(style: .ring, gaugeColors: gaugeColors, gaugeColorLocations: gaugeColorLocations, fillFraction: Float(uvIndex.uvValue / 13.0))// Using 13 as the max here even though there technically isn't a max.
+		let gaugeProvider = CLKSimpleGaugeProvider(style: .ring, gaugeColors: gaugeColors, gaugeColorLocations: gaugeColorLocations, fillFraction: Float(currentUVIndex.uvValue / 13.0))// Using 13 as the max here even though there technically isn't a max.
 		complicationTemplate.gaugeProvider = gaugeProvider
 		
-		let outerTextProvider = CLKSimpleTextProvider(text: "\(uvIndex.uvValue)")
-		outerTextProvider.tintColor = uvIndex.color
+		let outerTextProvider = CLKSimpleTextProvider(text: "\(currentUVIndex.uvValue)")
+		outerTextProvider.tintColor = currentUVIndex.color
 		complicationTemplate.outerTextProvider = outerTextProvider
 		
 		let leadingTextProvider = CLKSimpleTextProvider(text: "UV")

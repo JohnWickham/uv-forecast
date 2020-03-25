@@ -8,19 +8,14 @@
 
 import ClockKit
 
-class ExtraLargeComplicationHelper {
+class ExtraLargeComplicationHelper: ComplicationHelper {
 	
-	class func timelineEntry(for date: Date, uvIndex: UVIndex) -> CLKComplicationTimelineEntry {
-		let template = complicationTemplate(for: uvIndex)
-		return CLKComplicationTimelineEntry(date: date, complicationTemplate: template)
-	}
-	
-	class func complicationTemplate(for uvIndex: UVIndex) -> CLKComplicationTemplate {
+	func complicationTemplate(for currentUVIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTemplate {
 		
 		let complicationTemplate = CLKComplicationTemplateExtraLargeSimpleText()
 		
-		let valueTextProvider = CLKSimpleTextProvider(text: "\(uvIndex.uvValue)")
-		valueTextProvider.tintColor = uvIndex.color
+		let valueTextProvider = CLKSimpleTextProvider(text: "\(currentUVIndex.uvValue)")
+		valueTextProvider.tintColor = currentUVIndex.color
 		complicationTemplate.textProvider = valueTextProvider
 		
 		return complicationTemplate

@@ -8,22 +8,17 @@
 
 import ClockKit
 
-class ModularSmallComplicationHelper {
+class ModularSmallComplicationHelper: ComplicationHelper {
 	
-	class func timelineEntry(for date: Date, uvIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTimelineEntry {
-		let template = complicationTemplate(for: uvIndex, highUVForecast: highUVForecast)
-		return CLKComplicationTimelineEntry(date: date, complicationTemplate: template)
-	}
-	
-	class func complicationTemplate(for uvIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTemplate {
+	func complicationTemplate(for currentUVIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTemplate {
 		
 		let complicationTemplate = CLKComplicationTemplateModularSmallColumnsText()
 		
 		let row1Column1TextProvider = CLKSimpleTextProvider(text: "UV")
-		row1Column1TextProvider.tintColor = uvIndex.color
+		row1Column1TextProvider.tintColor = currentUVIndex.color
 		complicationTemplate.row1Column1TextProvider = row1Column1TextProvider
 		
-		let row1Column2TextProvider = CLKSimpleTextProvider(text: "\(uvIndex.uvValue)")
+		let row1Column2TextProvider = CLKSimpleTextProvider(text: "\(currentUVIndex.uvValue)")
 		row1Column2TextProvider.tintColor = .white
 		complicationTemplate.row1Column2TextProvider = row1Column2TextProvider
 		

@@ -43,34 +43,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 		
 		let currentUVIndex = DataStore.shared.currentUVIndex
 		let highForecast = DataStore.shared.todayHighForecast
-		var entry: CLKComplicationTimelineEntry? = nil
-		
-		switch complication.family {
-		case .graphicCircular:
-			entry = OpenGaugeComplicationHelper.timelineEntry(for: Date(), uvIndex: currentUVIndex)
-		case .circularSmall:
-			entry = CircularSmallComplicationHelper.timelineEntry(for: Date(), uvIndex: currentUVIndex)
-		case .modularSmall:
-			entry = ModularSmallComplicationHelper.timelineEntry(for: Date(), uvIndex: currentUVIndex, highUVForecast: highForecast)
-		case .modularLarge:
-			entry = ModularLargeComplicationHelper.timelineEntry(for: Date(), currentUVIndex: currentUVIndex, highUVForecast: highForecast)
-		case .utilitarianSmall, .utilitarianSmallFlat:
-			entry = UtilitarianSmallComplicationHelper.timelineEntry(for: Date(), uvIndex: currentUVIndex)
-		case .utilitarianLarge:
-			entry = UtilitarianLargeComplicationHelper.timelineEntry(for: Date(), currentUVIndex: currentUVIndex, highUVForecast: highForecast)
-		case .graphicCorner:
-			entry = GaugeComplicationHelper.timelineEntry(for: Date(), uvIndex: currentUVIndex)
-		case .graphicRectangular:
-			entry = GraphicRectangularComplicationHelper.timelineEntry(for: Date(), currentUVIndex: currentUVIndex, highUVForecast: highForecast)
-		case .graphicBezel:
-			entry = GraphicBezelComplicationHelper.timelineEntry(for: Date(), currentUVIndex: currentUVIndex, highUVForecast: highForecast)
-		case .extraLarge:
-			entry = ExtraLargeComplicationHelper.timelineEntry(for: Date(), uvIndex: currentUVIndex)
-		default:
-			entry = nil
-		}
-		
-        handler(entry)
+		let helper = complicationHelper(for: complication)
+		handler(helper?.timelineEntry(for: Date(), currentUVIndex: currentUVIndex, highUVForecast: highForecast))
     }
     
     func getTimelineEntries(for complication: CLKComplication, before date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
@@ -87,42 +61,49 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 		let highUVForecast = DataStore.shared.todayHighForecast
 		
 		let entries = filteredForecasts.compactMap { (forecast) -> CLKComplicationTimelineEntry? in
-			
-			switch complication.family {
-			case .graphicCircular:
-				return OpenGaugeComplicationHelper.timelineEntry(for: forecast.date, uvIndex: forecast.uvIndex)
-			case .circularSmall:
-				return CircularSmallComplicationHelper.timelineEntry(for: forecast.date, uvIndex: forecast.uvIndex)
-			case .modularSmall:
-				return ModularSmallComplicationHelper.timelineEntry(for: forecast.date, uvIndex: forecast.uvIndex, highUVForecast: highUVForecast)
-			case .modularLarge:
-				return ModularLargeComplicationHelper.timelineEntry(for: forecast.date, currentUVIndex: forecast.uvIndex, highUVForecast: highUVForecast)
-			case .utilitarianSmall, .utilitarianSmallFlat:
-				return UtilitarianSmallComplicationHelper.timelineEntry(for: forecast.date, uvIndex: forecast.uvIndex)
-			case .utilitarianLarge:
-				return UtilitarianLargeComplicationHelper.timelineEntry(for: forecast.date, currentUVIndex: forecast.uvIndex, highUVForecast: highUVForecast)
-			case .graphicCorner:
-				return GaugeComplicationHelper.timelineEntry(for: forecast.date, uvIndex: forecast.uvIndex)
-			case .graphicRectangular:
-				return GraphicRectangularComplicationHelper.timelineEntry(for: forecast.date, currentUVIndex: forecast.uvIndex, highUVForecast: highUVForecast)
-			case .graphicBezel:
-				return GraphicBezelComplicationHelper.timelineEntry(for: forecast.date, currentUVIndex: forecast.uvIndex, highUVForecast: highUVForecast)
-			case .extraLarge:
-				return ExtraLargeComplicationHelper.timelineEntry(for: forecast.date, uvIndex: forecast.uvIndex)
-			default:
-				return nil
-			}
-			
+			complicationHelper(for: complication)?.timelineEntry(for: forecast.date, currentUVIndex: forecast.uvIndex, highUVForecast: highUVForecast)
 		}
 		
         handler(entries)
     }
+	
+	func complicationHelper(for complication: CLKComplication) -> ComplicationHelper? {
+		
+		var complicationHelper: ComplicationHelper? = nil
+		
+		switch complication.family {
+		case .graphicCircular:
+			complicationHelper = OpenGaugeComplicationHelper()
+		case .circularSmall:
+			complicationHelper = CircularSmallComplicationHelper()
+		case .modularSmall:
+			complicationHelper =  ModularSmallComplicationHelper()
+		case .modularLarge:
+			complicationHelper =  ModularLargeComplicationHelper()
+		case .utilitarianSmall, .utilitarianSmallFlat:
+			complicationHelper =  UtilitarianSmallComplicationHelper()
+		case .utilitarianLarge:
+			complicationHelper =  UtilitarianLargeComplicationHelper()
+		case .graphicCorner:
+			complicationHelper =  GaugeComplicationHelper()
+		case .graphicRectangular:
+			complicationHelper =  GraphicRectangularComplicationHelper()
+		case .graphicBezel:
+			complicationHelper =  GraphicBezelComplicationHelper()
+		case .extraLarge:
+			complicationHelper =  ExtraLargeComplicationHelper()
+		default:
+			return nil
+		}
+		
+		return complicationHelper
+		
+	}
     
     // MARK: - Placeholder Templates
     
     func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
 		
-		var template: CLKComplicationTemplate? = nil
 		let sampleUVIndex = UVIndex(uvValue: 7.0)
 		
 		let formatter = DateFormatter()
@@ -130,32 +111,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 		let sampleHighDate = formatter.date(from: "1:00 PM")!
 		let sampleHighForecast = UVForecast(date: sampleHighDate, uvIndex: UVIndex(uvValue: 10))
 		
-		switch complication.family {
-		case .graphicCircular:
-			template = OpenGaugeComplicationHelper.complicationTemplate(for: sampleUVIndex)
-		case .circularSmall:
-			template = CircularSmallComplicationHelper.complicationTemplate(for: sampleUVIndex)
-		case .modularSmall:
-			template = ModularSmallComplicationHelper.complicationTemplate(for: sampleUVIndex, highUVForecast: sampleHighForecast)
-		case .modularLarge:
-			template = ModularLargeComplicationHelper.complicationTemplate(for: sampleUVIndex, highUVForecast: sampleHighForecast)
-		case .utilitarianSmall, .utilitarianSmallFlat:
-			template = UtilitarianSmallComplicationHelper.complicationTemplate(for: sampleUVIndex)
-		case .utilitarianLarge:
-			template = UtilitarianLargeComplicationHelper.complicationTemplate(for: sampleUVIndex, highUVForecast: sampleHighForecast)
-		case .graphicCorner:
-			template = GaugeComplicationHelper.complicationTemplate(for: sampleUVIndex)
-		case .graphicRectangular:
-			template = GraphicRectangularComplicationHelper.complicationTemplate(for: sampleUVIndex, highUVForecast: sampleHighForecast)
-		case .graphicBezel:
-			template = GraphicBezelComplicationHelper.complicationTemplate(for: sampleUVIndex, highUVForecast: sampleHighForecast)
-		case .extraLarge:
-			template = ExtraLargeComplicationHelper.complicationTemplate(for: sampleUVIndex)
-		default:
-			template = nil
-		}
-		
-		handler(template)
+		let helper = complicationHelper(for: complication)
+		handler(helper?.complicationTemplate(for: sampleUVIndex, highUVForecast: sampleHighForecast))
     }
     
 }

@@ -37,6 +37,7 @@
 		52BCC43E2426D7F400B67BBB /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BCC43D2426D7F400B67BBB /* ErrorView.swift */; };
 		52BCC4402426D83D00B67BBB /* ForecastRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BCC43F2426D83D00B67BBB /* ForecastRowView.swift */; };
 		52BCC4432426D87600B67BBB /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BCC4422426D87600B67BBB /* LoadingView.swift */; };
+		52E3D809242C048B00CD9923 /* ComplicationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3D808242C048B00CD9923 /* ComplicationHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +116,7 @@
 		52BCC43D2426D7F400B67BBB /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		52BCC43F2426D83D00B67BBB /* ForecastRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastRowView.swift; sourceTree = "<group>"; };
 		52BCC4422426D87600B67BBB /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		52E3D808242C048B00CD9923 /* ComplicationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				522CE7C6242526530079CDEE /* ComplicationController.swift */,
+				52E3D808242C048B00CD9923 /* ComplicationHelper.swift */,
 				5215AC082427DB0C003F3344 /* OpenGaugeComplication.swift */,
 				5215AC062427D9BA003F3344 /* GaugeComplication.swift */,
 				5215AC0A2427E4A6003F3344 /* CircularSmallComplication.swift */,
@@ -379,6 +382,7 @@
 				5228ACDB2425A80100642DE1 /* Data.swift in Sources */,
 				5229DD8D242925D1008FBCF3 /* BackgroundUpdateHelper.swift in Sources */,
 				5228ACDD2425AFFB00642DE1 /* FoundationExtensions.swift in Sources */,
+				52E3D809242C048B00CD9923 /* ComplicationHelper.swift in Sources */,
 				5216B52E24283B2C00A23802 /* ModularLargeComplicationHelper.swift in Sources */,
 				5215AC0F2427EB38003F3344 /* UtilitarianComplications.swift in Sources */,
 				52BCC4432426D87600B67BBB /* LoadingView.swift in Sources */,
