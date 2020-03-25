@@ -43,7 +43,9 @@ class UtilitarianLargeComplicationHelper {
 		
 		let complicationTemplate = CLKComplicationTemplateUtilitarianLargeFlat()
 		
-		let textProvider = CLKSimpleTextProvider(text: "Now \(currentUVIndex.uvValue) High \(highUVForecast.uvIndex.uvValue) at \(highUVForecast.date.shortTimeString)")
+		let longText = "Now \(currentUVIndex.uvValue) High \(highUVForecast.uvIndex.uvValue) at \(highUVForecast.date.shortTimeString)"
+		let shortText = "Now \(currentUVIndex.uvValue) Hi \(highUVForecast.uvIndex.uvValue)"
+		let textProvider = CLKSimpleTextProvider(text: longText, shortText: shortText)
 		complicationTemplate.textProvider = textProvider
 		
 		return complicationTemplate
