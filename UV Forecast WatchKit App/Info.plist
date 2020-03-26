@@ -20,14 +20,6 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Get UV Index forecasts for your current location.</string>
-	<key>NSLocationUsageDescription</key>
-	<string>Get UV Index forecasts for your current location.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Get UV Index forecasts for your current location.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Get UV Index forecasts for your current location.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
