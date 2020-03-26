@@ -80,7 +80,7 @@ struct ForecastView: View, LocationManagerDelegate {
 					self.dataStore.error = error
 				}
 			case .success(let location):
-				dataStore.loadForecastFromAPI(for: (location.coordinate.latitude, location.coordinate.longitude))
+				dataStore.loadForecastFromAPI(for: Location(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
 		}
 	}
 	

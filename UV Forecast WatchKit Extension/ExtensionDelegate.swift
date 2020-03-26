@@ -9,6 +9,8 @@
 import WatchKit
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
+	
+	var pendingRefreshBackgroundTask: WKRefreshBackgroundTask?
 
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
@@ -30,15 +32,17 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             switch task {
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
                 
-				guard let userInfo = backgroundTask.userInfo as? [String : Double], let latitude = userInfo["latitude"], let longitude = userInfo["longitude"] else {
-					NSLog("Refusing to schedule background update: couldn't determine location from userInfo.")
+				let userDefaults = UserDefaults.standard
+				guard let latitude = userDefaults["location.latitude"] as? Double, let longitude = userDefaults["location.longitude"] as? Double else {
+					NSLog("Refusing to schedule background update: no location saved in UserDefaults")
 					backgroundTask.setTaskCompletedWithSnapshot(false)
 					return
 				}
 				
 				// Instead of calling a normal load, schedule a background URLSession task to load.
 				// This background URLSession task will call the WKURLSessionRefreshBackgroundTask case later in this method.
-				APIClient().scheduleBackgroundUpdate(for: (latitude: latitude, longitude: longitude))
+				print("Requesting background reload…")
+				APIClient().scheduleBackgroundUpdate(for: Location(latitude: latitude, longitude: longitude))
                 backgroundTask.setTaskCompletedWithSnapshot(true)
 				
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
@@ -50,8 +54,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 connectivityTask.setTaskCompletedWithSnapshot(false)
 				
             case let urlSessionTask as WKURLSessionRefreshBackgroundTask:
-                // Be sure to complete the URL session task once you’re done.
-                urlSessionTask.setTaskCompletedWithSnapshot(true)
+				print("Storing URLSessionRefreshBackgroundTask for later")
+				self.pendingRefreshBackgroundTask = urlSessionTask
 				
             case let relevantShortcutTask as WKRelevantShortcutRefreshBackgroundTask:
                 // Be sure to complete the relevant-shortcut task once you're done.

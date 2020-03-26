@@ -8,6 +8,20 @@
 
 import Foundation
 
+extension UserDefaults {
+	
+	subscript(key: String) -> Any? {
+		get {
+			return self.object(forKey: key)
+		}
+		set {
+			self.set(newValue, forKey: key)
+		}
+	}
+	
+}
+
+
 extension Date {
 	
 	var isInPast: Bool {
@@ -19,6 +33,13 @@ extension Date {
 		let hour = calendar.component(.hour, from: self)
 		let minutes = calendar.component(.minute, from: self)
 		return hour == 0 && minutes == 0
+	}
+	
+	var isInCurrentHour: Bool {
+		let calendar = Calendar.current
+		let currentHour = calendar.component(.hour, from: Date())
+		let hour = calendar.component(.hour, from: self)
+		return hour == currentHour
 	}
 	
 	var isToday: Bool {

@@ -20,7 +20,7 @@ enum APIError: LocalizedError {
 	}
 }
 
-class APIClient {
+class APIClient: NSObject {
 	
 	static let APIKey: String = "accbf73888a364be5659f3fb1f453e8d"
 	static let baseURL: URL = URL(string: "https://api.darksky.net/forecast/\(APIClient.APIKey)/")!
@@ -43,34 +43,34 @@ class APIClient {
 	
 	func scheduleBackgroundUpdate(for location: Location) {
 		
-		let backgroundSession = URLSession(configuration: .background(withIdentifier: "com.Wickham.UV-Forecast.BackgroundUpdate"))
+		let sessionConfiguration = URLSessionConfiguration.background(withIdentifier: "com.Wickham.UV-Forecast.BackgroundUpdate")
+		sessionConfiguration.sessionSendsLaunchEvents = true
+		let backgroundSession = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
+		
 		let urlRequest = makeURLRequest(for: location)
-		backgroundSession.dataTask(with: urlRequest) { (data, response, error) in
-			self.handleResponse(data: data, response: response, error: error, result: nil)
-			ComplicationController().reloadComplicationTimeline()
-		}.resume()
+		backgroundSession.downloadTask(with: urlRequest).resume()
 		
 	}
 	
-	func handleResponse(data: Data?, response: URLResponse?, error: Error?, result: ForecastFetchResultHandler?) {
+	func handleResponse(data: Data?, response: URLResponse?, error: Error?, result: ForecastFetchResultHandler) {
 		
 		guard error == nil else {
-			result?(.failure(.unknown))
+			result(.failure(.unknown))
 			return
 		}
 		
 		guard let data = data else {
-			result?(.failure(.noData))
+			result(.failure(.noData))
 			return
 		}
 		
 		guard let resultJSON = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] else {
-			result?(.failure(.badRequest))
+			result(.failure(.badRequest))
 			return
 		}
 		
 		guard let currentConditions = resultJSON["currently"] as? [String : Any], let resultValue = currentConditions["uvIndex"] as? Double, let hourlyForecastWrapper = resultJSON["hourly"] as? [String : Any], let rawHourlyForecast = hourlyForecastWrapper["data"] as? [[String : Any]], let dailyForecastWrapper = resultJSON["daily"] as? [String : Any], let rawDailyForecast = dailyForecastWrapper["data"] as? [[String : Any]] else {
-			result?(.failure(.badRequest))
+			result(.failure(.badRequest))
 			return
 		}
 		
@@ -114,8 +114,44 @@ class APIClient {
 		
 		let highForToday = dailyForecastList.first!
 		
-		result?(.success(ForecastFetchResult(currentUVIndex, currentHourlyForecast, highForToday, dailyForecastList)))
+		result(.success(ForecastFetchResult(currentUVIndex, currentHourlyForecast, highForToday, dailyForecastList)))
 		
 	}
+	
+}
+
+extension APIClient: URLSessionDownloadDelegate {
+	
+	func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+		
+		print("Background download finished; parsing data…")
+		
+        do {
+			
+            let data = try Data(contentsOf: location)
+			handleResponse(data: data, response: downloadTask.response, error: downloadTask.error, result: { (result) in
+				
+				DispatchQueue.main.sync {
+					switch result {
+					case .failure(let error):
+						print("Background download task failed: ", error)
+					case .success(let fetchResult):
+						DataStore.shared.currentUVIndex = fetchResult.currentUVIndex
+						DataStore.shared.hourlyForecasts = fetchResult.currentHourlyForecasts
+						DataStore.shared.todayHighForecast = fetchResult.highForToday
+						DataStore.shared.dailyForecasts = fetchResult.dailyForecasts
+					}
+					
+					print("Updated data store.")
+					
+					BackgroundUpdateHelper.didCompleteBackgroundRefreshFetch()
+				}
+				
+			})
+			
+        } catch {
+            print("\(error.localizedDescription)")
+        }
+    }
 	
 }

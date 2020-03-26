@@ -54,7 +54,7 @@ struct TodayView: View, LocationManagerDelegate {
 				
 				SeparatorView()
 				
-				HeaderView(title: "High", detail: dataStore.todayHighForecast.date.shortTimeString, uvIndex: dataStore.todayHighForecast.uvIndex)
+				HeaderView(title: "High", detail: (dataStore.todayHighForecast.date.isInCurrentHour ? "Now" : dataStore.todayHighForecast.date.shortTimeString), uvIndex: dataStore.todayHighForecast.uvIndex)
 				
 				SeparatorView()
 				
@@ -81,7 +81,7 @@ struct TodayView: View, LocationManagerDelegate {
 					self.dataStore.error = error
 				}
 			case .success(let location):
-				self.dataStore.loadForecastFromAPI(for: (location.coordinate.latitude, location.coordinate.longitude))
+				self.dataStore.loadForecastFromAPI(for: Location(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
 		}
 	}
 	

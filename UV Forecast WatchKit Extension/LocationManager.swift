@@ -10,7 +10,10 @@ import Foundation
 import CoreLocation
 import Combine
 
-typealias Location = (latitude: Double, longitude: Double)
+struct Location {
+	var latitude: Double
+	var longitude: Double
+}
 
 enum LocationError: LocalizedError {
 	case permissionNotDetermined
@@ -85,6 +88,12 @@ extension LocationManager: CLLocationManagerDelegate {
 		}
 		
 		getLocationName(location)
+		
+		// Save the location in UserDefaults
+		// This is a workaround for background updates because the userInfo field isn't working correctly for background update calls
+		let userDefaults = UserDefaults.standard
+		userDefaults["location.latitude"] = location.coordinate.latitude
+		userDefaults["location.longitude"] = location.coordinate.longitude
 		
 		delegate?.locationManagerDidGetLocation(.success(location))
     }

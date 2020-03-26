@@ -56,14 +56,18 @@ class DataStore: ObservableObject {
 
 extension DataStore {
 	
-	func loadForecastFromAPI(for location: (latitude: Double, longitude: Double)) {
+	// TODO: Share more code between foreground API fetching and background data updating
+	
+	func loadForecastFromAPI(for location: Location) {
 		
 		APIClient().loadCurrentForecast(for: location) { (result) in
 			
 			DispatchQueue.main.sync {
+				
 				switch result {
 					case .failure(let error):
 						self.error = error
+						NSLog("***ERROR: \(error)")
 					case .success(let resultValue):
 						self.currentUVIndex = resultValue.currentUVIndex
 						self.hourlyForecasts = resultValue.currentHourlyForecasts
@@ -75,7 +79,7 @@ extension DataStore {
 				
 				ComplicationController().reloadComplicationTimeline()
 				
-				BackgroundUpdateHelper.scheduleBackgroundUpdate(with: location, preferredDate: nil)
+				BackgroundUpdateHelper.scheduleBackgroundUpdate(preferredDate: nil)
 				
 			}
 			

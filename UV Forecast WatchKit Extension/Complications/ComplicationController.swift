@@ -13,9 +13,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 	
 	func reloadComplicationTimeline() {
 		let complicationServer = CLKComplicationServer.sharedInstance()
-		complicationServer.activeComplications?.forEach({ (complication) in
-			complicationServer.reloadTimeline(for: complication)
-		})
+		complicationServer.activeComplications?.forEach(complicationServer.reloadTimeline)
 	}
 	
     // MARK: - Timeline Configuration
