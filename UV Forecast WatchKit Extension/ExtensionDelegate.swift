@@ -43,7 +43,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 				// This background URLSession task will call the WKURLSessionRefreshBackgroundTask case later in this method.
 				print("Requesting background reload…")
 				APIClient().scheduleBackgroundUpdate(for: Location(latitude: latitude, longitude: longitude))
-                backgroundTask.setTaskCompletedWithSnapshot(true)
+                backgroundTask.setTaskCompletedWithSnapshot(false)
 				
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
                 // Snapshot tasks have a unique completion call, make sure to set your expiration date
