@@ -25,7 +25,7 @@ class APIClient: NSObject {
 	static let APIKey: String = "accbf73888a364be5659f3fb1f453e8d"
 	static let baseURL: URL = URL(string: "https://api.darksky.net/forecast/\(APIClient.APIKey)/")!
 	
-	typealias ForecastFetchResult = (currentUVIndex: UVIndex, currentHourlyForecasts: [UVForecast], highForToday: UVForecast, dailyForecasts: [UVForecast])
+	typealias ForecastFetchResult = (currentUVIndex: UVIndex, currentHourlyForecasts: [ForecastTimelineEntry], dayHighForecast: UVForecast, dailyForecasts: [UVForecast], weekHighForecast: UVForecast)
 	typealias ForecastFetchResultHandler = ((_ result: Result<ForecastFetchResult, APIError>) -> Void)
 	
 	func makeURLRequest(for location: Location) -> URLRequest {
@@ -66,19 +66,20 @@ class APIClient: NSObject {
 			return
 		}
 		
-		guard let resultJSON = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] else {
-			result(.failure(.badRequest))
-			return
-		}
-		
-		guard let currentConditions = resultJSON["currently"] as? [String : Any], let resultValue = currentConditions["uvIndex"] as? Double, let hourlyForecastWrapper = resultJSON["hourly"] as? [String : Any], let rawHourlyForecast = hourlyForecastWrapper["data"] as? [[String : Any]], let dailyForecastWrapper = resultJSON["daily"] as? [String : Any], let rawDailyForecast = dailyForecastWrapper["data"] as? [[String : Any]] else {
+		guard let resultJSON = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any],
+		let currentConditions = resultJSON["currently"] as? [String : Any],
+		let resultValue = currentConditions["uvIndex"] as? Double,
+		let hourlyForecastWrapper = resultJSON["hourly"] as? [String : Any],
+		let rawHourlyForecast = hourlyForecastWrapper["data"] as? [[String : Any]],
+		let dailyForecastWrapper = resultJSON["daily"] as? [String : Any],
+		let rawDailyForecast = dailyForecastWrapper["data"] as? [[String : Any]] else {
 			result(.failure(.badRequest))
 			return
 		}
 		
 		let currentUVIndex = UVIndex(uvValue: resultValue)
-		
-		let currentHourlyForecast = rawHourlyForecast.compactMap { (rawForecast) -> UVForecast? in
+				
+		var currentHourlyForecast = rawHourlyForecast.compactMap { (rawForecast) -> ForecastTimelineEntry? in
 			
 			guard let rawDate = rawForecast["time"] as? TimeInterval else {
 				return nil
@@ -93,31 +94,86 @@ class APIClient: NSObject {
 			return UVForecast(date: date, uvIndex: uvIndex)
 		}
 		
-		let dailyForecastList = rawDailyForecast.compactMap { (rawForecast) -> UVForecast? in
+		var dailyForecastList: [UVForecast] = []
+		
+		for rawForecast in rawDailyForecast {
 			
-			guard let rawDate = rawForecast["time"] as? TimeInterval else {
-				return nil
+			if let rawDate = rawForecast["time"] as? TimeInterval,
+				let rawUVIndex = rawForecast["uvIndex"] as? Double {
+				
+				let uvIndex = UVIndex(uvValue: rawUVIndex)
+				let date = Date(timeIntervalSince1970: rawDate)
+				let forecast = UVForecast(date: date, uvIndex: uvIndex)
+				
+				if let rawHighIndexDate = rawForecast["uvIndexTime"] as? TimeInterval {
+					forecast.date = Date(timeIntervalSince1970: rawHighIndexDate)
+				}
+				
+				dailyForecastList.append(forecast)
+				
 			}
-			let date = Date(timeIntervalSince1970: rawDate)
 			
-			guard let rawUVIndex = rawForecast["uvIndex"] as? Double else {
-				return nil
-			}
-			let uvIndex = UVIndex(uvValue: rawUVIndex)
-			
-			var forecast = UVForecast(date: date, uvIndex: uvIndex)
-			
-			if let rawHighIndexDate = rawForecast["uvIndexTime"] as? TimeInterval {
-				forecast.date = Date(timeIntervalSince1970: rawHighIndexDate)
-			}
-			
-			return forecast
 		}
 		
-		let highForToday = dailyForecastList.first!
+		var numberOfSunEventsToady = 0
+		
+		let sunriseEvents = rawDailyForecast.compactMap { (rawForecast) -> SunEvent? in
+			if let rawSunriseTime = rawForecast["sunriseTime"] as? TimeInterval {
+				let sunriseDate = Date(timeIntervalSince1970: rawSunriseTime)
+				if !sunriseDate.isInPast {
+					
+					if sunriseDate.isToday {
+						numberOfSunEventsToady += 1
+					}
+					
+					return SunEvent(date: sunriseDate, eventType: .sunrise)
+				}
+			}
+			return nil
+		}
+		
+		let sunsetEvents = rawDailyForecast.compactMap { (rawForecast) -> SunEvent? in
+			if let rawSunsetTime = rawForecast["sunsetTime"] as? TimeInterval {
+				let sunsetDate = Date(timeIntervalSince1970: rawSunsetTime)
+				if !sunsetDate.isInPast {
+					
+					if sunsetDate.isToday {
+						numberOfSunEventsToady += 1
+					}
+					
+					return SunEvent(date: sunsetDate, eventType: .sunset)
+				}
+			}
+			return nil
+		}
+		
+		let daysInHourlyForecast = rawHourlyForecast.compactMap { (rawForecast) -> Int? in
+			guard let rawTime = rawForecast["time"] as? TimeInterval else {
+				return nil
+			}
+			let date = Date(timeIntervalSince1970: rawTime)
+			return Calendar.current.component(.day, from: date)
+		}
+		let numberOfDaysInHourlyForecast = daysInHourlyForecast.unique().count
+		
+		var sunEvents = sunriseEvents + sunsetEvents
+		sunEvents.sort()
+		
+		let startOfRange = (numberOfDaysInHourlyForecast * 2) - numberOfSunEventsToady
+		let endOfRange = sunEvents.count
+		sunEvents.removeSubrange(startOfRange ..< endOfRange)
+		
+		currentHourlyForecast.append(contentsOf: sunEvents)
+		currentHourlyForecast.sort { (lhs, rhs) -> Bool in
+			lhs.date < rhs.date
+		}
+		
+		let dayHighForecast = dailyForecastList.first!
+		let weekHighForecast = dailyForecastList.max()!
 		
 		DispatchQueue.main.sync {
-			result(.success(ForecastFetchResult(currentUVIndex, currentHourlyForecast, highForToday, dailyForecastList)))
+			let fetchResult = ForecastFetchResult(currentUVIndex, currentHourlyForecast, dayHighForecast, dailyForecastList, weekHighForecast)
+			result(.success(fetchResult))
 		}
 		
 	}
@@ -135,20 +191,22 @@ extension APIClient: URLSessionDownloadDelegate {
             let data = try Data(contentsOf: location)
 			handleResponse(data: data, response: downloadTask.response, error: downloadTask.error, result: { (result) in
 				
-				switch result {
-				case .failure(let error):
-					print("Background download task failed: ", error)
-					BackgroundUpdateHelper.didCompleteBackgroundRefreshFetch(shouldUpdateAppSnapshot: false)
-				case .success(let fetchResult):
-					DataStore.shared.currentUVIndex = fetchResult.currentUVIndex
-					DataStore.shared.hourlyForecasts = fetchResult.currentHourlyForecasts
-					DataStore.shared.todayHighForecast = fetchResult.highForToday
-					DataStore.shared.dailyForecasts = fetchResult.dailyForecasts
+				DispatchQueue.main.sync {
+					switch result {
+					case .failure(let error):
+						print("Background download task failed: ", error)
+						BackgroundUpdateHelper.didCompleteBackgroundRefreshFetch(shouldUpdateAppSnapshot: false)
+					case .success(let fetchResult):
+						DataStore.shared.currentUVIndex = fetchResult.currentUVIndex
+						DataStore.shared.hourlyForecasts = fetchResult.currentHourlyForecasts
+						DataStore.shared.todayHighForecast = fetchResult.dayHighForecast
+						DataStore.shared.dailyForecasts = fetchResult.dailyForecasts
+					}
+					
+					print("Updated data store.")
+					
+					BackgroundUpdateHelper.didCompleteBackgroundRefreshFetch(shouldUpdateAppSnapshot: true)
 				}
-				
-				print("Updated data store.")
-				
-				BackgroundUpdateHelper.didCompleteBackgroundRefreshFetch(shouldUpdateAppSnapshot: true)
 				
 			})
 			

@@ -58,7 +58,7 @@ struct ForecastView: View, LocationManagerDelegate {
 				SeparatorView()
 				
 				ForEach(dataStore.dailyForecasts, id: \.date) { forecast in
-					ForecastRowView(uvIndex: forecast.uvIndex, title: (forecast.date.isToday ? "Today" : forecast.date.shortWeekDayString).uppercased(), detail: forecast.date.shortTimeString)
+					TimelineRowView(timelineEntry: forecast, title: (forecast.date.isToday ? "Today" : forecast.date.shortWeekDayString).uppercased(), detail: forecast.date.shortTimeString)
 				}
 				
 			}

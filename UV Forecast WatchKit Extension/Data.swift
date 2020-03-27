@@ -9,36 +9,49 @@
 import Foundation
 import SwiftUI
 
-enum ForecastTimelineEntry: Comparable {
-	case uvForecast(_: UVForecast)
-	case sunEvent(_: SunEvent)
+class ForecastTimelineEntry: Equatable {
 	
-	static func < (lhs: ForecastTimelineEntry, rhs: ForecastTimelineEntry) -> Bool {
+	var date: Date
+	
+	init(date: Date) {
+		self.date = date
+	}
+	
+	static func == (lhs: ForecastTimelineEntry, rhs: ForecastTimelineEntry) -> Bool {
 		
-		switch (lhs, rhs) {
-		case (.uvForecast(let lhsForecast), .uvForecast(let rhsForecast)):
-			return lhsForecast.date < rhsForecast.date
-		case (.uvForecast(let lhsForecast), .sunEvent(let rhsSunEvent)):
-			return lhsForecast.date < rhsSunEvent.date
-		case (.sunEvent(let lhsSunEvent), .sunEvent(let rhsSunEvent)):
-			return lhsSunEvent.date < rhsSunEvent.date
-		case (.sunEvent(let lhsSunEvent), .uvForecast(let rhsForecast)):
-			return lhsSunEvent.date < rhsForecast.date
+		if let lhsSunEvent = lhs as? SunEvent, let rhsSunEvent = rhs as? SunEvent {
+			return lhsSunEvent.eventType == rhsSunEvent.eventType && lhs.date == rhs.date
+		}
+		else if let lhsForecast = lhs as? UVForecast, let rhsForecast = rhs as? UVForecast {
+			return lhsForecast.uvIndex.uvValue == rhsForecast.uvIndex.uvValue && lhs.date == rhs.date
 		}
 		
+		return false
 	}
 	
 }
 
-struct SunEvent: Comparable {
+class SunEvent: ForecastTimelineEntry, Comparable {
 	
 	enum SunEventType {
 		case sunrise, sunset
 	}
-	
-	var date: Date
-	
+		
 	var eventType: SunEventType
+	
+	var description: String {
+		switch eventType {
+		case .sunrise:
+			return "Sunrise"
+		default:
+			return "Sunset"
+		}
+	}
+	
+	init(date: Date, eventType: SunEventType) {
+		self.eventType = eventType
+		super.init(date: date)
+	}
 	
 	static func < (lhs: SunEvent, rhs: SunEvent) -> Bool {
 		lhs.date < rhs.date
@@ -46,13 +59,15 @@ struct SunEvent: Comparable {
 	
 }
 
-struct UVForecast: Comparable {
-	
-	/// The day that the forecast is for
-	var date: Date
+class UVForecast: ForecastTimelineEntry, Comparable {
 	
 	/// The UV index at the given `date`
 	var uvIndex: UVIndex
+	
+	init(date: Date, uvIndex: UVIndex) {
+		self.uvIndex = uvIndex
+		super.init(date: date)
+	}
 	
 	static func < (lhs: UVForecast, rhs: UVForecast) -> Bool {
 		return lhs.uvIndex < rhs.uvIndex

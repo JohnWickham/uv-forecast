@@ -67,6 +67,12 @@ extension Date {
 		return startOfNextHour
 	}
 	
+	var timeString: String {
+		let formatter = DateFormatter()
+		formatter.dateFormat = "h:mm a"
+		return formatter.string(from: self)
+	}
+	
 	var shortTimeString: String {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "h a"
@@ -79,4 +85,11 @@ extension Date {
 		return formatter.string(from: self)
 	}
 
+}
+
+extension Sequence where Iterator.Element: Hashable {
+    func unique() -> [Iterator.Element] {
+        var seen: Set<Iterator.Element> = []
+        return filter { seen.insert($0).inserted }
+    }
 }

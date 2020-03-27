@@ -35,7 +35,7 @@
 		522CE7E524253D890079CDEE /* DarkSkyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522CE7E424253D890079CDEE /* DarkSkyAPI.swift */; };
 		529E6F8F24270A590017D512 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E6F8E24270A590017D512 /* DataStore.swift */; };
 		52BCC43E2426D7F400B67BBB /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BCC43D2426D7F400B67BBB /* ErrorView.swift */; };
-		52BCC4402426D83D00B67BBB /* ForecastRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BCC43F2426D83D00B67BBB /* ForecastRowView.swift */; };
+		52BCC4402426D83D00B67BBB /* UVForecastRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BCC43F2426D83D00B67BBB /* UVForecastRowView.swift */; };
 		52BCC4432426D87600B67BBB /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BCC4422426D87600B67BBB /* LoadingView.swift */; };
 		52E3D809242C048B00CD9923 /* ComplicationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3D808242C048B00CD9923 /* ComplicationHelper.swift */; };
 /* End PBXBuildFile section */
@@ -114,7 +114,7 @@
 		522CE7E424253D890079CDEE /* DarkSkyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkSkyAPI.swift; sourceTree = "<group>"; };
 		529E6F8E24270A590017D512 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		52BCC43D2426D7F400B67BBB /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
-		52BCC43F2426D83D00B67BBB /* ForecastRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastRowView.swift; sourceTree = "<group>"; };
+		52BCC43F2426D83D00B67BBB /* UVForecastRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVForecastRowView.swift; sourceTree = "<group>"; };
 		52BCC4422426D87600B67BBB /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		52E3D808242C048B00CD9923 /* ComplicationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -219,7 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				522CE7E1242530E30079CDEE /* HeaderView.swift */,
-				52BCC43F2426D83D00B67BBB /* ForecastRowView.swift */,
+				52BCC43F2426D83D00B67BBB /* UVForecastRowView.swift */,
 				52BCC43D2426D7F400B67BBB /* ErrorView.swift */,
 				52BCC4422426D87600B67BBB /* LoadingView.swift */,
 			);
@@ -364,7 +364,7 @@
 				5216B52A242831D500A23802 /* GraphicRectangularComplication.swift in Sources */,
 				5216B52C2428372700A23802 /* GraphicBezelComplication.swift in Sources */,
 				5216B5302428429800A23802 /* ExtraLargeComplicationHelper.swift in Sources */,
-				52BCC4402426D83D00B67BBB /* ForecastRowView.swift in Sources */,
+				52BCC4402426D83D00B67BBB /* UVForecastRowView.swift in Sources */,
 				529E6F8F24270A590017D512 /* DataStore.swift in Sources */,
 				522CE7E024252EF80079CDEE /* ForecastView.swift in Sources */,
 				5215AC0D2427E7C5003F3344 /* ModularSmallComplication.swift in Sources */,

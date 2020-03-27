@@ -1,0 +1,15 @@
+{
+  "images" : [
+    {
+      "filename" : "Sunset.pdf",
+      "idiom" : "watch"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "preserves-vector-representation" : true
+  }
+}
