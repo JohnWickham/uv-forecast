@@ -113,10 +113,17 @@ class APIClient: NSObject {
 			
 		}
 		
+		var numberOfSunEventsToady = 0
+		
 		let sunriseEvents = rawDailyForecast.compactMap { (rawForecast) -> SunEvent? in
 			if let rawSunriseTime = rawForecast["sunriseTime"] as? TimeInterval {
 				let sunriseDate = Date(timeIntervalSince1970: rawSunriseTime)
 				if !sunriseDate.isInPast {
+					
+					if sunriseDate.isToday {
+						numberOfSunEventsToady += 1
+					}
+					
 					return SunEvent(date: sunriseDate, eventType: .sunrise)
 				}
 			}
@@ -127,20 +134,34 @@ class APIClient: NSObject {
 			if let rawSunsetTime = rawForecast["sunsetTime"] as? TimeInterval {
 				let sunsetDate = Date(timeIntervalSince1970: rawSunsetTime)
 				if !sunsetDate.isInPast {
+					
+					if sunsetDate.isToday {
+						numberOfSunEventsToady += 1
+					}
+					
 					return SunEvent(date: sunsetDate, eventType: .sunset)
 				}
 			}
 			return nil
 		}
 		
-		let sunEvents = sunriseEvents + sunsetEvents
-		// TODO: Trim sunEvents to match the (number of days represented in the hourly forecast * 2)
+		let daysInHourlyForecast = rawHourlyForecast.compactMap { (rawForecast) -> Int? in
+			guard let rawTime = rawForecast["time"] as? TimeInterval else {
+				return nil
+			}
+			let date = Date(timeIntervalSince1970: rawTime)
+			return Calendar.current.component(.day, from: date)
+		}
+		let numberOfDaysInHourlyForecast = daysInHourlyForecast.unique().count
 		
-		currentHourlyForecast.append(contentsOf: sunriseEvents)
-		currentHourlyForecast.append(contentsOf: sunsetEvents)
+		var sunEvents = sunriseEvents + sunsetEvents
+		sunEvents.sort()
 		
+		let startOfRange = (numberOfDaysInHourlyForecast * 2) - numberOfSunEventsToady
+		let endOfRange = sunEvents.count
+		sunEvents.removeSubrange(startOfRange ..< endOfRange)
 		
-		
+		currentHourlyForecast.append(contentsOf: sunEvents)
 		currentHourlyForecast.sort { (lhs, rhs) -> Bool in
 			lhs.date < rhs.date
 		}
