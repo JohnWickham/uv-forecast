@@ -59,7 +59,11 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 		let highUVForecast = DataStore.shared.todayHighForecast
 		
 		let entries = filteredForecasts.compactMap { (forecast) -> CLKComplicationTimelineEntry? in
-			complicationHelper(for: complication)?.timelineEntry(for: forecast.date, currentUVIndex: forecast.uvIndex, highUVForecast: highUVForecast)
+			guard let uvForecast = forecast as? UVForecast else {
+				return nil
+			}
+			
+			return complicationHelper(for: complication)?.timelineEntry(for: forecast.date, currentUVIndex: uvForecast.uvIndex, highUVForecast: highUVForecast)
 		}
 		
         handler(entries)

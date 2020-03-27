@@ -40,7 +40,7 @@ class DataStore: ObservableObject {
 	   }
 	}
 	
-	@Published var hourlyForecasts: [UVForecast] = [] {
+	@Published var hourlyForecasts: [ForecastTimelineEntry] = [] {
 	   willSet {
 		   objectWillChange.send()
 	   }
@@ -51,6 +51,12 @@ class DataStore: ObservableObject {
 			objectWillChange.send()
 		}
 	}
+	
+	@Published var weekHighForecast: UVForecast = UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 0.0)) {
+		  willSet {
+			  objectWillChange.send()
+		  }
+	   }
 	
 }
 
@@ -71,8 +77,9 @@ extension DataStore {
 					case .success(let resultValue):
 						self.currentUVIndex = resultValue.currentUVIndex
 						self.hourlyForecasts = resultValue.currentHourlyForecasts
-						self.todayHighForecast = resultValue.highForToday
+						self.todayHighForecast = resultValue.dayHighForecast
 						self.dailyForecasts = resultValue.dailyForecasts
+						self.weekHighForecast = resultValue.weekHighForecast
 				}
 				
 				self.loadingState = (isLoading: false, hasLoaded: true)

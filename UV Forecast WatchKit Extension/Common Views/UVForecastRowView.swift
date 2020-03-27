@@ -33,9 +33,9 @@ struct UVIndexLabelView: View {
 	}
 }
 
-struct ForecastRowView: View {
+struct TimelineRowView: View {
 	
-	var uvIndex: UVIndex
+	var timelineEntry: ForecastTimelineEntry
 	var title: String
 	var detail: String
 	
@@ -44,9 +44,9 @@ struct ForecastRowView: View {
 			HStack(alignment: .firstTextBaseline, spacing: 0) {
 				textGroup
 				Spacer()
-				UVIndexLabelView(uvIndex: uvIndex)
+				detailView
 			}
-			.padding(EdgeInsets(top: 5, leading: 8, bottom: 0, trailing: 8))
+			.padding(EdgeInsets(top: 8, leading: 8, bottom: 0, trailing: 8))
 			
 			SeparatorView()
 		}
@@ -61,5 +61,25 @@ struct ForecastRowView: View {
 				.font(.system(.body))
 		}
 		.frame(maxWidth: 100)
+	}
+	
+	var detailView: some View {
+		if let uvForecast = timelineEntry as? UVForecast {
+			return AnyView(UVIndexLabelView(uvIndex: uvForecast.uvIndex))
+		}
+		else if let sunEvent = timelineEntry as? SunEvent {
+			return AnyView(Image((sunEvent.eventType == .sunrise) ? "Sunrise" : "Sunset").foregroundColor(.orange))
+		}
+		return AnyView(Text(""))
+	}
+}
+
+struct UVForecastRowView_Previews: PreviewProvider {
+	static var previews: some View {
+		List {
+			ForEach(0..<10) { (index) -> TimelineRowView in
+				TimelineRowView(timelineEntry: SunEvent(date: Date(), eventType: .sunset), title: "1 PM", detail: "")
+			}
+		}
 	}
 }
