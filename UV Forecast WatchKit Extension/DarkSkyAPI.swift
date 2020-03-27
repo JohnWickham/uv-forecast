@@ -37,7 +37,9 @@ class APIClient: NSObject {
 		let urlRequest = makeURLRequest(for: location)
 		URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
 			self.handleResponse(data: data, response: response, error: error, result: resultHandler)
-			ComplicationController().reloadComplicationTimeline()
+			DispatchQueue.main.sync {
+				ComplicationController().reloadComplicationTimeline()
+			}
 		}.resume()
 	}
 	
@@ -114,7 +116,9 @@ class APIClient: NSObject {
 		
 		let highForToday = dailyForecastList.first!
 		
-		result(.success(ForecastFetchResult(currentUVIndex, currentHourlyForecast, highForToday, dailyForecastList)))
+		DispatchQueue.main.sync {
+			result(.success(ForecastFetchResult(currentUVIndex, currentHourlyForecast, highForToday, dailyForecastList)))
+		}
 		
 	}
 	
@@ -131,21 +135,20 @@ extension APIClient: URLSessionDownloadDelegate {
             let data = try Data(contentsOf: location)
 			handleResponse(data: data, response: downloadTask.response, error: downloadTask.error, result: { (result) in
 				
-				DispatchQueue.main.sync {
-					switch result {
-					case .failure(let error):
-						print("Background download task failed: ", error)
-					case .success(let fetchResult):
-						DataStore.shared.currentUVIndex = fetchResult.currentUVIndex
-						DataStore.shared.hourlyForecasts = fetchResult.currentHourlyForecasts
-						DataStore.shared.todayHighForecast = fetchResult.highForToday
-						DataStore.shared.dailyForecasts = fetchResult.dailyForecasts
-					}
-					
-					print("Updated data store.")
-					
-					BackgroundUpdateHelper.didCompleteBackgroundRefreshFetch()
+				switch result {
+				case .failure(let error):
+					print("Background download task failed: ", error)
+					BackgroundUpdateHelper.didCompleteBackgroundRefreshFetch(shouldUpdateAppSnapshot: false)
+				case .success(let fetchResult):
+					DataStore.shared.currentUVIndex = fetchResult.currentUVIndex
+					DataStore.shared.hourlyForecasts = fetchResult.currentHourlyForecasts
+					DataStore.shared.todayHighForecast = fetchResult.highForToday
+					DataStore.shared.dailyForecasts = fetchResult.dailyForecasts
 				}
+				
+				print("Updated data store.")
+				
+				BackgroundUpdateHelper.didCompleteBackgroundRefreshFetch(shouldUpdateAppSnapshot: true)
 				
 			})
 			

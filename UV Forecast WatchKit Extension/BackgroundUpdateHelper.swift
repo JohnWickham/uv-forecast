@@ -30,7 +30,7 @@ class BackgroundUpdateHelper {
 		
 	}
 	
-	class func didCompleteBackgroundRefreshFetch() {
+	class func didCompleteBackgroundRefreshFetch(shouldUpdateAppSnapshot: Bool) {
 		
 		ComplicationController().reloadComplicationTimeline()
 		
@@ -39,7 +39,7 @@ class BackgroundUpdateHelper {
 		print("Background refresh fetch did complete; requsting app snapshot")
 		
 		let extensionDelegate = WKExtension.shared().delegate as? ExtensionDelegate
-		extensionDelegate?.pendingRefreshBackgroundTask?.setTaskCompletedWithSnapshot(true)
+		extensionDelegate?.pendingRefreshBackgroundTask?.setTaskCompletedWithSnapshot(shouldUpdateAppSnapshot)
 		extensionDelegate?.pendingRefreshBackgroundTask = nil
 		
 	}

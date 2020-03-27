@@ -62,26 +62,22 @@ extension DataStore {
 		
 		APIClient().loadCurrentForecast(for: location) { (result) in
 			
-			DispatchQueue.main.sync {
-				
-				switch result {
-					case .failure(let error):
-						self.error = error
-						NSLog("***ERROR: \(error)")
-					case .success(let resultValue):
-						self.currentUVIndex = resultValue.currentUVIndex
-						self.hourlyForecasts = resultValue.currentHourlyForecasts
-						self.todayHighForecast = resultValue.highForToday
-						self.dailyForecasts = resultValue.dailyForecasts
-				}
-				
-				self.loadingState = (isLoading: false, hasLoaded: true)
-				
-				ComplicationController().reloadComplicationTimeline()
-				
-				BackgroundUpdateHelper.scheduleBackgroundUpdate(preferredDate: nil)
-				
+			switch result {
+				case .failure(let error):
+					self.error = error
+					NSLog("***ERROR: \(error)")
+				case .success(let resultValue):
+					self.currentUVIndex = resultValue.currentUVIndex
+					self.hourlyForecasts = resultValue.currentHourlyForecasts
+					self.todayHighForecast = resultValue.highForToday
+					self.dailyForecasts = resultValue.dailyForecasts
 			}
+			
+			self.loadingState = (isLoading: false, hasLoaded: true)
+			
+			ComplicationController().reloadComplicationTimeline()
+			
+			BackgroundUpdateHelper.scheduleBackgroundUpdate(preferredDate: nil)
 			
 		}
 		
