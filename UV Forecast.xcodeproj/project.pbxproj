@@ -181,20 +181,19 @@
 			isa = PBXGroup;
 			children = (
 				52BCC4412426D86000B67BBB /* Common Views */,
-				522CE7DB24252EBB0079CDEE /* Today */,
-				522CE7DC24252EC00079CDEE /* Forecast */,
+				522CE7DB24252EBB0079CDEE /* Views */,
 				522CE7C2242526530079CDEE /* HostingController.swift */,
 				522CE7C4242526530079CDEE /* ExtensionDelegate.swift */,
+				5228ACDA2425A80100642DE1 /* Data.swift */,
+				529E6F8E24270A590017D512 /* DataStore.swift */,
+				522CE7E424253D890079CDEE /* DarkSkyAPI.swift */,
+				5201DA8C2425F17500CC104E /* LocationManager.swift */,
+				5229DD8C242925D1008FBCF3 /* BackgroundUpdateHelper.swift */,
+				5228ACDC2425AFFB00642DE1 /* FoundationExtensions.swift */,
 				5215AC052427D99C003F3344 /* Complications */,
 				522CE7C8242526540079CDEE /* Assets.xcassets */,
 				522CE7CD242526540079CDEE /* Info.plist */,
 				522CE7CA242526540079CDEE /* Preview Content */,
-				5228ACDA2425A80100642DE1 /* Data.swift */,
-				522CE7E424253D890079CDEE /* DarkSkyAPI.swift */,
-				529E6F8E24270A590017D512 /* DataStore.swift */,
-				5229DD8C242925D1008FBCF3 /* BackgroundUpdateHelper.swift */,
-				5228ACDC2425AFFB00642DE1 /* FoundationExtensions.swift */,
-				5201DA8C2425F17500CC104E /* LocationManager.swift */,
 			);
 			path = "UV Forecast WatchKit Extension";
 			sourceTree = "<group>";
@@ -207,20 +206,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		522CE7DB24252EBB0079CDEE /* Today */ = {
+		522CE7DB24252EBB0079CDEE /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				522CE7DD24252EE10079CDEE /* TodayView.swift */,
-			);
-			path = Today;
-			sourceTree = "<group>";
-		};
-		522CE7DC24252EC00079CDEE /* Forecast */ = {
-			isa = PBXGroup;
-			children = (
 				522CE7DF24252EF80079CDEE /* ForecastView.swift */,
 			);
-			path = Forecast;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		52BCC4412426D86000B67BBB /* Common Views */ = {
