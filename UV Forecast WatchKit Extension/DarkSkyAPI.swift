@@ -120,12 +120,12 @@ class APIClient: NSObject {
 		let sunriseEvents = rawDailyForecast.compactMap { (rawForecast) -> SunEvent? in
 			if let rawSunriseTime = rawForecast["sunriseTime"] as? TimeInterval {
 				let sunriseDate = Date(timeIntervalSince1970: rawSunriseTime)
-				if !sunriseDate.isInPast {
-					
+				if sunriseDate.isInPast {
 					if sunriseDate.isToday {
 						numberOfSunEventsToady += 1
 					}
-					
+				}
+				else {
 					return SunEvent(date: sunriseDate, eventType: .sunrise)
 				}
 			}
@@ -135,12 +135,12 @@ class APIClient: NSObject {
 		let sunsetEvents = rawDailyForecast.compactMap { (rawForecast) -> SunEvent? in
 			if let rawSunsetTime = rawForecast["sunsetTime"] as? TimeInterval {
 				let sunsetDate = Date(timeIntervalSince1970: rawSunsetTime)
-				if !sunsetDate.isInPast {
-					
+				if sunsetDate.isInPast {
 					if sunsetDate.isToday {
 						numberOfSunEventsToady += 1
 					}
-					
+				}
+				else {
 					return SunEvent(date: sunsetDate, eventType: .sunset)
 				}
 			}
