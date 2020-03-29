@@ -30,7 +30,7 @@ struct ForecastListView: View {
 		case let uvForecast as UVForecast:
 			return AnyView(UVForecastTimelineRowView(title: self.formattedTitle(for: entry), detail: (self.showsForecastTimes ? entry.date.shortTimeString : ""), forecast: uvForecast))
 		case let night as Night:
-			return AnyView(NightTimelineRowView(night: night, sunsetTitle: "\(night.date.shortWeekDayString.uppercased()) \(night.date.timeString)", sunriseTitle: "\(night.endDate.shortWeekDayString.uppercased()) \(night.endDate.timeString)"))
+			return AnyView(NightTimelineRowView(night: night, sunsetDate: night.date, sunriseDate: night.endDate))
 		default:
 			return nil
 		}

@@ -68,27 +68,39 @@ struct UVForecastTimelineRowView: View {
 struct NightTimelineRowView: View {
 	
 	var night: Night
-	var sunsetTitle: String
-	var sunriseTitle: String
+	var sunsetDate: Date
+	var sunriseDate: Date
 	
 	var body: some View {
 		VStack {
-			HStack(alignment: .center, spacing: 0) {
-				Text(sunsetTitle).font(.system(.body))
-				Spacer()
-				Image("Sunset")
-			}
-			.padding(EdgeInsets(top: 8, leading: 8, bottom: 0, trailing: 8))
-			
-			HStack(alignment: .center, spacing: 0) {
-				Text(sunriseTitle).font(.system(.body))
-				Spacer()
-				Image("Sunrise")
-			}
-			.padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
-			
+			sunsetGroup
+			sunriseGroup
 			SeparatorView()
 		}
+	}
+	
+	var sunsetGroup: some View {
+		HStack(alignment: .center, spacing: 0) {
+			HStack(alignment: .firstTextBaseline, spacing: 8) {
+				Text(sunsetDate.timeString)
+				Text(sunsetDate.shortWeekDayString.uppercased()).foregroundColor(.secondary)
+			}
+			Spacer()
+			Image("Sunset")
+		}
+		.padding(EdgeInsets(top: 8, leading: 8, bottom: 0, trailing: 8))
+	}
+	
+	var sunriseGroup: some View {
+		HStack(alignment: .center, spacing: 0) {
+			HStack(alignment: .firstTextBaseline, spacing: 8) {
+				Text(sunriseDate.timeString)
+				Text(sunriseDate.shortWeekDayString.uppercased()).foregroundColor(.secondary)
+			}
+			Spacer()
+			Image("Sunrise")
+		}
+		.padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
 	}
 	
 }
