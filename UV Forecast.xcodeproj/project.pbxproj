@@ -17,7 +17,7 @@
 		5216B52C2428372700A23802 /* GraphicBezelComplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5216B52B2428372700A23802 /* GraphicBezelComplication.swift */; };
 		5216B52E24283B2C00A23802 /* ModularLargeComplicationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5216B52D24283B2C00A23802 /* ModularLargeComplicationHelper.swift */; };
 		5216B5302428429800A23802 /* ExtraLargeComplicationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5216B52F2428429800A23802 /* ExtraLargeComplicationHelper.swift */; };
-		5228ACDB2425A80100642DE1 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228ACDA2425A80100642DE1 /* Data.swift */; };
+		5228ACDB2425A80100642DE1 /* UVIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228ACDA2425A80100642DE1 /* UVIndex.swift */; };
 		5228ACDD2425AFFB00642DE1 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228ACDC2425AFFB00642DE1 /* FoundationExtensions.swift */; };
 		5229DD8D242925D1008FBCF3 /* BackgroundUpdateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5229DD8C242925D1008FBCF3 /* BackgroundUpdateHelper.swift */; };
 		522CE7AD242526520079CDEE /* UV Forecast.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 522CE7AC242526520079CDEE /* UV Forecast.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -38,6 +38,8 @@
 		52BCC4402426D83D00B67BBB /* UVForecastRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BCC43F2426D83D00B67BBB /* UVForecastRowView.swift */; };
 		52BCC4432426D87600B67BBB /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BCC4422426D87600B67BBB /* LoadingView.swift */; };
 		52E3D809242C048B00CD9923 /* ComplicationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3D808242C048B00CD9923 /* ComplicationHelper.swift */; };
+		52E43EEB242FE2F4002924DC /* ForecastTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E43EEA242FE2F4002924DC /* ForecastTimeline.swift */; };
+		52E43EED242FF327002924DC /* ForecastListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E43EEC242FF327002924DC /* ForecastListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,7 +95,7 @@
 		5216B52B2428372700A23802 /* GraphicBezelComplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicBezelComplication.swift; sourceTree = "<group>"; };
 		5216B52D24283B2C00A23802 /* ModularLargeComplicationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModularLargeComplicationHelper.swift; sourceTree = "<group>"; };
 		5216B52F2428429800A23802 /* ExtraLargeComplicationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraLargeComplicationHelper.swift; sourceTree = "<group>"; };
-		5228ACDA2425A80100642DE1 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		5228ACDA2425A80100642DE1 /* UVIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVIndex.swift; sourceTree = "<group>"; };
 		5228ACDC2425AFFB00642DE1 /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
 		5229DD8C242925D1008FBCF3 /* BackgroundUpdateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundUpdateHelper.swift; sourceTree = "<group>"; };
 		522CE7A8242526520079CDEE /* UV Forecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UV Forecast.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +119,8 @@
 		52BCC43F2426D83D00B67BBB /* UVForecastRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVForecastRowView.swift; sourceTree = "<group>"; };
 		52BCC4422426D87600B67BBB /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		52E3D808242C048B00CD9923 /* ComplicationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationHelper.swift; sourceTree = "<group>"; };
+		52E43EEA242FE2F4002924DC /* ForecastTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTimeline.swift; sourceTree = "<group>"; };
+		52E43EEC242FF327002924DC /* ForecastListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,12 +184,11 @@
 		522CE7BF242526530079CDEE /* UV Forecast WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				52BCC4412426D86000B67BBB /* Common Views */,
-				522CE7DB24252EBB0079CDEE /* Views */,
 				522CE7C2242526530079CDEE /* HostingController.swift */,
 				522CE7C4242526530079CDEE /* ExtensionDelegate.swift */,
-				5228ACDA2425A80100642DE1 /* Data.swift */,
-				529E6F8E24270A590017D512 /* DataStore.swift */,
+				52BCC4412426D86000B67BBB /* Common Views */,
+				522CE7DB24252EBB0079CDEE /* Views */,
+				52E43EEE242FF942002924DC /* Data Model */,
 				522CE7E424253D890079CDEE /* DarkSkyAPI.swift */,
 				5201DA8C2425F17500CC104E /* LocationManager.swift */,
 				5229DD8C242925D1008FBCF3 /* BackgroundUpdateHelper.swift */,
@@ -219,11 +222,22 @@
 			isa = PBXGroup;
 			children = (
 				522CE7E1242530E30079CDEE /* HeaderView.swift */,
-				52BCC43F2426D83D00B67BBB /* UVForecastRowView.swift */,
 				52BCC43D2426D7F400B67BBB /* ErrorView.swift */,
 				52BCC4422426D87600B67BBB /* LoadingView.swift */,
+				52E43EEC242FF327002924DC /* ForecastListView.swift */,
+				52BCC43F2426D83D00B67BBB /* UVForecastRowView.swift */,
 			);
 			path = "Common Views";
+			sourceTree = "<group>";
+		};
+		52E43EEE242FF942002924DC /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				529E6F8E24270A590017D512 /* DataStore.swift */,
+				52E43EEA242FE2F4002924DC /* ForecastTimeline.swift */,
+				5228ACDA2425A80100642DE1 /* UVIndex.swift */,
+			);
+			path = "Data Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,12 +380,13 @@
 				5216B5302428429800A23802 /* ExtraLargeComplicationHelper.swift in Sources */,
 				52BCC4402426D83D00B67BBB /* UVForecastRowView.swift in Sources */,
 				529E6F8F24270A590017D512 /* DataStore.swift in Sources */,
+				52E43EED242FF327002924DC /* ForecastListView.swift in Sources */,
 				522CE7E024252EF80079CDEE /* ForecastView.swift in Sources */,
 				5215AC0D2427E7C5003F3344 /* ModularSmallComplication.swift in Sources */,
 				5215AC0B2427E4A6003F3344 /* CircularSmallComplication.swift in Sources */,
 				5215AC072427D9BA003F3344 /* GaugeComplication.swift in Sources */,
 				522CE7E2242530E30079CDEE /* HeaderView.swift in Sources */,
-				5228ACDB2425A80100642DE1 /* Data.swift in Sources */,
+				5228ACDB2425A80100642DE1 /* UVIndex.swift in Sources */,
 				5229DD8D242925D1008FBCF3 /* BackgroundUpdateHelper.swift in Sources */,
 				5228ACDD2425AFFB00642DE1 /* FoundationExtensions.swift in Sources */,
 				52E3D809242C048B00CD9923 /* ComplicationHelper.swift in Sources */,
@@ -379,6 +394,7 @@
 				5215AC0F2427EB38003F3344 /* UtilitarianComplications.swift in Sources */,
 				52BCC4432426D87600B67BBB /* LoadingView.swift in Sources */,
 				52BCC43E2426D7F400B67BBB /* ErrorView.swift in Sources */,
+				52E43EEB242FE2F4002924DC /* ForecastTimeline.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

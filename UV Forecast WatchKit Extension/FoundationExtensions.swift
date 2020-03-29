@@ -42,6 +42,24 @@ extension Date {
 		return hour == currentHour
 	}
 	
+	func isInSameDay(as testDate: Date) -> Bool {
+		
+		let calendar = Calendar.current
+		
+		let day = calendar.component(.day, from: self)
+		let week = calendar.component(.weekOfMonth, from: self)
+		let month = calendar.component(.month, from: self)
+		let year = calendar.component(.year, from: self)
+		
+		let otherDay = calendar.component(.day, from: testDate)
+		let otherWeek = calendar.component(.weekOfMonth, from: testDate)
+		let otherMonth = calendar.component(.month, from: testDate)
+		let otherYear = calendar.component(.year, from: testDate)
+		
+		return (day == otherDay && week == otherWeek && month == otherMonth && year == otherYear)
+				
+	}
+	
 	var isToday: Bool {
 		
 		let calendar = Calendar.current

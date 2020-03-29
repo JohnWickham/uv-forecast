@@ -9,57 +9,7 @@
 import Foundation
 import SwiftUI
 
-class ForecastTimelineEntry: Equatable {
-	
-	var date: Date
-	
-	init(date: Date) {
-		self.date = date
-	}
-	
-	static func == (lhs: ForecastTimelineEntry, rhs: ForecastTimelineEntry) -> Bool {
-		
-		if let lhsSunEvent = lhs as? SunEvent, let rhsSunEvent = rhs as? SunEvent {
-			return lhsSunEvent.eventType == rhsSunEvent.eventType && lhs.date == rhs.date
-		}
-		else if let lhsForecast = lhs as? UVForecast, let rhsForecast = rhs as? UVForecast {
-			return lhsForecast.uvIndex.uvValue == rhsForecast.uvIndex.uvValue && lhs.date == rhs.date
-		}
-		
-		return false
-	}
-	
-}
-
-class SunEvent: ForecastTimelineEntry, Comparable {
-	
-	enum SunEventType {
-		case sunrise, sunset
-	}
-		
-	var eventType: SunEventType
-	
-	var description: String {
-		switch eventType {
-		case .sunrise:
-			return "Sunrise"
-		default:
-			return "Sunset"
-		}
-	}
-	
-	init(date: Date, eventType: SunEventType) {
-		self.eventType = eventType
-		super.init(date: date)
-	}
-	
-	static func < (lhs: SunEvent, rhs: SunEvent) -> Bool {
-		lhs.date < rhs.date
-	}
-	
-}
-
-class UVForecast: ForecastTimelineEntry, Comparable {
+class UVForecast: ForecastTimelineEntry {
 	
 	/// The UV index at the given `date`
 	var uvIndex: UVIndex
@@ -69,15 +19,24 @@ class UVForecast: ForecastTimelineEntry, Comparable {
 		super.init(date: date)
 	}
 	
-	static func < (lhs: UVForecast, rhs: UVForecast) -> Bool {
-		return lhs.uvIndex < rhs.uvIndex
+}
+
+class Night: ForecastTimelineEntry {
+	
+	var endDate: Date
+	
+	init(date: Date, endDate: Date) {
+		self.endDate = endDate
+		super.init(date: date)
 	}
+	
 }
 
 struct UVIndex: Comparable {
 	
 	var uvValue: Double
 	
+	/// E.g. "Low" or "Extremem"
 	var description: String {
 		switch uvValue {
 		case _ where uvValue < 2.99:
@@ -93,6 +52,7 @@ struct UVIndex: Comparable {
 		}
 	}
 	
+	/// E.g. "Low", "Hi", or "X"
 	var shortDescription: String {
 		switch uvValue {
 		case _ where uvValue < 2.99:

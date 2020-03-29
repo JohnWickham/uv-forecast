@@ -25,7 +25,7 @@ class APIClient: NSObject {
 	static let APIKey: String = "accbf73888a364be5659f3fb1f453e8d"
 	static let baseURL: URL = URL(string: "https://api.darksky.net/forecast/\(APIClient.APIKey)/")!
 	
-	typealias ForecastFetchResult = (currentUVIndex: UVIndex, currentHourlyForecasts: [ForecastTimelineEntry], dayHighForecast: UVForecast, dailyForecasts: [UVForecast], weekHighForecast: UVForecast)
+	typealias ForecastFetchResult = (currentUVIndex: UVIndex, dayHighForecast: UVForecast, forecastTimeline: ForecastTimeline)
 	typealias ForecastFetchResultHandler = ((_ result: Result<ForecastFetchResult, APIError>) -> Void)
 	
 	func makeURLRequest(for location: Location) -> URLRequest {
@@ -76,105 +76,93 @@ class APIClient: NSObject {
 			result(.failure(.badRequest))
 			return
 		}
-		
-		let currentUVIndex = UVIndex(uvValue: resultValue)
 				
-		var currentHourlyForecast = rawHourlyForecast.compactMap { (rawForecast) -> ForecastTimelineEntry? in
+		var days: [Day] = []
+		
+		for (index, rawDay) in rawDailyForecast.enumerated() {
+			
+			guard var newDay = day(from: rawDay) else {
+				continue
+			}
+			
+			var nextDay: Day? = nil
+			if index < rawDailyForecast.count - 1 {
+				nextDay = day(from: rawDailyForecast[index + 1])
+			}
+			
+			newDay.forecasts = hourlyForecasts(in: newDay, nextDay: nextDay, from: rawHourlyForecast)
+			
+			days.append(newDay)
+			
+		}
+				
+		let currentUVIndex = UVIndex(uvValue: resultValue)
+		
+		let dayHighForecast = days.first!.highForecast
+		let forecastTimeline = ForecastTimeline(days: days)
+		
+		DispatchQueue.main.sync {
+			let fetchResult = ForecastFetchResult(currentUVIndex: currentUVIndex, dayHighForecast: dayHighForecast, forecastTimeline: forecastTimeline)
+			result(.success(fetchResult))
+		}
+		
+	}
+	
+	func day(from rawDay: [String : Any]) -> Day? {
+		
+		guard let rawStartDate = rawDay["time"] as? TimeInterval,
+			let rawSunriseDate = rawDay["sunriseTime"] as? TimeInterval,
+			let rawSunsetDate = rawDay["sunsetTime"] as? TimeInterval,
+			let highUVForecastTime = rawDay["uvIndexTime"] as? TimeInterval,
+			let highUVForecastValue = rawDay["uvIndex"] as? Double else {
+			return nil
+		}
+		
+		let startDate = Date(timeIntervalSince1970: rawStartDate)
+		let sunriseDate = Date(timeIntervalSince1970: rawSunriseDate)
+		let sunsetDate = Date(timeIntervalSince1970: rawSunsetDate)
+		
+		let highUVIndex = UVIndex(uvValue: highUVForecastValue)
+		let highUVForecastDate = Date(timeIntervalSince1970: highUVForecastTime)
+		let highUVForecast = UVForecast(date: highUVForecastDate, uvIndex: highUVIndex)
+		
+		return Day(startDate: startDate, sunriseDate: sunriseDate, sunsetDate: sunsetDate, forecasts: [], highForecast: highUVForecast)
+	}
+	
+	private func hourlyForecasts(in day: Day, nextDay: Day?, from rawForecasts: [[String : Any]]) -> [ForecastTimelineEntry] {
+		
+		var entries: [ForecastTimelineEntry] = []
+		
+		for rawForecast in rawForecasts {
 			
 			guard let rawDate = rawForecast["time"] as? TimeInterval else {
-				return nil
+				continue
 			}
 			let date = Date(timeIntervalSince1970: rawDate)
 			
+			guard date.isInSameDay(as: day.startDate),
+				date > day.sunriseDate else {
+				continue
+			}
+			
+			guard date < day.sunsetDate else {
+				if let nextDay = nextDay {
+					let night = Night(date: day.sunsetDate, endDate: nextDay.sunriseDate)
+					entries.append(night)
+				}
+				return entries // Don't continue; night will be the the last timeline entry to list for this day
+			}
+			
 			guard let rawUVIndex = rawForecast["uvIndex"] as? Double else {
-				return nil
+				continue
 			}
+			
 			let uvIndex = UVIndex(uvValue: rawUVIndex)
-			
-			return UVForecast(date: date, uvIndex: uvIndex)
+			let uvForecast = UVForecast(date: date, uvIndex: uvIndex)
+			entries.append(uvForecast)
 		}
 		
-		var dailyForecastList: [UVForecast] = []
-		
-		for rawForecast in rawDailyForecast {
-			
-			if let rawDate = rawForecast["time"] as? TimeInterval,
-				let rawUVIndex = rawForecast["uvIndex"] as? Double {
-				
-				let uvIndex = UVIndex(uvValue: rawUVIndex)
-				let date = Date(timeIntervalSince1970: rawDate)
-				let forecast = UVForecast(date: date, uvIndex: uvIndex)
-				
-				if let rawHighIndexDate = rawForecast["uvIndexTime"] as? TimeInterval {
-					forecast.date = Date(timeIntervalSince1970: rawHighIndexDate)
-				}
-				
-				dailyForecastList.append(forecast)
-				
-			}
-			
-		}
-		
-		var numberOfSunEventsToady = 0
-		
-		let sunriseEvents = rawDailyForecast.compactMap { (rawForecast) -> SunEvent? in
-			if let rawSunriseTime = rawForecast["sunriseTime"] as? TimeInterval {
-				let sunriseDate = Date(timeIntervalSince1970: rawSunriseTime)
-				if sunriseDate.isInPast {
-					if sunriseDate.isToday {
-						numberOfSunEventsToady += 1
-					}
-				}
-				else {
-					return SunEvent(date: sunriseDate, eventType: .sunrise)
-				}
-			}
-			return nil
-		}
-		
-		let sunsetEvents = rawDailyForecast.compactMap { (rawForecast) -> SunEvent? in
-			if let rawSunsetTime = rawForecast["sunsetTime"] as? TimeInterval {
-				let sunsetDate = Date(timeIntervalSince1970: rawSunsetTime)
-				if sunsetDate.isInPast {
-					if sunsetDate.isToday {
-						numberOfSunEventsToady += 1
-					}
-				}
-				else {
-					return SunEvent(date: sunsetDate, eventType: .sunset)
-				}
-			}
-			return nil
-		}
-		
-		let daysInHourlyForecast = rawHourlyForecast.compactMap { (rawForecast) -> Int? in
-			guard let rawTime = rawForecast["time"] as? TimeInterval else {
-				return nil
-			}
-			let date = Date(timeIntervalSince1970: rawTime)
-			return Calendar.current.component(.day, from: date)
-		}
-		let numberOfDaysInHourlyForecast = daysInHourlyForecast.unique().count
-		
-		var sunEvents = sunriseEvents + sunsetEvents
-		sunEvents.sort()
-		
-		let startOfRange = (numberOfDaysInHourlyForecast * 2) - numberOfSunEventsToady
-		let endOfRange = sunEvents.count
-		sunEvents.removeSubrange(startOfRange ..< endOfRange)
-		
-		currentHourlyForecast.append(contentsOf: sunEvents)
-		currentHourlyForecast.sort { (lhs, rhs) -> Bool in
-			lhs.date < rhs.date
-		}
-		
-		let dayHighForecast = dailyForecastList.first!
-		let weekHighForecast = dailyForecastList.max()!
-		
-		DispatchQueue.main.sync {
-			let fetchResult = ForecastFetchResult(currentUVIndex, currentHourlyForecast, dayHighForecast, dailyForecastList, weekHighForecast)
-			result(.success(fetchResult))
-		}
+		return entries
 		
 	}
 	
@@ -198,9 +186,8 @@ extension APIClient: URLSessionDownloadDelegate {
 						BackgroundUpdateHelper.didCompleteBackgroundRefreshFetch(shouldUpdateAppSnapshot: false)
 					case .success(let fetchResult):
 						DataStore.shared.currentUVIndex = fetchResult.currentUVIndex
-						DataStore.shared.hourlyForecasts = fetchResult.currentHourlyForecasts
 						DataStore.shared.todayHighForecast = fetchResult.dayHighForecast
-						DataStore.shared.dailyForecasts = fetchResult.dailyForecasts
+						DataStore.shared.forecastTimeline = fetchResult.forecastTimeline
 					}
 					
 					print("Updated data store.")

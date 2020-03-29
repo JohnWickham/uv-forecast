@@ -53,16 +53,26 @@ struct ForecastView: View, LocationManagerDelegate {
 	var dataLoadedView: some View {
 		ScrollView {
 			VStack(alignment: HorizontalAlignment.leading, spacing: 5) {
-				HeaderView(title: "8-Day High", uvIndex: dataStore.dailyForecasts.max()!.uvIndex)
-				
+				highForecastHeaderView
 				SeparatorView()
-				
-				ForEach(dataStore.dailyForecasts, id: \.date) { forecast in
-					TimelineRowView(timelineEntry: forecast, title: (forecast.date.isToday ? "Today" : forecast.date.shortWeekDayString).uppercased(), detail: forecast.date.shortTimeString)
-				}
-				
+				timelineList
 			}
 		}
+	}
+	
+	var timelineList: ForecastListView {
+		let highForecasts = dataStore.forecastTimeline.days.compactMap { (day) -> UVForecast? in
+			day.highForecast
+		}
+		
+		return ForecastListView(timelineEntries: highForecasts, showsForecastTimes: true, timeFormat: .shortDay)
+	}
+	
+	private var highForecastHeaderView: HeaderView? {
+		if let highForecast = dataStore.forecastTimeline.highDailyForecast {
+			return HeaderView(title: "8-Day High", uvIndex: highForecast.uvIndex)
+		}
+		return nil
 	}
 	
 	func loadData() {
@@ -83,16 +93,4 @@ struct ForecastView: View, LocationManagerDelegate {
 				dataStore.loadForecastFromAPI(for: Location(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
 		}
 	}
-	
-//	func loadForecastFromAPI(for location: CLLocation) {
-//		APIClient().loadCurrentForecast(for: (latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)) { (result) in
-//			switch result {
-//				case .failure(let error):
-//					self.dataStore.error = error
-//				case .success(let resultValue):
-//					self.dataStore.eightDayForecast = resultValue.dailyForecastList
-//			}
-//			self.dataStore.loadingState = (isLoading: false, hasLoaded: true)
-//		}
-//	}
 }

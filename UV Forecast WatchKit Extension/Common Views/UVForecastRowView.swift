@@ -33,18 +33,18 @@ struct UVIndexLabelView: View {
 	}
 }
 
-struct TimelineRowView: View {
+struct UVForecastTimelineRowView: View {
 	
-	var timelineEntry: ForecastTimelineEntry
 	var title: String
 	var detail: String
+	var forecast: UVForecast
 	
 	var body: some View {
 		VStack {
 			HStack(alignment: .firstTextBaseline, spacing: 0) {
 				textGroup
 				Spacer()
-				detailView
+				UVIndexLabelView(uvIndex: forecast.uvIndex)
 			}
 			.padding(EdgeInsets(top: 8, leading: 8, bottom: 0, trailing: 8))
 			
@@ -62,24 +62,33 @@ struct TimelineRowView: View {
 		}
 		.frame(maxWidth: 100)
 	}
-	
-	var detailView: some View {
-		if let uvForecast = timelineEntry as? UVForecast {
-			return AnyView(UVIndexLabelView(uvIndex: uvForecast.uvIndex))
-		}
-		else if let sunEvent = timelineEntry as? SunEvent {
-			return AnyView(Image((sunEvent.eventType == .sunrise) ? "Sunrise" : "Sunset").foregroundColor(.orange))
-		}
-		return AnyView(Text(""))
-	}
+
 }
 
-struct UVForecastRowView_Previews: PreviewProvider {
-	static var previews: some View {
-		List {
-			ForEach(0..<10) { (index) -> TimelineRowView in
-				TimelineRowView(timelineEntry: SunEvent(date: Date(), eventType: .sunset), title: "1 PM", detail: "")
+struct NightTimelineRowView: View {
+	
+	var night: Night
+	var sunsetTitle: String
+	var sunriseTitle: String
+	
+	var body: some View {
+		VStack {
+			HStack(alignment: .center, spacing: 0) {
+				Text(sunsetTitle).font(.system(.body))
+				Spacer()
+				Image("Sunset")
 			}
+			.padding(EdgeInsets(top: 8, leading: 8, bottom: 0, trailing: 8))
+			
+			HStack(alignment: .center, spacing: 0) {
+				Text(sunriseTitle).font(.system(.body))
+				Spacer()
+				Image("Sunrise")
+			}
+			.padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+			
+			SeparatorView()
 		}
 	}
+	
 }

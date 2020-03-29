@@ -27,7 +27,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     }
     
     func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
-		let lastForecastDate = DataStore.shared.hourlyForecasts.last?.date
+		let lastForecastDate = DataStore.shared.forecastTimeline.hourlyTimelineEntries.last?.date
 		handler(lastForecastDate)
     }
     
@@ -52,18 +52,18 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
         
-		let filteredForecasts = DataStore.shared.hourlyForecasts.filter { (forecast) -> Bool in
+		let filteredForecasts = DataStore.shared.forecastTimeline.hourlyTimelineEntries
+			.filter { (forecast) -> Bool in
 			forecast.date > date
 		}
 		
 		let highUVForecast = DataStore.shared.todayHighForecast
 		
 		let entries = filteredForecasts.compactMap { (forecast) -> CLKComplicationTimelineEntry? in
-			guard let uvForecast = forecast as? UVForecast else {
+			guard let forecast = forecast as? UVForecast else {
 				return nil
 			}
-			
-			return complicationHelper(for: complication)?.timelineEntry(for: forecast.date, currentUVIndex: uvForecast.uvIndex, highUVForecast: highUVForecast)
+			return complicationHelper(for: complication)?.timelineEntry(for: forecast.date, currentUVIndex: forecast.uvIndex, highUVForecast: highUVForecast)
 		}
 		
         handler(entries)

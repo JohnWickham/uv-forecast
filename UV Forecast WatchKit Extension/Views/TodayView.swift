@@ -58,18 +58,9 @@ struct TodayView: View, LocationManagerDelegate {
 				
 				SeparatorView()
 				
-				ForEach(dataStore.hourlyForecasts, id: \.date) { forecast in
-					self.timelineRowView(for: forecast)
-				}
-				
+				ForecastListView(timelineEntries: dataStore.forecastTimeline.hourlyTimelineEntries)
 			}
 		}
-	}
-	
-	private func timelineRowView(for entry: ForecastTimelineEntry) -> TimelineRowView {
-		let titleTime = (entry as? SunEvent == nil) ? entry.date.shortTimeString : entry.date.timeString
-		let title = (entry.date.isAtMidnight ? entry.date.shortWeekDayString.uppercased() + " " : "") + titleTime
-		return TimelineRowView(timelineEntry: entry, title: title, detail: "")
 	}
 	
 	func loadData() {
