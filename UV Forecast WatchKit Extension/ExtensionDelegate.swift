@@ -10,7 +10,6 @@ import WatchKit
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 	
-	lazy var backgroundUpdateHelper: BackgroundUpdateHelper = BackgroundUpdateHelper()
 	var pendingBackgroundTask: WKURLSessionRefreshBackgroundTask? = nil
 
     func applicationDidFinishLaunching() {
@@ -46,10 +45,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 //				backgroundUpdateHelper.startBackgroundUpdateRequest(for: location)
 				
 				//***
-				
-				let sessionConfiguration = URLSessionConfiguration.background(withIdentifier: "com.Wickham.UV-Forecast.BackgroundUpdate")
-				let backgroundSession = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
-				
+				let backgroundSession = makeBackgroundURLSession(with: "com.Wickham.UV-Forecast.BackgroundUpdate")
 				let urlRequest = APIClient().makeURLRequest(for: location)
 				backgroundSession.downloadTask(with: urlRequest).resume()
 				print("Beginning download task…")
@@ -68,8 +64,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 				
             case let urlSessionTask as WKURLSessionRefreshBackgroundTask:
 				print("System completed background task: passing to BackgroundUpdateHelper")
-				let configuration = URLSessionConfiguration.background(withIdentifier: urlSessionTask.sessionIdentifier)
-				let _ = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+				let _  = makeBackgroundURLSession(with: urlSessionTask.sessionIdentifier)
 				self.pendingBackgroundTask = urlSessionTask
 				
             case let relevantShortcutTask as WKRelevantShortcutRefreshBackgroundTask:
@@ -86,6 +81,11 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             }
         }
     }
+	
+	private func makeBackgroundURLSession(with identifier: String) -> URLSession {
+		let configuration = URLSessionConfiguration.background(withIdentifier: identifier)
+		return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+	}
 	
 	class func scheduleNextAppBackgroundRefresh(preferredDate: Date?) {
 			
