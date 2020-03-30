@@ -10,15 +10,17 @@ import WatchKit
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 	
-	var pendingRefreshBackgroundTask: WKRefreshBackgroundTask?
+	lazy var backgroundUpdateHelper: BackgroundUpdateHelper = BackgroundUpdateHelper()
+	var pendingBackgroundTask: WKURLSessionRefreshBackgroundTask? = nil
 
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
     }
 
     func applicationDidBecomeActive() {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
+		// Automatically update the data.
+		DataStore.shared.findLocationAndLoadForecast()
+	}
 
     func applicationWillResignActive() {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -32,8 +34,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             switch task {
             case let backgroundTask as WKApplicationRefreshBackgroundTask:
                 
-				let userDefaults = UserDefaults.standard
-				guard let latitude = userDefaults["location.latitude"] as? Double, let longitude = userDefaults["location.longitude"] as? Double else {
+				guard let location = DataStore.shared.lastSavedLocation else {
 					NSLog("Refusing to schedule background update: no location saved in UserDefaults")
 					backgroundTask.setTaskCompletedWithSnapshot(false)
 					return
@@ -42,7 +43,19 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 				// Instead of calling a normal load, schedule a background URLSession task to load.
 				// This background URLSession task will call the WKURLSessionRefreshBackgroundTask case later in this method.
 				print("Requesting background reload…")
-				APIClient().scheduleBackgroundUpdate(for: Location(latitude: latitude, longitude: longitude))
+//				backgroundUpdateHelper.startBackgroundUpdateRequest(for: location)
+				
+				//***
+				
+				let sessionConfiguration = URLSessionConfiguration.background(withIdentifier: "com.Wickham.UV-Forecast.BackgroundUpdate")
+				let backgroundSession = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
+				
+				let urlRequest = APIClient().makeURLRequest(for: location)
+				backgroundSession.downloadTask(with: urlRequest).resume()
+				print("Beginning download task…")
+				//***
+				
+				
                 backgroundTask.setTaskCompletedWithSnapshot(false)
 				
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
@@ -54,8 +67,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 connectivityTask.setTaskCompletedWithSnapshot(false)
 				
             case let urlSessionTask as WKURLSessionRefreshBackgroundTask:
-				print("Storing URLSessionRefreshBackgroundTask for later")
-				self.pendingRefreshBackgroundTask = urlSessionTask
+				print("System completed background task: passing to BackgroundUpdateHelper")
+				let configuration = URLSessionConfiguration.background(withIdentifier: urlSessionTask.sessionIdentifier)
+				let _ = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+				self.pendingBackgroundTask = urlSessionTask
 				
             case let relevantShortcutTask as WKRelevantShortcutRefreshBackgroundTask:
                 // Be sure to complete the relevant-shortcut task once you're done.
@@ -71,5 +86,70 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             }
         }
     }
+	
+	class func scheduleNextAppBackgroundRefresh(preferredDate: Date?) {
+			
+		// By default, schedule the next update for the start of the next hour
+		let preferredDate = preferredDate ?? Date().startOfNextHour
+	//		let preferredDate = Date().addingTimeInterval(60 * 5)
 
+		// The userInfo property isn't working in watchOS 6.2 (17T529)
+		// As a workaround, I'm saving the last known location in UserDefaults (see LocationManager)
+		
+		WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: preferredDate, userInfo: nil) { (error) in
+			
+			if error != nil {
+				print("Couldn't schedule background update task: \(error!.localizedDescription)")
+			}
+			
+			print("Scheduled next background update task for: \(preferredDate)")
+			
+		}
+		
+	}
+
+}
+
+extension ExtensionDelegate: URLSessionDownloadDelegate {
+	
+	func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+		
+		print("Download finished; parsing data…")
+		
+		do {
+				   
+			let data = try Data(contentsOf: location)
+			APIClient().handleResponse(data: data, response: downloadTask.response, error: downloadTask.error, result: { (result) in
+
+				switch result {
+				case .failure(let error):
+					print("Background download task failed: ", error)
+				case .success(let fetchResult):
+					DataStore.shared.currentUVIndex = fetchResult.currentUVIndex
+					DataStore.shared.todayHighForecast = fetchResult.dayHighForecast
+					DataStore.shared.forecastTimeline = fetchResult.forecastTimeline
+				}
+
+				ExtensionDelegate.scheduleNextAppBackgroundRefresh(preferredDate: nil)
+
+			})
+		   
+	   } catch {
+		   print("\(error.localizedDescription)")
+	   }
+		
+	}
+	
+	func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+		guard error == nil else {
+			print("URL session completed with an error: completing background task without snapshot.")
+			self.pendingBackgroundTask?.setTaskCompletedWithSnapshot(false)
+			self.pendingBackgroundTask = nil
+			return
+		}
+		
+		print("URL session completed; completing background task.")
+		pendingBackgroundTask?.setTaskCompletedWithSnapshot(true)
+		pendingBackgroundTask = nil
+	}
 }
