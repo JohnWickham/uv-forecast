@@ -6,9 +6,9 @@
 //  Copyright © 2020 Wickham. All rights reserved.
 //
 
-import Foundation
 import Combine
 import ClockKit
+import CoreLocation
 
 class DataStore: ObservableObject {
 	
@@ -28,22 +28,36 @@ class DataStore: ObservableObject {
 	   }
 	}
 	
-	@Published var currentUVIndex: UVIndex = UVIndex(uvValue: 0.0) {
+	@Published var currentUVIndex: UVIndex? {
 		willSet {
 			objectWillChange.send()
 		}
 	}
 	
-	@Published var todayHighForecast: UVForecast = UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 0.0)) {
+	@Published var todayHighForecast: UVForecast? {
 	   willSet {
 		   objectWillChange.send()
 	   }
 	}
 	
-	@Published var forecastTimeline: ForecastTimeline = ForecastTimeline(days: []) {
+	@Published var forecastTimeline: ForecastTimeline? {
 		willSet {
 			objectWillChange.send()
 		}
+	}
+	
+	lazy var locationManager: LocationManager = {
+		let manager = LocationManager()
+		manager.delegate = self
+		return manager
+	}()
+	
+	var lastSavedLocation: Location? {
+		let userDefaults = UserDefaults.standard
+		guard let latitude = userDefaults["location.latitude"] as? Double, let longitude = userDefaults["location.longitude"] as? Double else {
+			return nil
+		}
+		return Location(latitude: latitude, longitude: longitude)
 	}
 	
 }
@@ -52,7 +66,23 @@ extension DataStore {
 	
 	// TODO: Share more code between foreground API fetching and background data updating
 	
-	func loadForecastFromAPI(for location: Location) {
+	func findLocationAndLoadForecast() {
+		locationManager.getCurrentLocation()
+	}
+	
+	func loadForecastForLastKnownLocation() {
+		
+		let userDefaults = UserDefaults.standard
+		guard let latitude = userDefaults["location.latitude"] as? Double, let longitude = userDefaults["location.longitude"] as? Double else {
+			return
+		}
+		
+		let location = Location(latitude: latitude, longitude: longitude)
+		loadForecast(for: location)
+		
+	}
+	
+	func loadForecast(for location: Location) {
 		
 		APIClient().loadCurrentForecast(for: location) { (result) in
 						
@@ -70,8 +100,36 @@ extension DataStore {
 			
 			ComplicationController().reloadComplicationTimeline()
 			
-			BackgroundUpdateHelper.scheduleBackgroundUpdate(preferredDate: nil)
+			ExtensionDelegate.scheduleNextAppBackgroundRefresh(preferredDate: nil)
 			
+		}
+		
+	}
+	
+}
+
+extension DataStore: LocationManagerDelegate {
+	
+	func locationManagerDidGetLocation(_ result: Result<CLLocation, LocationError>) {
+		
+		switch result {
+			case .failure(let error):
+				
+				if error != .permissionNotDetermined {
+					self.loadingState.isLoading = false
+					self.error = error
+				}
+			
+			case .success(let location):
+				
+				let location = Location(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+				
+				// Store the location in UserDefaults
+				let userDefaults = UserDefaults.standard
+				userDefaults["location.latitude"] = location.latitude
+				userDefaults["location.longitude"] = location.longitude
+				
+				self.loadForecast(for: location)
 		}
 		
 	}

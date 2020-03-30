@@ -43,17 +43,6 @@ class APIClient: NSObject {
 		}.resume()
 	}
 	
-	func scheduleBackgroundUpdate(for location: Location) {
-		
-		let sessionConfiguration = URLSessionConfiguration.background(withIdentifier: "com.Wickham.UV-Forecast.BackgroundUpdate")
-		sessionConfiguration.sessionSendsLaunchEvents = true
-		let backgroundSession = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
-		
-		let urlRequest = makeURLRequest(for: location)
-		backgroundSession.downloadTask(with: urlRequest).resume()
-		
-	}
-	
 	func handleResponse(data: Data?, response: URLResponse?, error: Error?, result: ForecastFetchResultHandler) {
 		
 		guard error == nil else {
@@ -165,41 +154,5 @@ class APIClient: NSObject {
 		return entries
 		
 	}
-	
-}
-
-extension APIClient: URLSessionDownloadDelegate {
-	
-	func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
-		
-		print("Background download finished; parsing data…")
-		
-        do {
-			
-            let data = try Data(contentsOf: location)
-			handleResponse(data: data, response: downloadTask.response, error: downloadTask.error, result: { (result) in
-				
-				DispatchQueue.main.sync {
-					switch result {
-					case .failure(let error):
-						print("Background download task failed: ", error)
-						BackgroundUpdateHelper.didCompleteBackgroundRefreshFetch(shouldUpdateAppSnapshot: false)
-					case .success(let fetchResult):
-						DataStore.shared.currentUVIndex = fetchResult.currentUVIndex
-						DataStore.shared.todayHighForecast = fetchResult.dayHighForecast
-						DataStore.shared.forecastTimeline = fetchResult.forecastTimeline
-					}
-					
-					print("Updated data store.")
-					
-					BackgroundUpdateHelper.didCompleteBackgroundRefreshFetch(shouldUpdateAppSnapshot: true)
-				}
-				
-			})
-			
-        } catch {
-            print("\(error.localizedDescription)")
-        }
-    }
 	
 }

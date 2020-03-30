@@ -60,8 +60,13 @@ struct ForecastView: View, LocationManagerDelegate {
 		}
 	}
 	
-	var timelineList: ForecastListView {
-		let highForecasts = dataStore.forecastTimeline.days.compactMap { (day) -> UVForecast? in
+	var timelineList: ForecastListView? {
+		
+		guard let forecastTimeline = dataStore.forecastTimeline else {
+			return nil
+		}
+		
+		let highForecasts = forecastTimeline.days.compactMap { (day) -> UVForecast? in
 			day.highForecast
 		}
 		
@@ -69,7 +74,7 @@ struct ForecastView: View, LocationManagerDelegate {
 	}
 	
 	private var highForecastHeaderView: HeaderView? {
-		if let highForecast = dataStore.forecastTimeline.highDailyForecast {
+		if let highForecast = dataStore.forecastTimeline?.highDailyForecast {
 			return HeaderView(title: "8-Day High", uvIndex: highForecast.uvIndex)
 		}
 		return nil
@@ -90,7 +95,7 @@ struct ForecastView: View, LocationManagerDelegate {
 					self.dataStore.error = error
 				}
 			case .success(let location):
-				dataStore.loadForecastFromAPI(for: Location(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
+				dataStore.loadForecast(for: Location(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
 		}
 	}
 }

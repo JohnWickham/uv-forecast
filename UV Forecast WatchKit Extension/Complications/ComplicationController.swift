@@ -27,7 +27,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     }
     
     func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
-		let lastForecastDate = DataStore.shared.forecastTimeline.hourlyTimelineEntries.last?.date
+		let lastForecastDate = DataStore.shared.forecastTimeline?.hourlyTimelineEntries.last?.date
 		handler(lastForecastDate)
     }
     
@@ -39,8 +39,12 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
 		
-		let currentUVIndex = DataStore.shared.currentUVIndex
-		let highForecast = DataStore.shared.todayHighForecast
+		guard let currentUVIndex = DataStore.shared.currentUVIndex,
+			let highForecast = DataStore.shared.todayHighForecast else {
+				handler(nil)
+				return
+		}
+		
 		let helper = complicationHelper(for: complication)
 		handler(helper?.timelineEntry(for: Date(), currentUVIndex: currentUVIndex, highUVForecast: highForecast))
     }
@@ -51,13 +55,18 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     }
     
     func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
+		
+		guard let forecastTimeline = DataStore.shared.forecastTimeline,
+			let highUVForecast = DataStore.shared.todayHighForecast else {
+			handler(nil)
+			return
+		}
         
-		let filteredForecasts = DataStore.shared.forecastTimeline.hourlyTimelineEntries
+		//FIXME: hourlyTimelineEntries filters out forecast entries between sunset and sunrise, so complications won't have data to show during those hours
+		let filteredForecasts = forecastTimeline.hourlyTimelineEntries
 			.filter { (forecast) -> Bool in
 			forecast.date > date
 		}
-		
-		let highUVForecast = DataStore.shared.todayHighForecast
 		
 		let entries = filteredForecasts.compactMap { (forecast) -> CLKComplicationTimelineEntry? in
 			guard let forecast = forecast as? UVForecast else {

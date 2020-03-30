@@ -8,9 +8,8 @@
 
 import SwiftUI
 
-struct TodayView: View, LocationManagerDelegate {
+struct TodayView: View {
 	
-	@ObservedObject var locationManager = LocationManager()
 	@ObservedObject var dataStore: DataStore
 	
     var body: some View {
@@ -21,7 +20,7 @@ struct TodayView: View, LocationManagerDelegate {
 			}
 			else if dataStore.error != nil {
 				ErrorView(error: dataStore.error!) {
-					self.loadData()
+					self.dataStore.findLocationAndLoadForecast()
 				}
 			}
 			else {
@@ -31,7 +30,7 @@ struct TodayView: View, LocationManagerDelegate {
 		}
 		.contextMenu(menuItems: {
 			Button(action: {
-				self.loadData()
+				self.dataStore.findLocationAndLoadForecast()
 			}, label: {
 				VStack{
 					Image(systemName: "arrow.clockwise")
@@ -40,46 +39,58 @@ struct TodayView: View, LocationManagerDelegate {
 				}
 			})
 		})
-		.onAppear {
-			if !self.dataStore.loadingState.hasLoaded {
-				self.loadData()
-			}
-		}
 	}
 	
 	private var dataLoadedView: some View {
 		ScrollView {
 			VStack(alignment: HorizontalAlignment.leading, spacing: 5) {
-				HeaderView(title: "Now", detail: locationManager.locationName, uvIndex: dataStore.currentUVIndex)
-				
+				currentConditionsHeaderView
 				SeparatorView()
-				
-				HeaderView(title: "High", detail: (dataStore.todayHighForecast.date.isInCurrentHour ? "Now" : dataStore.todayHighForecast.date.shortTimeString), uvIndex: dataStore.todayHighForecast.uvIndex)
-				
+				highForecastHeaderView
 				SeparatorView()
-				
-				ForecastListView(timelineEntries: dataStore.forecastTimeline.hourlyTimelineEntries)
+				forecastListView
 			}
 		}
 	}
 	
-	func loadData() {
-		dataStore.loadingState.isLoading = true
-		dataStore.error = nil
-		locationManager.delegate = self
-		locationManager.getCurrentLocation()
-	}
-	
-	func locationManagerDidGetLocation(_ result: Result<CLLocation, LocationError>) {
-		switch result {
-			case .failure(let error):
-				if error != .permissionNotDetermined {
-					self.dataStore.loadingState.isLoading = false
-					self.dataStore.error = error
-				}
-			case .success(let location):
-				self.dataStore.loadForecastFromAPI(for: Location(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
+	var currentConditionsHeaderView: HeaderView? {
+		guard let currentUVIndex = dataStore.currentUVIndex else {
+			return nil
 		}
+		return HeaderView(title: "Now", detail: dataStore.locationManager.locationName, uvIndex: currentUVIndex)
 	}
 	
+	var highForecastHeaderView: HeaderView? {
+		guard let todayHighForecast = dataStore.todayHighForecast else {
+			return nil
+		}
+		return HeaderView(title: "High", detail: (todayHighForecast.date.isInCurrentHour ? "Now" : todayHighForecast.date.shortTimeString), uvIndex: todayHighForecast.uvIndex)
+	}
+	
+	var forecastListView: ForecastListView? {
+		guard let forecastTimeline = dataStore.forecastTimeline else {
+			return nil
+		}
+		return ForecastListView(timelineEntries: forecastTimeline.hourlyTimelineEntries)
+	}
+	
+//	func loadData() {
+//		dataStore.loadingState.isLoading = true
+//		dataStore.error = nil
+//		locationManager.delegate = self
+//		locationManager.getCurrentLocation()
+//	}
+//
+//	func locationManagerDidGetLocation(_ result: Result<CLLocation, LocationError>) {
+//		switch result {
+//			case .failure(let error):
+//				if error != .permissionNotDetermined {
+//					self.dataStore.loadingState.isLoading = false
+//					self.dataStore.error = error
+//				}
+//			case .success(let location):
+//				self.dataStore.loadForecast(for: Location(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
+//		}
+//	}
+//
 }
