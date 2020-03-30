@@ -91,7 +91,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 			
 		// By default, schedule the next update for the start of the next hour
 		let preferredDate = preferredDate ?? Date().startOfNextHour
-	//		let preferredDate = Date().addingTimeInterval(60 * 5)
+//		let preferredDate = Date().addingTimeInterval(60 * 5)
 
 		// The userInfo property isn't working in watchOS 6.2 (17T529)
 		// As a workaround, I'm saving the last known location in UserDefaults (see LocationManager)
