@@ -63,7 +63,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 connectivityTask.setTaskCompletedWithSnapshot(false)
 				
             case let urlSessionTask as WKURLSessionRefreshBackgroundTask:
-				print("System completed background task: passing to BackgroundUpdateHelper")
+				print("System completed background task: attaching to background session")
 				let _  = makeBackgroundURLSession(with: urlSessionTask.sessionIdentifier)
 				self.pendingBackgroundTask = urlSessionTask
 				
