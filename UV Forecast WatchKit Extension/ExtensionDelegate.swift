@@ -56,7 +56,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 				
             case let snapshotTask as WKSnapshotRefreshBackgroundTask:
                 // Snapshot tasks have a unique completion call, make sure to set your expiration date
-				snapshotTask.setTaskCompleted(restoredDefaultState: true, estimatedSnapshotExpiration: Date().startOfNextHour, userInfo: nil)
+				snapshotTask.setTaskCompleted(restoredDefaultState: true, estimatedSnapshotExpiration: Date().nextQuarterHour, userInfo: nil)
 				
             case let connectivityTask as WKWatchConnectivityRefreshBackgroundTask:
                 // Be sure to complete the connectivity task once you’re done.
@@ -87,11 +87,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 		return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
 	}
 	
-	class func scheduleNextAppBackgroundRefresh(preferredDate: Date?) {
+	class func scheduleNextAppBackgroundRefresh() {
 			
 		// By default, schedule the next update for the start of the next hour
-		let preferredDate = preferredDate ?? Date().startOfNextHour
-//		let preferredDate = Date().addingTimeInterval(60 * 5)
+		let preferredDate = Date().nextQuarterHour
 
 		// The userInfo property isn't working in watchOS 6.2 (17T529)
 		// As a workaround, I'm saving the last known location in UserDefaults (see LocationManager)
@@ -130,7 +129,7 @@ extension ExtensionDelegate: URLSessionDownloadDelegate {
 					DataStore.shared.forecastTimeline = fetchResult.forecastTimeline
 				}
 
-				ExtensionDelegate.scheduleNextAppBackgroundRefresh(preferredDate: nil)
+				ExtensionDelegate.scheduleNextAppBackgroundRefresh()
 
 			})
 		   

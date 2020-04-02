@@ -78,11 +78,22 @@ extension Date {
 		return (day == nowDay && week == nowWeek && month == nowMonth && year == nowYear)
 	}
 	
-	var startOfNextHour: Date {
-		let currentMinutes = Calendar.current.component(.minute, from: Date())
-		let minutesTillNextHour = 60 - currentMinutes
-		let startOfNextHour = Calendar.current.date(byAdding: .minute, value: minutesTillNextHour, to: Date())!
-		return startOfNextHour
+	var nextQuarterHour: Date {
+		
+		let currentMinutes = Calendar.current.component(.minute, from: self)
+		var nextMinutes: Int = 0
+		switch currentMinutes {
+		case 0 ..< 15:
+			nextMinutes = 15
+		case 15 ..< 30:
+			nextMinutes = 30
+		case 30 ..< 45:
+			nextMinutes = 45
+		default:
+			nextMinutes = 0
+		}
+		
+		return Calendar.current.date(bySetting: .minute, value: nextMinutes, of: self) ?? self.addingTimeInterval(15 * 60)
 	}
 	
 	var timeString: String {

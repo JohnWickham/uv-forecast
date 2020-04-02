@@ -98,7 +98,7 @@ extension DataStore {
 			
 			ComplicationController().reloadComplicationTimeline()
 			
-			ExtensionDelegate.scheduleNextAppBackgroundRefresh(preferredDate: nil)
+			ExtensionDelegate.scheduleNextAppBackgroundRefresh()
 			
 		}
 		
