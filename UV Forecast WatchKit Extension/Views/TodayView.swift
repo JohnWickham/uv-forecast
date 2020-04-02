@@ -73,3 +73,5 @@ struct TodayView: View {
 		}
 		return ForecastListView(timelineEntries: forecastTimeline.hourlyDaylightTimelineEntries)
 	}
+
+}
