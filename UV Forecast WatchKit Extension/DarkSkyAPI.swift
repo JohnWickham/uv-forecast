@@ -79,7 +79,9 @@ class APIClient: NSObject {
 				nextDay = day(from: rawDailyForecast[index + 1])
 			}
 			
-			newDay.forecasts = hourlyForecasts(in: newDay, nextDay: nextDay, from: rawHourlyForecast)
+			let forecasts = hourlyForecasts(in: newDay, nextDay: nextDay, from: rawHourlyForecast)
+			newDay.daytimeForecasts = forecasts.daylightForecasts
+			newDay.allForecasts = forecasts.allForecasts
 			
 			days.append(newDay)
 			
@@ -115,12 +117,13 @@ class APIClient: NSObject {
 		let highUVForecastDate = Date(timeIntervalSince1970: highUVForecastTime)
 		let highUVForecast = UVForecast(date: highUVForecastDate, uvIndex: highUVIndex)
 		
-		return Day(startDate: startDate, sunriseDate: sunriseDate, sunsetDate: sunsetDate, forecasts: [], highForecast: highUVForecast)
+		return Day(startDate: startDate, sunriseDate: sunriseDate, sunsetDate: sunsetDate, daytimeForecasts: [], allForecasts: [], highForecast: highUVForecast)
 	}
 	
-	private func hourlyForecasts(in day: Day, nextDay: Day?, from rawForecasts: [[String : Any]]) -> [ForecastTimelineEntry] {
+	private func hourlyForecasts(in day: Day, nextDay: Day?, from rawForecasts: [[String : Any]]) -> (daylightForecasts: [ForecastTimelineEntry], allForecasts: [ForecastTimelineEntry]) {
 		
-		var entries: [ForecastTimelineEntry] = []
+		var daylightEntries: [ForecastTimelineEntry] = []
+		var allEntries: [ForecastTimelineEntry] = []
 		
 		for rawForecast in rawForecasts {
 			
@@ -129,17 +132,8 @@ class APIClient: NSObject {
 			}
 			let date = Date(timeIntervalSince1970: rawDate)
 			
-			guard date.isInSameDay(as: day.startDate),
-				date > day.sunriseDate else {
+			guard date.isInSameDay(as: day.startDate) else {
 				continue
-			}
-			
-			guard date < day.sunsetDate else {
-				if let nextDay = nextDay {
-					let night = Night(date: day.sunsetDate, endDate: nextDay.sunriseDate)
-					entries.append(night)
-				}
-				return entries // Don't continue; night will be the the last timeline entry to list for this day
 			}
 			
 			guard let rawUVIndex = rawForecast["uvIndex"] as? Double else {
@@ -148,11 +142,21 @@ class APIClient: NSObject {
 			
 			let uvIndex = UVIndex(uvValue: rawUVIndex)
 			let uvForecast = UVForecast(date: date, uvIndex: uvIndex)
-			entries.append(uvForecast)
+			
+			allEntries.append(uvForecast)
+			
+			if date > day.sunriseDate && date < day.sunsetDate {
+				daylightEntries.append(uvForecast)
+			}
+			else if date > day.sunsetDate, let nextDay = nextDay {
+				let night = Night(date: day.sunsetDate, endDate: nextDay.sunriseDate)
+				daylightEntries.append(night)
+				break// Don't continue once we reach night
+			}
 		}
 		
-		return entries
-		
+		return (daylightForecasts: daylightEntries, allForecasts: allEntries)
+				
 	}
 	
 }

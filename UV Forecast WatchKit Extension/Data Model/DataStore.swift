@@ -63,9 +63,7 @@ class DataStore: ObservableObject {
 }
 
 extension DataStore {
-	
-	// TODO: Share more code between foreground API fetching and background data updating
-	
+		
 	func findLocationAndLoadForecast() {
 		locationManager.getCurrentLocation()
 	}
