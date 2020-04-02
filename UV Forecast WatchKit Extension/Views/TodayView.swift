@@ -71,26 +71,5 @@ struct TodayView: View {
 		guard let forecastTimeline = dataStore.forecastTimeline else {
 			return nil
 		}
-		return ForecastListView(timelineEntries: forecastTimeline.hourlyTimelineEntries)
+		return ForecastListView(timelineEntries: forecastTimeline.hourlyDaylightTimelineEntries)
 	}
-	
-//	func loadData() {
-//		dataStore.loadingState.isLoading = true
-//		dataStore.error = nil
-//		locationManager.delegate = self
-//		locationManager.getCurrentLocation()
-//	}
-//
-//	func locationManagerDidGetLocation(_ result: Result<CLLocation, LocationError>) {
-//		switch result {
-//			case .failure(let error):
-//				if error != .permissionNotDetermined {
-//					self.dataStore.loadingState.isLoading = false
-//					self.dataStore.error = error
-//				}
-//			case .success(let location):
-//				self.dataStore.loadForecast(for: Location(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude))
-//		}
-//	}
-//
-}

@@ -28,7 +28,15 @@ struct ForecastTimeline {
 	
 	var days: [Day]
 	
-	var hourlyTimelineEntries: [ForecastTimelineEntry] {
+	var allHourlyTimelineEntries: [ForecastTimelineEntry] {
+		var cumulativeForecasts: [ForecastTimelineEntry] = []
+		days.forEach { (day) in
+			cumulativeForecasts += day.allForecasts
+		}
+		return cumulativeForecasts
+	}
+	
+	var hourlyDaylightTimelineEntries: [ForecastTimelineEntry] {
 		var cumulativeForecasts: [ForecastTimelineEntry] = []
 		days.forEach { (day) in
 			cumulativeForecasts += day.daytimeForecasts

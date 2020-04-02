@@ -27,7 +27,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     }
     
     func getTimelineEndDate(for complication: CLKComplication, withHandler handler: @escaping (Date?) -> Void) {
-		let lastForecastDate = DataStore.shared.forecastTimeline?.hourlyTimelineEntries.last?.date
+		let lastForecastDate = DataStore.shared.forecastTimeline?.allHourlyTimelineEntries.last?.date
 		handler(lastForecastDate)
     }
     
@@ -63,7 +63,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 		}
         
 		//FIXME: hourlyTimelineEntries filters out forecast entries between sunset and sunrise, so complications won't have data to show during those hours
-		let filteredForecasts = forecastTimeline.hourlyTimelineEntries
+		let filteredForecasts = forecastTimeline.allHourlyTimelineEntries
 			.filter { (forecast) -> Bool in
 			forecast.date > date
 		}
