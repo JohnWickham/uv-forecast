@@ -41,16 +41,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 				
 				// Instead of calling a normal load, schedule a background URLSession task to load.
 				// This background URLSession task will call the WKURLSessionRefreshBackgroundTask case later in this method.
-				print("Requesting background reload…")
-//				backgroundUpdateHelper.startBackgroundUpdateRequest(for: location)
-				
-				//***
 				let backgroundSession = makeBackgroundURLSession(with: "com.Wickham.UV-Forecast.BackgroundUpdate")
 				let urlRequest = APIClient().makeURLRequest(for: location)
 				backgroundSession.downloadTask(with: urlRequest).resume()
-				print("Beginning download task…")
-				//***
-				
 				
                 backgroundTask.setTaskCompletedWithSnapshot(false)
 				
