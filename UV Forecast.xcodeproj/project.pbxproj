@@ -538,6 +538,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 20200401;
 				DEVELOPMENT_ASSET_PATHS = "\"UV Forecast WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = QEQ6263LD9;
 				ENABLE_PREVIEWS = YES;
@@ -547,6 +548,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham.UV-Forecast.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "UV Forecast";
 				SDKROOT = watchos;
@@ -562,6 +564,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 20200401;
 				DEVELOPMENT_ASSET_PATHS = "\"UV Forecast WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = QEQ6263LD9;
 				ENABLE_PREVIEWS = YES;
@@ -571,6 +574,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham.UV-Forecast.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "UV Forecast";
 				SDKROOT = watchos;
@@ -587,9 +591,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 20200401;
 				DEVELOPMENT_TEAM = QEQ6263LD9;
 				IBSC_MODULE = UV_Forecast_WatchKit_Extension;
 				INFOPLIST_FILE = "UV Forecast WatchKit App/Info.plist";
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham.UV-Forecast.watchkitapp";
 				PRODUCT_NAME = "UV Forecast";
 				SDKROOT = watchos;
@@ -606,9 +612,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 20200401;
 				DEVELOPMENT_TEAM = QEQ6263LD9;
 				IBSC_MODULE = UV_Forecast_WatchKit_Extension;
 				INFOPLIST_FILE = "UV Forecast WatchKit App/Info.plist";
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham.UV-Forecast.watchkitapp";
 				PRODUCT_NAME = "UV Forecast";
 				SDKROOT = watchos;
@@ -623,9 +631,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 20200401;
 				DEVELOPMENT_TEAM = QEQ6263LD9;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham.UV-Forecast";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -636,9 +644,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 20200401;
 				DEVELOPMENT_TEAM = QEQ6263LD9;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham.UV-Forecast";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
