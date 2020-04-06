@@ -65,6 +65,7 @@ class DataStore: ObservableObject {
 extension DataStore {
 		
 	func findLocationAndLoadForecast() {
+		error = nil
 		locationManager.getCurrentLocation()
 	}
 	
@@ -74,6 +75,8 @@ extension DataStore {
 		guard let latitude = userDefaults["location.latitude"] as? Double, let longitude = userDefaults["location.longitude"] as? Double else {
 			return
 		}
+		
+		error = nil
 		
 		let location = Location(latitude: latitude, longitude: longitude)
 		loadForecast(for: location)
