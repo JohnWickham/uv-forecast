@@ -24,18 +24,6 @@ class OptionsHelper: ObservableObject {
 		self.complicationDisplayOption = ComplicationDisplayOption(rawValue: intValue) ?? .complicationShowsHighValue
 	}
 	
-	/*
-	
-	for each type in optionTypes {
-		Section {
-			for each option in type.options {
-				Row(option: option, selectedOption: type.selectedOption)
-			}
-		}
-	}
-	
-	*/
-	
 }
 
 protocol Option: CaseIterable, Equatable {
