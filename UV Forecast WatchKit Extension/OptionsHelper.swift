@@ -14,6 +14,7 @@ class OptionsHelper: ObservableObject {
 	
 	var complicationDisplayOption: ComplicationDisplayOption {
 		didSet {
+			ComplicationController().reloadComplicationTimeline()
 			defaults[ComplicationDisplayOption.defaultsKey] = complicationDisplayOption.rawValue
 		}
 	}
