@@ -54,7 +54,7 @@ struct ForecastView: View, LocationManagerDelegate {
 		ScrollView {
 			VStack(alignment: HorizontalAlignment.leading, spacing: 5) {
 				highForecastHeaderView
-				SeparatorView()
+				Divider()
 				timelineList
 			}
 		}

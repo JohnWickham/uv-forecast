@@ -45,10 +45,13 @@ struct TodayView: View {
 		ScrollView {
 			VStack(alignment: HorizontalAlignment.leading, spacing: 5) {
 				currentConditionsHeaderView
-				SeparatorView()
+				Divider()
 				highForecastHeaderView
-				SeparatorView()
+				Divider()
 				forecastListView
+				NavigationLink(destination: OptionsView(), label: {
+					Text("Options")
+				})
 			}
 		}
 	}
