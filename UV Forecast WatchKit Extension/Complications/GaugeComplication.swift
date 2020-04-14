@@ -26,11 +26,10 @@ class GaugeComplicationHelper: ComplicationHelper {
 		complicationTemplate.gaugeProvider = gaugeProvider
 		
 		let outerTextProvider = CLKSimpleTextProvider(text: "\(currentUVIndex.uvValue)")
-		outerTextProvider.tintColor = currentUVIndex.color
 		complicationTemplate.outerTextProvider = outerTextProvider
 		
 		let leadingTextProvider = CLKSimpleTextProvider(text: "UV")
-		leadingTextProvider.tintColor = UVIndex.lowColor
+		leadingTextProvider.tintColor = currentUVIndex.color
 		complicationTemplate.leadingTextProvider = leadingTextProvider
 		
 		return complicationTemplate
