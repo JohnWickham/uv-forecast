@@ -39,7 +39,7 @@ class ModularSmallComplicationHelper: ComplicationHelper {
 			row1Column2TextProvider = CLKSimpleTextProvider(text: "\(currentUVIndex.uvValue)")
 			row1Column2TextProvider.tintColor = .white
 			
-			row2Column1TextProvider = CLKSimpleTextProvider(text: nextHourForecast.date.shortTimeString)
+			row2Column1TextProvider = CLKSimpleTextProvider(text: nextHourForecast.date.shortHourTimeString)
 			row2Column1TextProvider.tintColor = nextHourForecast.uvIndex.color
 			
 			row2Column2TextProvider = CLKSimpleTextProvider(text: "\(nextHourForecast.uvIndex.uvValue)")

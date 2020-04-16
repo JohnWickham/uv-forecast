@@ -67,7 +67,7 @@ struct TodayView: View {
 		guard let todayHighForecast = dataStore.todayHighForecast else {
 			return nil
 		}
-		return HeaderView(title: "High", detail: (todayHighForecast.date.isInCurrentHour ? "Now" : todayHighForecast.date.shortTimeString), uvIndex: todayHighForecast.uvIndex)
+		return HeaderView(title: "High", detail: (todayHighForecast.date.isInCurrentHour ? "Now" : todayHighForecast.date.hourTimeString), uvIndex: todayHighForecast.uvIndex)
 	}
 	
 	var forecastListView: ForecastListView? {

@@ -38,11 +38,11 @@ class UtilitarianLargeComplicationHelper: ComplicationHelper {
 		
 		switch OptionsHelper().complicationDisplayOption {
 		case .complicationShowsHighValue:
-			longText = "Now \(currentUVIndex.uvValue) High \(highUVForecast.uvIndex.uvValue) at \(highUVForecast.date.shortTimeString)"
+			longText = "Now \(currentUVIndex.uvValue) High \(highUVForecast.uvIndex.uvValue) at \(highUVForecast.date.hourTimeString)"
 			shortText = "Now \(currentUVIndex.uvValue) Hi \(highUVForecast.uvIndex.uvValue)"
 		default:
-			longText = "Now \(currentUVIndex.uvValue) \(nextHourForecast.date.shortTimeString) \(nextHourForecast.uvIndex.uvValue)"
-			shortText = "Now \(currentUVIndex.uvValue) \(nextHourForecast.date.shortTimeString) \(nextHourForecast.uvIndex.uvValue)"
+			longText = "Now \(currentUVIndex.uvValue) \(nextHourForecast.date.hourTimeString) \(nextHourForecast.uvIndex.uvValue)"
+			shortText = "Now \(currentUVIndex.uvValue) \(nextHourForecast.date.hourTimeString) \(nextHourForecast.uvIndex.uvValue)"
 		}
 		
 		

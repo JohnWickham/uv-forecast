@@ -102,9 +102,15 @@ extension Date {
 		return formatter.string(from: self)
 	}
 	
-	var shortTimeString: String {
+	var hourTimeString: String {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "h a"
+		return formatter.string(from: self)
+	}
+	
+	var shortHourTimeString: String {
+		let formatter = DateFormatter()
+		formatter.dateFormat = "h"
 		return formatter.string(from: self)
 	}
 	

@@ -27,12 +27,12 @@ class GraphicRectangularComplicationHelper: ComplicationHelper {
 		switch OptionsHelper().complicationDisplayOption {
 		case .complicationShowsHighValue:
 			body1Text = "Now: \(uvIndex.uvValue) \(uvIndex.description)"
-			body2Text = "High: \(highUVForecast.uvIndex.uvValue) at \(highUVForecast.date.shortTimeString)"
+			body2Text = "High: \(highUVForecast.uvIndex.uvValue) at \(highUVForecast.date.hourTimeString)"
 			body1Color = uvIndex.color
 			body2Color = highUVForecast.uvIndex.color
 		default:
 			body1Text = "Now: \(uvIndex.uvValue) \(uvIndex.description)"
-			body2Text = "\(nextHourForecast.date.shortTimeString): \(nextHourForecast.uvIndex.uvValue)"
+			body2Text = "\(nextHourForecast.date.hourTimeString): \(nextHourForecast.uvIndex.uvValue) \(nextHourForecast.uvIndex.description)"
 			body1Color = uvIndex.color
 			body2Color = nextHourForecast.uvIndex.color
 		}

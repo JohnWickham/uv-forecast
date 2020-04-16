@@ -20,9 +20,9 @@ class GraphicBezelComplicationHelper: ComplicationHelper {
 		
 		switch OptionsHelper().complicationDisplayOption {
 		case .complicationShowsHighValue:
-			 bezelText = "Now \(uvIndex.uvValue) High \(highUVForecast.uvIndex.uvValue) at \(highUVForecast.date.shortTimeString)"
+			 bezelText = "Now \(uvIndex.uvValue) High \(highUVForecast.uvIndex.uvValue) at \(highUVForecast.date.hourTimeString)"
 		default:
-			bezelText = "Now \(uvIndex.uvValue) \(nextHourForecast.date.shortTimeString) \(nextHourForecast.uvIndex.uvValue)"
+			bezelText = "Now \(uvIndex.uvValue) \(nextHourForecast.date.hourTimeString) \(nextHourForecast.uvIndex.uvValue)"
 		}
 		
 		complicationTemplate.textProvider = CLKSimpleTextProvider(text: bezelText)

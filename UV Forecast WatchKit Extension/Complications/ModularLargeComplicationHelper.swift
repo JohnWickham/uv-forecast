@@ -38,12 +38,12 @@ class ModularLargeComplicationHelper: ComplicationHelper {
 		case .complicationShowsHighValue:
 			row2Column1TextProvider = CLKSimpleTextProvider(text: "High")
 			row2Column1TextProvider.tintColor = .white
-			row2Column2TextProvider = CLKSimpleTextProvider(text: "\(highUVForecast.uvIndex.uvValue) at \(highUVForecast.date.shortTimeString)")
+			row2Column2TextProvider = CLKSimpleTextProvider(text: "\(highUVForecast.uvIndex.uvValue) at \(highUVForecast.date.hourTimeString)")
 			row2Column2TextProvider.tintColor = .white
 		default:
-			row2Column1TextProvider = CLKSimpleTextProvider(text: nextHourForecast.date.shortTimeString)
+			row2Column1TextProvider = CLKSimpleTextProvider(text: nextHourForecast.date.hourTimeString)
 			row2Column1TextProvider.tintColor = .white
-			row2Column2TextProvider = CLKSimpleTextProvider(text: "\(nextHourForecast.uvIndex.uvValue)")
+			row2Column2TextProvider = CLKSimpleTextProvider(text: "\(nextHourForecast.uvIndex.uvValue) \(nextHourForecast.uvIndex.description)")
 			row2Column2TextProvider.tintColor = .white
 		}
 		
