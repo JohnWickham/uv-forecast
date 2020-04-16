@@ -10,7 +10,7 @@ import ClockKit
 
 class GaugeComplicationHelper: ComplicationHelper {
 	
-	func complicationTemplate(for currentUVIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTemplate {
+	func complicationTemplate(for currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast) -> CLKComplicationTemplate {
 		
 		let complicationTemplate = CLKComplicationTemplateGraphicCornerGaugeText()
 		

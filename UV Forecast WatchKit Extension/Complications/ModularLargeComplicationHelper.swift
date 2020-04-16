@@ -10,7 +10,7 @@ import ClockKit
 
 class ModularLargeComplicationHelper: ComplicationHelper {
 	
-	func complicationTemplate(for currentUVIndex: UVIndex, highUVForecast: UVForecast) -> CLKComplicationTemplate {
+	func complicationTemplate(for currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast) -> CLKComplicationTemplate {
 		
 		let complicationTemplate = CLKComplicationTemplateModularLargeTable()
 		
@@ -31,13 +31,24 @@ class ModularLargeComplicationHelper: ComplicationHelper {
 		currentValueTextProvider.tintColor = .white
 		complicationTemplate.row1Column2TextProvider = currentValueTextProvider
 		
-		let highForecastLabelTextProvider = CLKSimpleTextProvider(text: "High")
-		highForecastLabelTextProvider.tintColor = .white
-		complicationTemplate.row2Column1TextProvider = highForecastLabelTextProvider
+		var row2Column1TextProvider: CLKSimpleTextProvider
+		var row2Column2TextProvider: CLKSimpleTextProvider
 		
-		let highForecastValueTextProvider = CLKSimpleTextProvider(text: "\(highUVForecast.uvIndex.uvValue) at \(highUVForecast.date.shortTimeString)")
-		highForecastValueTextProvider.tintColor = .white
-		complicationTemplate.row2Column2TextProvider = highForecastValueTextProvider
+		switch OptionsHelper().complicationDisplayOption {
+		case .complicationShowsHighValue:
+			row2Column1TextProvider = CLKSimpleTextProvider(text: "High")
+			row2Column1TextProvider.tintColor = .white
+			row2Column2TextProvider = CLKSimpleTextProvider(text: "\(highUVForecast.uvIndex.uvValue) at \(highUVForecast.date.shortTimeString)")
+			row2Column2TextProvider.tintColor = .white
+		default:
+			row2Column1TextProvider = CLKSimpleTextProvider(text: nextHourForecast.date.shortTimeString)
+			row2Column1TextProvider.tintColor = .white
+			row2Column2TextProvider = CLKSimpleTextProvider(text: "\(nextHourForecast.uvIndex.uvValue)")
+			row2Column2TextProvider.tintColor = .white
+		}
+		
+		complicationTemplate.row2Column1TextProvider = row2Column1TextProvider
+		complicationTemplate.row2Column2TextProvider = row2Column2TextProvider
 		
 		return complicationTemplate
 		

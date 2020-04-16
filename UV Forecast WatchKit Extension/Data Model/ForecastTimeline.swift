@@ -49,6 +49,24 @@ struct ForecastTimeline {
 		return dailyHighs.max()
 	}
 	
+	var currentUVForecast: UVForecast? {
+		return hourlyDaylightTimelineEntries.compactMap { (entry) -> UVForecast? in
+			entry as? UVForecast
+		}.first
+	}
+	
+	func timelineEntry(after entry: UVForecast) -> ForecastTimelineEntry? {
+		
+		let forecastEntries = hourlyDaylightTimelineEntries.compactMap { (timelineEntry) -> UVForecast? in
+			timelineEntry as? UVForecast
+		}
+		
+		return forecastEntries.first { (forecast) -> Bool in
+			forecast.date > entry.date
+		}
+		
+	}
+	
 }
 
 class ForecastTimelineEntry: Comparable {

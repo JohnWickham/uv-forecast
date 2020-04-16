@@ -39,14 +39,17 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
 		
-		guard let currentUVIndex = DataStore.shared.currentUVIndex,
+		guard let forecastTimeline = DataStore.shared.forecastTimeline,
+			let currentUVIndex = DataStore.shared.currentUVIndex,
+			let currentForecast = forecastTimeline.currentUVForecast,
+			let nextHourForecast = forecastTimeline.timelineEntry(after: currentForecast) as? UVForecast,
 			let highForecast = DataStore.shared.todayHighForecast else {
 				handler(nil)
 				return
 		}
 		
 		let helper = complicationHelper(for: complication)
-		handler(helper?.timelineEntry(for: Date(), currentUVIndex: currentUVIndex, highUVForecast: highForecast))
+		handler(helper?.timelineEntry(for: Date(), currentUVIndex: currentUVIndex, nextHourForecast: nextHourForecast, highUVForecast: highForecast))
     }
     
     func getTimelineEntries(for complication: CLKComplication, before date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
@@ -57,12 +60,13 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
 		
 		guard let forecastTimeline = DataStore.shared.forecastTimeline,
+			let currentForecast = forecastTimeline.currentUVForecast,
+			let nextHourForecast = forecastTimeline.timelineEntry(after: currentForecast) as? UVForecast,
 			let highUVForecast = DataStore.shared.todayHighForecast else {
 			handler(nil)
 			return
 		}
         
-		//FIXME: hourlyTimelineEntries filters out forecast entries between sunset and sunrise, so complications won't have data to show during those hours
 		let filteredForecasts = forecastTimeline.allHourlyTimelineEntries
 			.filter { (forecast) -> Bool in
 			forecast.date > date
@@ -72,7 +76,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 			guard let forecast = forecast as? UVForecast else {
 				return nil
 			}
-			return complicationHelper(for: complication)?.timelineEntry(for: forecast.date, currentUVIndex: forecast.uvIndex, highUVForecast: highUVForecast)
+			return complicationHelper(for: complication)?.timelineEntry(for: forecast.date, currentUVIndex: forecast.uvIndex, nextHourForecast: nextHourForecast, highUVForecast: highUVForecast)
 		}
 		
         handler(entries)
@@ -121,9 +125,11 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 		formatter.dateFormat = "h:mm a"
 		let sampleHighDate = formatter.date(from: "1:00 PM")!
 		let sampleHighForecast = UVForecast(date: sampleHighDate, uvIndex: UVIndex(uvValue: 10))
+		let sampleNextHourDate = formatter.date(from: "2:00 PM")!
+		let sampleNextHourForecast = UVForecast(date: sampleNextHourDate, uvIndex: UVIndex(uvValue: 9.0))
 		
 		let helper = complicationHelper(for: complication)
-		handler(helper?.complicationTemplate(for: sampleUVIndex, highUVForecast: sampleHighForecast))
+		handler(helper?.complicationTemplate(for: sampleUVIndex, nextHourForecast: sampleNextHourForecast, highUVForecast: sampleHighForecast))
     }
     
 }

@@ -9,19 +9,16 @@
 import SwiftUI
 
 class OptionsHelper: ObservableObject {
-	
-	private var defaults = UserDefaults.standard
-	
+		
 	var complicationDisplayOption: ComplicationDisplayOption {
-		didSet {
-			ComplicationController().reloadComplicationTimeline()
-			defaults[ComplicationDisplayOption.defaultsKey] = complicationDisplayOption.rawValue
+		get {
+			let intValue = UserDefaults.standard[ComplicationDisplayOption.defaultsKey] as? Int ?? 0
+			return ComplicationDisplayOption(rawValue: intValue) ?? .complicationShowsHighValue
 		}
-	}
-	
-	init() {
-		let intValue = defaults.integer(forKey: ComplicationDisplayOption.defaultsKey)
-		self.complicationDisplayOption = ComplicationDisplayOption(rawValue: intValue) ?? .complicationShowsHighValue
+		set {
+			ComplicationController().reloadComplicationTimeline()
+			UserDefaults.standard[ComplicationDisplayOption.defaultsKey] = newValue.rawValue
+		}
 	}
 	
 }
