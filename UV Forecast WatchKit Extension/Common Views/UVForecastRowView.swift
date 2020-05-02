@@ -22,7 +22,7 @@ struct UVIndexLabelView: View {
 	
 	var body: some View {
 		HStack {
-			Text(String(format: "%.f", uvIndex.uvValue.rounded()))
+			Text(String(format: "%.f", uvIndex.uvValue))
 				.fontWeight(.semibold)
 				.foregroundColor(Color(uvIndex.color))
 		}
@@ -31,6 +31,7 @@ struct UVIndexLabelView: View {
 		.opacity(0.15))
 		.cornerRadius(5, antialiased: true)
 	}
+	
 }
 
 struct UVForecastTimelineRowView: View {

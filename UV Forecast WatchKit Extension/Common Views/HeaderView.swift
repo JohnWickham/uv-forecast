@@ -28,7 +28,7 @@ struct HeaderView: View {
 			}
 
 			HStack(alignment: .firstTextBaseline, spacing: 5, content: {
-				Text(String(format: "%.1f", uvIndex.uvValue))
+				Text(formattedValueString)
 					.font(.system(size: 45, weight: .medium, design: .default))
 					.foregroundColor(Color(uvIndex.color))
 				Text(uvIndex.description)
@@ -38,5 +38,10 @@ struct HeaderView: View {
 		})
 		.padding(EdgeInsets(top: 5, leading: 8, bottom: 0, trailing: 8))
 
+	}
+	
+	var formattedValueString: String {
+		let value = uvIndex.uvValue
+		return String(format: (value > 9 ? "%.f" : "%.1f"), value)
 	}
 }
