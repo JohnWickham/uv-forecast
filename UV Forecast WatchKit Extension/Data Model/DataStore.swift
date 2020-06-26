@@ -12,7 +12,13 @@ import CoreLocation
 
 class DataStore: ObservableObject {
 	
-	static let shared = DataStore()
+	static let shared = DataStore(forecastTimeline: nil)
+	
+	init(forecastTimeline: ForecastTimeline?) {
+		if let forecastTimeline = forecastTimeline {
+			self.forecastTimeline = forecastTimeline
+		}
+	}
 	
     let objectWillChange = PassthroughSubject<Void, Never>()
 	
