@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5201DA8D2425F17500CC104E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201DA8C2425F17500CC104E /* LocationManager.swift */; };
+		52142EC824A54C9F0045EAC5 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52142EC724A54C9F0045EAC5 /* MockData.swift */; };
 		5215AC072427D9BA003F3344 /* GaugeComplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215AC062427D9BA003F3344 /* GaugeComplication.swift */; };
 		5215AC092427DB0C003F3344 /* OpenGaugeComplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215AC082427DB0C003F3344 /* OpenGaugeComplication.swift */; };
 		5215AC0B2427E4A6003F3344 /* CircularSmallComplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5215AC0A2427E4A6003F3344 /* CircularSmallComplication.swift */; };
@@ -87,6 +88,7 @@
 
 /* Begin PBXFileReference section */
 		5201DA8C2425F17500CC104E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		52142EC724A54C9F0045EAC5 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		5215AC062427D9BA003F3344 /* GaugeComplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaugeComplication.swift; sourceTree = "<group>"; };
 		5215AC082427DB0C003F3344 /* OpenGaugeComplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenGaugeComplication.swift; sourceTree = "<group>"; };
 		5215AC0A2427E4A6003F3344 /* CircularSmallComplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularSmallComplication.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				529E6F8E24270A590017D512 /* DataStore.swift */,
+				52142EC724A54C9F0045EAC5 /* MockData.swift */,
 				52E43EEA242FE2F4002924DC /* ForecastTimeline.swift */,
 				5228ACDA2425A80100642DE1 /* UVIndex.swift */,
 			);
@@ -371,6 +374,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52142EC824A54C9F0045EAC5 /* MockData.swift in Sources */,
 				522CE7C3242526530079CDEE /* HostingController.swift in Sources */,
 				522CE7C7242526530079CDEE /* ComplicationController.swift in Sources */,
 				5201DA8D2425F17500CC104E /* LocationManager.swift in Sources */,

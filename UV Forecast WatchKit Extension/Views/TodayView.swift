@@ -78,3 +78,16 @@ struct TodayView: View {
 	}
 
 }
+
+struct TodayView_Previews: PreviewProvider {
+	
+	static var mockDataStore: DataStore = {
+		let store = DataStore(forecastTimeline: mockDataForecastTimeline)
+		store.loadingState = (false, true)
+		return store
+	}()
+	
+	static var previews: some View {
+		TodayView(dataStore: mockDataStore)
+	}
+}
