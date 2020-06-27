@@ -42,6 +42,7 @@
 		52E3D809242C048B00CD9923 /* ComplicationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3D808242C048B00CD9923 /* ComplicationHelper.swift */; };
 		52E43EEB242FE2F4002924DC /* ForecastTimeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E43EEA242FE2F4002924DC /* ForecastTimeline.swift */; };
 		52E43EED242FF327002924DC /* ForecastListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E43EEC242FF327002924DC /* ForecastListView.swift */; };
+		52FCD6F124A664640081C3A4 /* TodayGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCD6F024A664640081C3A4 /* TodayGraphView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +126,7 @@
 		52E3D808242C048B00CD9923 /* ComplicationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationHelper.swift; sourceTree = "<group>"; };
 		52E43EEA242FE2F4002924DC /* ForecastTimeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTimeline.swift; sourceTree = "<group>"; };
 		52E43EEC242FF327002924DC /* ForecastListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastListView.swift; sourceTree = "<group>"; };
+		52FCD6F024A664640081C3A4 /* TodayGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayGraphView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 				522CE7DD24252EE10079CDEE /* TodayView.swift */,
 				522CE7DF24252EF80079CDEE /* ForecastView.swift */,
 				5219682B2445FFE1002A24A9 /* OptionsView.swift */,
+				52FCD6F024A664640081C3A4 /* TodayGraphView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -399,6 +402,7 @@
 				5228ACDD2425AFFB00642DE1 /* FoundationExtensions.swift in Sources */,
 				52E3D809242C048B00CD9923 /* ComplicationHelper.swift in Sources */,
 				5216B52E24283B2C00A23802 /* ModularLargeComplicationHelper.swift in Sources */,
+				52FCD6F124A664640081C3A4 /* TodayGraphView.swift in Sources */,
 				5215AC0F2427EB38003F3344 /* UtilitarianComplications.swift in Sources */,
 				52BCC4432426D87600B67BBB /* LoadingView.swift in Sources */,
 				52BCC43E2426D7F400B67BBB /* ErrorView.swift in Sources */,
