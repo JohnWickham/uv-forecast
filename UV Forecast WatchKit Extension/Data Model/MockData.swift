@@ -25,7 +25,7 @@ let timelineEntries: [ForecastTimelineEntry] = [
 var days: [Day] {
 	var days: [Day] = []
 	for i in 0..<8 {
-		days.append(Day(startDate: Date() + TimeInterval(86400 * i), sunriseDate: Date(timeIntervalSince1970: 1586257320), sunsetDate: Date(timeIntervalSince1970: 1586303400), daytimeForecasts: timelineEntries, allForecasts: timelineEntries, highForecast: timelineEntries.max() as! UVForecast))
+		days.append(Day(startDate: Date() + TimeInterval(86400 * i), sunriseDate: Date(timeIntervalSince1970: 1586257320), sunsetDate: Date(timeIntervalSince1970: 1586303400), remainingDaytimeForecasts: timelineEntries, allForecasts: timelineEntries, highForecast: timelineEntries.max() as! UVForecast))
 	}
 	return days
 }
