@@ -8,8 +8,23 @@
 
 import ClockKit
 
-
 class ComplicationController: NSObject, CLKComplicationDataSource {
+	
+	enum ComplicationIdentifier: String {
+		case currentUVIndex = "Current UV Index"
+		case maxUVIndexForecast = "Max UV Index"
+		case upcomingUVIndexForecast = "Next Hour UV Index"
+	}
+	
+	func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
+		
+		let currentUVIndexDescriptor = CLKComplicationDescriptor(identifier: ComplicationIdentifier.currentUVIndex.rawValue, displayName: "Current UV Index", supportedFamilies: CLKComplicationFamily.allCases)
+		let maxUVIndexForecastDescriptor = CLKComplicationDescriptor(identifier: ComplicationIdentifier.maxUVIndexForecast.rawValue, displayName: "Current UV Index", supportedFamilies: CLKComplicationFamily.allCases)
+		let upcomingUVIndexForecastDescriptor = CLKComplicationDescriptor(identifier: ComplicationIdentifier.upcomingUVIndexForecast.rawValue, displayName: "Current UV Index", supportedFamilies: CLKComplicationFamily.allCases)
+		
+		handler([currentUVIndexDescriptor, maxUVIndexForecastDescriptor, upcomingUVIndexForecastDescriptor])
+		
+	}
 	
 	func reloadComplicationTimeline() {
 		let complicationServer = CLKComplicationServer.sharedInstance()

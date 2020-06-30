@@ -12,8 +12,6 @@ class ModularSmallComplicationHelper: ComplicationHelper {
 	
 	func complicationTemplate(for currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast) -> CLKComplicationTemplate {
 		
-		let complicationTemplate = CLKComplicationTemplateModularSmallColumnsText()
-		
 		var row1Column1TextProvider: CLKSimpleTextProvider
 		var row1Column2TextProvider: CLKSimpleTextProvider
 		var row2Column1TextProvider: CLKSimpleTextProvider
@@ -46,12 +44,7 @@ class ModularSmallComplicationHelper: ComplicationHelper {
 			row2Column2TextProvider.tintColor = .white
 		}
 		
-		complicationTemplate.row1Column1TextProvider = row1Column1TextProvider
-		complicationTemplate.row1Column2TextProvider = row1Column2TextProvider
-		complicationTemplate.row2Column1TextProvider = row2Column1TextProvider
-		complicationTemplate.row2Column2TextProvider = row2Column2TextProvider
-		
-		return complicationTemplate
+		return CLKComplicationTemplateModularSmallColumnsText(row1Column1TextProvider: row1Column1TextProvider, row1Column2TextProvider: row2Column2TextProvider, row2Column1TextProvider: row2Column1TextProvider, row2Column2TextProvider: row2Column2TextProvider)
 	}
 	
 	

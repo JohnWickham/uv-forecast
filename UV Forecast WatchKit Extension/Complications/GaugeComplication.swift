@@ -12,8 +12,6 @@ class GaugeComplicationHelper: ComplicationHelper {
 	
 	func complicationTemplate(for currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast) -> CLKComplicationTemplate {
 		
-		let complicationTemplate = CLKComplicationTemplateGraphicCornerGaugeText()
-		
 		let gaugeColors = [
 			UVIndex.lowColor,// Green (start)
 			UVIndex.moderateColor,// Yellow
@@ -23,16 +21,13 @@ class GaugeComplicationHelper: ComplicationHelper {
 		]
 		let gaugeColorLocations: [NSNumber] = [0.0, 0.2, 0.4, 0.6, 1.0]
 		let gaugeProvider = CLKSimpleGaugeProvider(style: .ring, gaugeColors: gaugeColors, gaugeColorLocations: gaugeColorLocations, fillFraction: Float(currentUVIndex.uvValue / 13.0))// Using 13 as the max here even though there technically isn't a max.
-		complicationTemplate.gaugeProvider = gaugeProvider
 		
 		let outerTextProvider = CLKSimpleTextProvider(text: "\(currentUVIndex.uvValue)")
-		complicationTemplate.outerTextProvider = outerTextProvider
 		
 		let leadingTextProvider = CLKSimpleTextProvider(text: "UV")
 		leadingTextProvider.tintColor = currentUVIndex.color
-		complicationTemplate.leadingTextProvider = leadingTextProvider
 		
-		return complicationTemplate
+		return CLKComplicationTemplateGraphicCornerGaugeText(gaugeProvider: gaugeProvider, leading: leadingTextProvider, trailingTextProvider: nil, outerTextProvider: outerTextProvider)
 	}
 	
 }
