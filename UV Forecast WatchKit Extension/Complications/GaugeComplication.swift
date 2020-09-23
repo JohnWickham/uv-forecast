@@ -27,7 +27,7 @@ class GaugeComplicationHelper: ComplicationHelper {
 		let leadingTextProvider = CLKSimpleTextProvider(text: "UV")
 		leadingTextProvider.tintColor = currentUVIndex.color
 		
-		return CLKComplicationTemplateGraphicCornerGaugeText(gaugeProvider: gaugeProvider, leading: leadingTextProvider, trailingTextProvider: nil, outerTextProvider: outerTextProvider)
+		return CLKComplicationTemplateGraphicCornerGaugeText(gaugeProvider: gaugeProvider, leadingTextProvider: leadingTextProvider, trailingTextProvider: nil, outerTextProvider: outerTextProvider)
 	}
 	
 }

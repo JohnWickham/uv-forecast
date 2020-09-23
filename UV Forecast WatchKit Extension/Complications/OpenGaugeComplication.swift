@@ -27,7 +27,7 @@ class OpenGaugeComplicationHelper: ComplicationHelper {
 		
 		let bottomTextProvider = CLKSimpleTextProvider(text: "UV")
 		
-		return CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText(gaugeProvider: gaugeProvider, bottomTextProvider: bottomTextProvider, center: centerTextProvider)
+		return CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText(gaugeProvider: gaugeProvider, bottomTextProvider: bottomTextProvider, centerTextProvider: centerTextProvider)
 	}
 	
 }
