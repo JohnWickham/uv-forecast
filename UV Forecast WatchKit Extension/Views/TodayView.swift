@@ -28,17 +28,7 @@ struct TodayView: View {
 			}
 			
 		}
-		.contextMenu(menuItems: {
-			Button(action: {
-				self.dataStore.findLocationAndLoadForecast()
-			}, label: {
-				VStack{
-					Image(systemName: "arrow.clockwise")
-						.font(.title)
-					Text("Refresh")
-				}
-			})
-		})
+		
 	}
 	
 	private var dataLoadedView: some View {
@@ -49,9 +39,17 @@ struct TodayView: View {
 				highForecastHeaderView
 				Divider()
 				forecastListView
+				
 				NavigationLink(destination: OptionsView(), label: {
 					Text("Options")
 				})
+			}
+			.toolbar {
+				ToolbarItem(placement: .primaryAction) {
+					Button(action: dataStore.findLocationAndLoadForecast, label: {
+						Label("Refresh", systemImage: "arrow.counterclockwise")
+					})
+				}
 			}
 		}
 	}
