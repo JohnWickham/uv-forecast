@@ -121,6 +121,7 @@ struct UVForecastRowView_Previews: PreviewProvider {
 				UVForecastTimelineRowView(title: "SAT", detail: "12 PM", forecast: UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 8)))
 				UVForecastTimelineRowView(title: "SUN", detail: "1 PM", forecast: UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 11)))
 			}
+			.environment(\.sizeCategory, .small)
 		}
 	}
 }
