@@ -44,13 +44,6 @@ struct TodayView: View {
 					Text("Options")
 				})
 			}
-			.toolbar {
-				ToolbarItem(placement: .primaryAction) {
-					Button(action: dataStore.findLocationAndLoadForecast, label: {
-						Label("Refresh", systemImage: "arrow.counterclockwise")
-					})
-				}
-			}
 		}
 	}
 	
