@@ -32,17 +32,6 @@ struct ForecastView: View, LocationManagerDelegate {
 			}
 			
 		}
-		.contextMenu(menuItems: {
-			Button(action: {
-				self.loadData()
-			}, label: {
-				VStack{
-					Image(systemName: "arrow.clockwise")
-						.font(.title)
-					Text("Refresh")
-				}
-			})
-		})
 		.onAppear {
 			if !self.dataStore.loadingState.hasLoaded {
 				self.loadData()
