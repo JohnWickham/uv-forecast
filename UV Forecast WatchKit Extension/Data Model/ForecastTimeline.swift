@@ -18,7 +18,7 @@ struct Day {
 	var sunriseDate: Date
 	var sunsetDate: Date
 	
-	var daytimeForecasts: [ForecastTimelineEntry]
+	var remainingDaytimeForecasts: [ForecastTimelineEntry]
 	var allForecasts: [ForecastTimelineEntry]
 	var highForecast: UVForecast
 	
@@ -39,7 +39,7 @@ struct ForecastTimeline {
 	var hourlyDaylightTimelineEntries: [ForecastTimelineEntry] {
 		var cumulativeForecasts: [ForecastTimelineEntry] = []
 		days.forEach { (day) in
-			cumulativeForecasts += day.daytimeForecasts
+			cumulativeForecasts += day.remainingDaytimeForecasts
 		}
 		return cumulativeForecasts
 	}

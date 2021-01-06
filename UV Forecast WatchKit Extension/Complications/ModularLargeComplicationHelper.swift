@@ -12,24 +12,18 @@ class ModularLargeComplicationHelper: ComplicationHelper {
 	
 	func complicationTemplate(for currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast) -> CLKComplicationTemplate {
 		
-		let complicationTemplate = CLKComplicationTemplateModularLargeTable()
-		
 		let headerImage = UIImage(systemName: "sun.max.fill")!
 		let headerImageProvider = CLKImageProvider(onePieceImage: headerImage)
 		headerImageProvider.tintColor = currentUVIndex.color
-		complicationTemplate.headerImageProvider = headerImageProvider
 		
 		let headerTextProvider = CLKSimpleTextProvider(text: "UV Forecast")
 		headerTextProvider.tintColor = currentUVIndex.color
-		complicationTemplate.headerTextProvider = headerTextProvider
 		
 		let currentLabelTextProvider = CLKSimpleTextProvider(text: "Now")
 		currentLabelTextProvider.tintColor = .white
-		complicationTemplate.row1Column1TextProvider = currentLabelTextProvider
 		
 		let currentValueTextProvider = CLKSimpleTextProvider(text: "\(currentUVIndex.uvValue) \(currentUVIndex.description)")
 		currentValueTextProvider.tintColor = .white
-		complicationTemplate.row1Column2TextProvider = currentValueTextProvider
 		
 		var row2Column1TextProvider: CLKSimpleTextProvider
 		var row2Column2TextProvider: CLKSimpleTextProvider
@@ -47,10 +41,7 @@ class ModularLargeComplicationHelper: ComplicationHelper {
 			row2Column2TextProvider.tintColor = .white
 		}
 		
-		complicationTemplate.row2Column1TextProvider = row2Column1TextProvider
-		complicationTemplate.row2Column2TextProvider = row2Column2TextProvider
-		
-		return complicationTemplate
+		return CLKComplicationTemplateModularLargeTable(headerImageProvider: headerImageProvider, headerTextProvider: headerTextProvider, row1Column1TextProvider: currentLabelTextProvider, row1Column2TextProvider: currentValueTextProvider, row2Column1TextProvider: row2Column1TextProvider, row2Column2TextProvider: row2Column2TextProvider)
 		
 	}
 	

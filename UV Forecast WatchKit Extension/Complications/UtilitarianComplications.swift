@@ -12,17 +12,13 @@ class UtilitarianSmallComplicationHelper: ComplicationHelper {
 	
 	func complicationTemplate(for currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast) -> CLKComplicationTemplate {
 		
-		let complicationTemplate = CLKComplicationTemplateUtilitarianSmallFlat()
-		
 		let textProvider = CLKSimpleTextProvider(text: "\(currentUVIndex.uvValue)")
 		textProvider.tintColor = currentUVIndex.color
-		complicationTemplate.textProvider = textProvider
 		
 		let imageProvider = CLKImageProvider(onePieceImage: UIImage(systemName: "sun.max.fill")!)
 		imageProvider.tintColor = currentUVIndex.color
-		complicationTemplate.imageProvider = imageProvider
 		
-		return complicationTemplate
+		return CLKComplicationTemplateUtilitarianSmallFlat(textProvider: textProvider, imageProvider: imageProvider)
 	}
 	
 }
@@ -30,8 +26,6 @@ class UtilitarianSmallComplicationHelper: ComplicationHelper {
 class UtilitarianLargeComplicationHelper: ComplicationHelper {
 	
 	func complicationTemplate(for currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast) -> CLKComplicationTemplate {
-		
-		let complicationTemplate = CLKComplicationTemplateUtilitarianLargeFlat()
 		
 		var longText: String
 		var shortText: String
@@ -45,11 +39,9 @@ class UtilitarianLargeComplicationHelper: ComplicationHelper {
 			shortText = "Now \(currentUVIndex.uvValue) \(nextHourForecast.date.hourTimeString) \(nextHourForecast.uvIndex.uvValue)"
 		}
 		
-		
 		let textProvider = CLKSimpleTextProvider(text: longText, shortText: shortText)
-		complicationTemplate.textProvider = textProvider
 		
-		return complicationTemplate
+		return CLKComplicationTemplateUtilitarianLargeFlat(textProvider: textProvider)
 	}
 	
 }

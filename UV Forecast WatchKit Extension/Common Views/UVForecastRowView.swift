@@ -47,7 +47,7 @@ struct UVForecastTimelineRowView: View {
 				Spacer()
 				UVIndexLabelView(uvIndex: forecast.uvIndex)
 			}
-			.padding(EdgeInsets(top: 8, leading: 8, bottom: 0, trailing: 8))
+			.padding(EdgeInsets(top: 5, leading: 8, bottom: 5, trailing: 8))
 			
 			Divider()
 		}
@@ -104,4 +104,24 @@ struct NightTimelineRowView: View {
 		.padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
 	}
 	
+}
+
+struct UVForecastRowView_Previews: PreviewProvider {
+	static var previews: some View {
+		Group {
+			VStack {
+				UVForecastTimelineRowView(title: "10 AM", detail: "", forecast: UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 7)))
+				UVForecastTimelineRowView(title: "11 AM", detail: "", forecast: UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 9)))
+				UVForecastTimelineRowView(title: "1 PM", detail: "", forecast: UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 12)))
+				NightTimelineRowView(night: Night(date: Date(), endDate: Date() + 86400), sunsetDate: Date(), sunriseDate: Date())
+			}
+			
+			VStack {
+				UVForecastTimelineRowView(title: "Today", detail: "1 PM", forecast: UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 10)))
+				UVForecastTimelineRowView(title: "SAT", detail: "12 PM", forecast: UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 8)))
+				UVForecastTimelineRowView(title: "SUN", detail: "1 PM", forecast: UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 11)))
+			}
+			.environment(\.sizeCategory, .small)
+		}
+	}
 }

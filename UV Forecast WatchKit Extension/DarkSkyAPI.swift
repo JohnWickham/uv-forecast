@@ -80,7 +80,7 @@ class APIClient: NSObject {
 			}
 			
 			let forecasts = hourlyForecasts(in: newDay, nextDay: nextDay, from: rawHourlyForecast)
-			newDay.daytimeForecasts = forecasts.daylightForecasts
+			newDay.remainingDaytimeForecasts = forecasts.daylightForecasts
 			newDay.allForecasts = forecasts.allForecasts
 			
 			days.append(newDay)
@@ -117,7 +117,7 @@ class APIClient: NSObject {
 		let highUVForecastDate = Date(timeIntervalSince1970: highUVForecastTime)
 		let highUVForecast = UVForecast(date: highUVForecastDate, uvIndex: highUVIndex)
 		
-		return Day(startDate: startDate, sunriseDate: sunriseDate, sunsetDate: sunsetDate, daytimeForecasts: [], allForecasts: [], highForecast: highUVForecast)
+		return Day(startDate: startDate, sunriseDate: sunriseDate, sunsetDate: sunsetDate, remainingDaytimeForecasts: [], allForecasts: [], highForecast: highUVForecast)
 	}
 	
 	private func hourlyForecasts(in day: Day, nextDay: Day?, from rawForecasts: [[String : Any]]) -> (daylightForecasts: [ForecastTimelineEntry], allForecasts: [ForecastTimelineEntry]) {

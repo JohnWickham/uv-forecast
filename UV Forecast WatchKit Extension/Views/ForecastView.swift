@@ -99,3 +99,19 @@ struct ForecastView: View, LocationManagerDelegate {
 		}
 	}
 }
+
+struct ForecastView_Previews: PreviewProvider {
+	
+	static var mockDataStore: DataStore = {
+		let store = DataStore(forecastTimeline: mockDataTodayTimeline)
+		store.loadingState = (false, true)
+		store.currentUVIndex = UVIndex(uvValue: 7.0)
+		store.locationManager.locationName = "Charlotte"
+		store.todayHighForecast = UVForecast(date: Date(timeIntervalSince1970: 1586368800), uvIndex: UVIndex(uvValue: 11.0))
+		return store
+	}()
+	
+	static var previews: some View {
+		ForecastView(dataStore: mockDataStore)
+	}
+}

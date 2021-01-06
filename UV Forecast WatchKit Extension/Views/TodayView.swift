@@ -28,17 +28,7 @@ struct TodayView: View {
 			}
 			
 		}
-		.contextMenu(menuItems: {
-			Button(action: {
-				self.dataStore.findLocationAndLoadForecast()
-			}, label: {
-				VStack{
-					Image(systemName: "arrow.clockwise")
-						.font(.title)
-					Text("Refresh")
-				}
-			})
-		})
+		
 	}
 	
 	private var dataLoadedView: some View {
@@ -49,6 +39,7 @@ struct TodayView: View {
 				highForecastHeaderView
 				Divider()
 				forecastListView
+				
 				NavigationLink(destination: OptionsView(), label: {
 					Text("Options")
 				})
@@ -77,4 +68,20 @@ struct TodayView: View {
 		return ForecastListView(timelineEntries: forecastTimeline.hourlyDaylightTimelineEntries)
 	}
 
+}
+
+struct TodayView_Previews: PreviewProvider {
+	
+	static var mockDataStore: DataStore = {
+		let store = DataStore(forecastTimeline: mockDataTodayTimeline)
+		store.loadingState = (false, true)
+		store.currentUVIndex = UVIndex(uvValue: 7.0)
+		store.locationManager.locationName = "Charlotte"
+		store.todayHighForecast = UVForecast(date: Date(timeIntervalSince1970: 1586368800), uvIndex: UVIndex(uvValue: 11.0))
+		return store
+	}()
+	
+	static var previews: some View {
+		TodayView(dataStore: mockDataStore)
+	}
 }

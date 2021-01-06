@@ -12,11 +12,9 @@ class GraphicRectangularComplicationHelper: ComplicationHelper {
 	
 	func complicationTemplate(for uvIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast) -> CLKComplicationTemplate {
 		
-		let complicationTemplate = CLKComplicationTemplateGraphicRectangularStandardBody()
-		
 		let titleTextProvider = CLKSimpleTextProvider(text: "UV Forecast")
 		titleTextProvider.tintColor = .white
-		complicationTemplate.headerTextProvider = titleTextProvider
+		let headerTextProvider = titleTextProvider
 		
 		var body1Text: String
 		var body2Text: String
@@ -39,13 +37,13 @@ class GraphicRectangularComplicationHelper: ComplicationHelper {
 
 		let currentForecastTextProvider = CLKSimpleTextProvider(text: body1Text)
 		currentForecastTextProvider.tintColor = body1Color
-		complicationTemplate.body1TextProvider = currentForecastTextProvider
+		let body1TextProvider = currentForecastTextProvider
 		
 		let highForecastTextProvider = CLKSimpleTextProvider(text: body2Text)
 		highForecastTextProvider.tintColor = body2Color
-		complicationTemplate.body2TextProvider = highForecastTextProvider
+		let body2TextProvider = highForecastTextProvider
 				
-		return complicationTemplate
+		return CLKComplicationTemplateGraphicRectangularStandardBody(headerImageProvider: nil, headerTextProvider: headerTextProvider, body1TextProvider: body1TextProvider, body2TextProvider: body2TextProvider)
 	}
 	
 }
