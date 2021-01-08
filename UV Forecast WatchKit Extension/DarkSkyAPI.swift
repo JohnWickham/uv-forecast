@@ -105,7 +105,8 @@ class APIClient: NSObject {
 			let rawSunriseDate = rawDay["sunriseTime"] as? TimeInterval,
 			let rawSunsetDate = rawDay["sunsetTime"] as? TimeInterval,
 			let highUVForecastTime = rawDay["uvIndexTime"] as? TimeInterval,
-			let highUVForecastValue = rawDay["uvIndex"] as? Double else {
+			let highUVForecastValue = rawDay["uvIndex"] as? Double,
+			let highTemperature = rawDay["temperatureMax"] as? Double else {
 			return nil
 		}
 		
@@ -115,7 +116,7 @@ class APIClient: NSObject {
 		
 		let highUVIndex = UVIndex(uvValue: highUVForecastValue)
 		let highUVForecastDate = Date(timeIntervalSince1970: highUVForecastTime)
-		let highUVForecast = UVForecast(date: highUVForecastDate, uvIndex: highUVIndex)
+		let highUVForecast = UVForecast(date: highUVForecastDate, uvIndex: highUVIndex, temperature: highTemperature)
 		
 		return Day(startDate: startDate, sunriseDate: sunriseDate, sunsetDate: sunsetDate, remainingDaytimeForecasts: [], allForecasts: [], highForecast: highUVForecast)
 	}
@@ -136,12 +137,12 @@ class APIClient: NSObject {
 				continue
 			}
 			
-			guard let rawUVIndex = rawForecast["uvIndex"] as? Double else {
+			guard let rawUVIndex = rawForecast["uvIndex"] as? Double, let temperature = rawForecast["temperature"] as? Double else {
 				continue
 			}
 			
 			let uvIndex = UVIndex(uvValue: rawUVIndex)
-			let uvForecast = UVForecast(date: date, uvIndex: uvIndex)
+			let uvForecast = UVForecast(date: date, uvIndex: uvIndex, temperature: temperature)
 			
 			allEntries.append(uvForecast)
 			

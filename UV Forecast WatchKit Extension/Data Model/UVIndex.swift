@@ -14,8 +14,12 @@ class UVForecast: ForecastTimelineEntry {
 	/// The UV index at the given `date`
 	var uvIndex: UVIndex
 	
-	init(date: Date, uvIndex: UVIndex) {
+	/// The temperature in farenheit
+	var temperature: Double?
+	
+	init(date: Date, uvIndex: UVIndex, temperature: Double?) {
 		self.uvIndex = uvIndex
+		self.temperature = temperature
 		super.init(date: date)
 	}
 	

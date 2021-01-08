@@ -139,9 +139,9 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "h:mm a"
 		let sampleHighDate = formatter.date(from: "1:00 PM")!
-		let sampleHighForecast = UVForecast(date: sampleHighDate, uvIndex: UVIndex(uvValue: 10))
+		let sampleHighForecast = UVForecast(date: sampleHighDate, uvIndex: UVIndex(uvValue: 10), temperature: 72.0)
 		let sampleNextHourDate = formatter.date(from: "2:00 PM")!
-		let sampleNextHourForecast = UVForecast(date: sampleNextHourDate, uvIndex: UVIndex(uvValue: 9.0))
+		let sampleNextHourForecast = UVForecast(date: sampleNextHourDate, uvIndex: UVIndex(uvValue: 9.0), temperature: 81.0)
 		
 		let helper = complicationHelper(for: complication)
 		let identifier = ComplicationController.ComplicationIdentifier(rawValue: complication.identifier) ?? .maxUVIndexForecast
