@@ -9,12 +9,12 @@
 import ClockKit
 
 protocol ComplicationHelper {
-	func complicationTemplate(for currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast) -> CLKComplicationTemplate
+	func complicationTemplate(for currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast, complicationIdentifier identifier: ComplicationController.ComplicationIdentifier) -> CLKComplicationTemplate
 }
 
 extension ComplicationHelper {
-	func timelineEntry(for date: Date, currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast) -> CLKComplicationTimelineEntry {
-		let template = complicationTemplate(for: currentUVIndex, nextHourForecast: nextHourForecast, highUVForecast: highUVForecast)
+	func timelineEntry(for date: Date, currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast, complicationIdentifier identifier: ComplicationController.ComplicationIdentifier) -> CLKComplicationTimelineEntry {
+		let template = complicationTemplate(for: currentUVIndex, nextHourForecast: nextHourForecast, highUVForecast: highUVForecast, complicationIdentifier: identifier)
 		return CLKComplicationTimelineEntry(date: date, complicationTemplate: template)
 	}
 }

@@ -10,7 +10,7 @@ import ClockKit
 
 class UtilitarianSmallComplicationHelper: ComplicationHelper {
 	
-	func complicationTemplate(for currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast) -> CLKComplicationTemplate {
+	func complicationTemplate(for currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast, complicationIdentifier: ComplicationController.ComplicationIdentifier) -> CLKComplicationTemplate {
 		
 		let textProvider = CLKSimpleTextProvider(text: "\(currentUVIndex.uvValue)")
 		textProvider.tintColor = currentUVIndex.color
@@ -25,13 +25,13 @@ class UtilitarianSmallComplicationHelper: ComplicationHelper {
 
 class UtilitarianLargeComplicationHelper: ComplicationHelper {
 	
-	func complicationTemplate(for currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast) -> CLKComplicationTemplate {
+	func complicationTemplate(for currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast, complicationIdentifier: ComplicationController.ComplicationIdentifier) -> CLKComplicationTemplate {
 		
 		var longText: String
 		var shortText: String
 		
-		switch OptionsHelper().complicationDisplayOption {
-		case .complicationShowsHighValue:
+		switch complicationIdentifier {
+		case .maxUVIndexForecast:
 			longText = "Now \(currentUVIndex.uvValue) High \(highUVForecast.uvIndex.uvValue) at \(highUVForecast.date.hourTimeString)"
 			shortText = "Now \(currentUVIndex.uvValue) Hi \(highUVForecast.uvIndex.uvValue)"
 		default:

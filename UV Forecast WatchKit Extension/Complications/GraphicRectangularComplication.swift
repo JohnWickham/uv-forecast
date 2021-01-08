@@ -10,7 +10,7 @@ import ClockKit
 
 class GraphicRectangularComplicationHelper: ComplicationHelper {
 	
-	func complicationTemplate(for uvIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast) -> CLKComplicationTemplate {
+	func complicationTemplate(for uvIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast, complicationIdentifier: ComplicationController.ComplicationIdentifier) -> CLKComplicationTemplate {
 		
 		let titleTextProvider = CLKSimpleTextProvider(text: "UV Forecast")
 		titleTextProvider.tintColor = .white
@@ -22,8 +22,8 @@ class GraphicRectangularComplicationHelper: ComplicationHelper {
 		var body1Color: UIColor
 		var body2Color: UIColor
 		
-		switch OptionsHelper().complicationDisplayOption {
-		case .complicationShowsHighValue:
+		switch complicationIdentifier {
+		case .maxUVIndexForecast:
 			body1Text = "Now: \(uvIndex.uvValue) \(uvIndex.description)"
 			body2Text = "High: \(highUVForecast.uvIndex.uvValue) at \(highUVForecast.date.hourTimeString)"
 			body1Color = uvIndex.color

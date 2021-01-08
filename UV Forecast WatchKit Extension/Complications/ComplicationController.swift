@@ -11,18 +11,16 @@ import ClockKit
 class ComplicationController: NSObject, CLKComplicationDataSource {
 	
 	enum ComplicationIdentifier: String {
-		case currentUVIndex = "Current UV Index"
 		case maxUVIndexForecast = "Max UV Index"
 		case upcomingUVIndexForecast = "Next Hour UV Index"
 	}
 	
 	func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
+
+		let maxUVIndexForecastDescriptor = CLKComplicationDescriptor(identifier: ComplicationIdentifier.maxUVIndexForecast.rawValue, displayName: "Current & Today’s High UV Index", supportedFamilies: CLKComplicationFamily.allCases)
+		let upcomingUVIndexForecastDescriptor = CLKComplicationDescriptor(identifier: ComplicationIdentifier.upcomingUVIndexForecast.rawValue, displayName: "Current & Next Hour UV Index", supportedFamilies: CLKComplicationFamily.allCases)
 		
-		let currentUVIndexDescriptor = CLKComplicationDescriptor(identifier: ComplicationIdentifier.currentUVIndex.rawValue, displayName: "Current UV Index", supportedFamilies: CLKComplicationFamily.allCases)
-		let maxUVIndexForecastDescriptor = CLKComplicationDescriptor(identifier: ComplicationIdentifier.maxUVIndexForecast.rawValue, displayName: "Current UV Index", supportedFamilies: CLKComplicationFamily.allCases)
-		let upcomingUVIndexForecastDescriptor = CLKComplicationDescriptor(identifier: ComplicationIdentifier.upcomingUVIndexForecast.rawValue, displayName: "Current UV Index", supportedFamilies: CLKComplicationFamily.allCases)
-		
-		handler([currentUVIndexDescriptor, maxUVIndexForecastDescriptor, upcomingUVIndexForecastDescriptor])
+		handler([maxUVIndexForecastDescriptor, upcomingUVIndexForecastDescriptor])
 		
 	}
 	
@@ -64,7 +62,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 		}
 		
 		let helper = complicationHelper(for: complication)
-		handler(helper?.timelineEntry(for: Date(), currentUVIndex: currentUVIndex, nextHourForecast: nextHourForecast, highUVForecast: highForecast))
+		let identifier = ComplicationController.ComplicationIdentifier(rawValue: complication.identifier) ?? .maxUVIndexForecast
+		handler(helper?.timelineEntry(for: Date(), currentUVIndex: currentUVIndex, nextHourForecast: nextHourForecast, highUVForecast: highForecast, complicationIdentifier: identifier))
     }
     
     func getTimelineEntries(for complication: CLKComplication, before date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
@@ -91,7 +90,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 			guard let forecast = forecast as? UVForecast else {
 				return nil
 			}
-			return complicationHelper(for: complication)?.timelineEntry(for: forecast.date, currentUVIndex: forecast.uvIndex, nextHourForecast: nextHourForecast, highUVForecast: highUVForecast)
+			let identifier = ComplicationController.ComplicationIdentifier(rawValue: complication.identifier) ?? .maxUVIndexForecast
+			return complicationHelper(for: complication)?.timelineEntry(for: forecast.date, currentUVIndex: forecast.uvIndex, nextHourForecast: nextHourForecast, highUVForecast: highUVForecast, complicationIdentifier: identifier)
 		}
 		
         handler(entries)
@@ -144,7 +144,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 		let sampleNextHourForecast = UVForecast(date: sampleNextHourDate, uvIndex: UVIndex(uvValue: 9.0))
 		
 		let helper = complicationHelper(for: complication)
-		handler(helper?.complicationTemplate(for: sampleUVIndex, nextHourForecast: sampleNextHourForecast, highUVForecast: sampleHighForecast))
+		let identifier = ComplicationController.ComplicationIdentifier(rawValue: complication.identifier) ?? .maxUVIndexForecast
+		handler(helper?.complicationTemplate(for: sampleUVIndex, nextHourForecast: sampleNextHourForecast, highUVForecast: sampleHighForecast, complicationIdentifier: identifier))
     }
     
 }

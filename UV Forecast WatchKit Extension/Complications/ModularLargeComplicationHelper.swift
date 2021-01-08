@@ -10,7 +10,7 @@ import ClockKit
 
 class ModularLargeComplicationHelper: ComplicationHelper {
 	
-	func complicationTemplate(for currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast) -> CLKComplicationTemplate {
+	func complicationTemplate(for currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast, complicationIdentifier: ComplicationController.ComplicationIdentifier) -> CLKComplicationTemplate {
 		
 		let headerImage = UIImage(systemName: "sun.max.fill")!
 		let headerImageProvider = CLKImageProvider(onePieceImage: headerImage)
@@ -28,8 +28,8 @@ class ModularLargeComplicationHelper: ComplicationHelper {
 		var row2Column1TextProvider: CLKSimpleTextProvider
 		var row2Column2TextProvider: CLKSimpleTextProvider
 		
-		switch OptionsHelper().complicationDisplayOption {
-		case .complicationShowsHighValue:
+		switch complicationIdentifier {
+		case .maxUVIndexForecast:
 			row2Column1TextProvider = CLKSimpleTextProvider(text: "High")
 			row2Column1TextProvider.tintColor = .white
 			row2Column2TextProvider = CLKSimpleTextProvider(text: "\(highUVForecast.uvIndex.uvValue) at \(highUVForecast.date.hourTimeString)")

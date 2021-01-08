@@ -39,10 +39,6 @@ struct TodayView: View {
 				highForecastHeaderView
 				Divider()
 				forecastListView
-				
-				NavigationLink(destination: OptionsView(), label: {
-					Text("Options")
-				})
 			}
 		}
 	}

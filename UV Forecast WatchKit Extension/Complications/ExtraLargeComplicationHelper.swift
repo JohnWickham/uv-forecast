@@ -10,7 +10,7 @@ import ClockKit
 
 class ExtraLargeComplicationHelper: ComplicationHelper {
 	
-	func complicationTemplate(for currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast) -> CLKComplicationTemplate {	
+	func complicationTemplate(for currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast, complicationIdentifier: ComplicationController.ComplicationIdentifier) -> CLKComplicationTemplate {	
 		let valueTextProvider = CLKSimpleTextProvider(text: "\(currentUVIndex.uvValue)")
 		valueTextProvider.tintColor = currentUVIndex.color
 		

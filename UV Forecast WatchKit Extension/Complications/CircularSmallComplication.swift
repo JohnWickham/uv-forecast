@@ -10,7 +10,7 @@ import ClockKit
 
 class CircularSmallComplicationHelper: ComplicationHelper {
 	
-	func complicationTemplate(for currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast) -> CLKComplicationTemplate {
+	func complicationTemplate(for currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast, complicationIdentifier: ComplicationController.ComplicationIdentifier) -> CLKComplicationTemplate {
 		
 		let image = UIImage(systemName: "sun.max.fill")!
 		let imageProvider = CLKImageProvider(onePieceImage: image)

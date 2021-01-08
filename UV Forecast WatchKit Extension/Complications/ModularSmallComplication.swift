@@ -10,15 +10,15 @@ import ClockKit
 
 class ModularSmallComplicationHelper: ComplicationHelper {
 	
-	func complicationTemplate(for currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast) -> CLKComplicationTemplate {
+	func complicationTemplate(for currentUVIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast, complicationIdentifier: ComplicationController.ComplicationIdentifier) -> CLKComplicationTemplate {
 		
 		var row1Column1TextProvider: CLKSimpleTextProvider
 		var row1Column2TextProvider: CLKSimpleTextProvider
 		var row2Column1TextProvider: CLKSimpleTextProvider
 		var row2Column2TextProvider: CLKSimpleTextProvider
 		
-		switch OptionsHelper().complicationDisplayOption {
-		case .complicationShowsHighValue:
+		switch complicationIdentifier {
+		case .maxUVIndexForecast:
 			row1Column1TextProvider = CLKSimpleTextProvider(text: "UV")
 			row1Column1TextProvider.tintColor = currentUVIndex.color
 			

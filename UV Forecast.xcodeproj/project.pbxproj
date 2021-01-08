@@ -18,7 +18,6 @@
 		5216B52C2428372700A23802 /* GraphicBezelComplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5216B52B2428372700A23802 /* GraphicBezelComplication.swift */; };
 		5216B52E24283B2C00A23802 /* ModularLargeComplicationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5216B52D24283B2C00A23802 /* ModularLargeComplicationHelper.swift */; };
 		5216B5302428429800A23802 /* ExtraLargeComplicationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5216B52F2428429800A23802 /* ExtraLargeComplicationHelper.swift */; };
-		5219682C2445FFE1002A24A9 /* OptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219682B2445FFE1002A24A9 /* OptionsView.swift */; };
 		5219682E24460817002A24A9 /* OptionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5219682D24460817002A24A9 /* OptionsHelper.swift */; };
 		5228ACDB2425A80100642DE1 /* UVIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228ACDA2425A80100642DE1 /* UVIndex.swift */; };
 		5228ACDD2425AFFB00642DE1 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228ACDC2425AFFB00642DE1 /* FoundationExtensions.swift */; };
@@ -99,7 +98,6 @@
 		5216B52B2428372700A23802 /* GraphicBezelComplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphicBezelComplication.swift; sourceTree = "<group>"; };
 		5216B52D24283B2C00A23802 /* ModularLargeComplicationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModularLargeComplicationHelper.swift; sourceTree = "<group>"; };
 		5216B52F2428429800A23802 /* ExtraLargeComplicationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtraLargeComplicationHelper.swift; sourceTree = "<group>"; };
-		5219682B2445FFE1002A24A9 /* OptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsView.swift; sourceTree = "<group>"; };
 		5219682D24460817002A24A9 /* OptionsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsHelper.swift; sourceTree = "<group>"; };
 		5228ACDA2425A80100642DE1 /* UVIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVIndex.swift; sourceTree = "<group>"; };
 		5228ACDC2425AFFB00642DE1 /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
@@ -220,7 +218,6 @@
 			children = (
 				522CE7DD24252EE10079CDEE /* TodayView.swift */,
 				522CE7DF24252EF80079CDEE /* ForecastView.swift */,
-				5219682B2445FFE1002A24A9 /* OptionsView.swift */,
 				52FCD6F024A664640081C3A4 /* TodayGraphView.swift */,
 			);
 			path = Views;
@@ -381,7 +378,6 @@
 				522CE7C3242526530079CDEE /* HostingController.swift in Sources */,
 				522CE7C7242526530079CDEE /* ComplicationController.swift in Sources */,
 				5201DA8D2425F17500CC104E /* LocationManager.swift in Sources */,
-				5219682C2445FFE1002A24A9 /* OptionsView.swift in Sources */,
 				522CE7E524253D890079CDEE /* DarkSkyAPI.swift in Sources */,
 				522CE7DE24252EE10079CDEE /* TodayView.swift in Sources */,
 				522CE7C5242526530079CDEE /* ExtensionDelegate.swift in Sources */,

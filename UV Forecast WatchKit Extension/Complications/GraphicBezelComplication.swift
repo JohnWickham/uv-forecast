@@ -10,14 +10,14 @@ import ClockKit
 
 class GraphicBezelComplicationHelper: ComplicationHelper {
 	
-	func complicationTemplate(for uvIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast) -> CLKComplicationTemplate {
+	func complicationTemplate(for uvIndex: UVIndex, nextHourForecast: UVForecast, highUVForecast: UVForecast, complicationIdentifier: ComplicationController.ComplicationIdentifier) -> CLKComplicationTemplate {
 		
-		let circularTemplate = OpenGaugeComplicationHelper().complicationTemplate(for: uvIndex, nextHourForecast: nextHourForecast, highUVForecast: highUVForecast) as! CLKComplicationTemplateGraphicCircular
+		let circularTemplate = OpenGaugeComplicationHelper().complicationTemplate(for: uvIndex, nextHourForecast: nextHourForecast, highUVForecast: highUVForecast, complicationIdentifier: complicationIdentifier) as! CLKComplicationTemplateGraphicCircular
 		
 		var bezelText: String
 		
-		switch OptionsHelper().complicationDisplayOption {
-		case .complicationShowsHighValue:
+		switch complicationIdentifier {
+		case .maxUVIndexForecast:
 			 bezelText = "Now \(uvIndex.uvValue) High \(highUVForecast.uvIndex.uvValue) at \(highUVForecast.date.hourTimeString)"
 		default:
 			bezelText = "Now \(uvIndex.uvValue) \(nextHourForecast.date.hourTimeString) \(nextHourForecast.uvIndex.uvValue)"
