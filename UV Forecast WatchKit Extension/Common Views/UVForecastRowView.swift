@@ -8,15 +8,6 @@
 
 import SwiftUI
 
-//struct SeparatorView: View {
-//	var body: some View {
-//		RoundedRectangle(cornerRadius: 1.0, style: .continuous)
-//			.frame(maxWidth: .infinity, minHeight: 1, maxHeight: 1)
-//			.background(Color.white)
-//			.opacity(0.1)
-//	}
-//}
-
 struct UVIndexLabelView: View {
 	var uvIndex: UVIndex
 	
