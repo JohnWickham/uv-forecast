@@ -45,3 +45,10 @@ struct HeaderView: View {
 		return String(format: (value > 9 ? "%.f" : "%.1f"), value)
 	}
 }
+
+struct HeaderView_Previews: PreviewProvider {	
+	static var previews: some View {
+		HeaderView(title: "Now", detail: "San Francisco", uvIndex: UVIndex(uvValue: 7.0))
+			
+	}
+}
