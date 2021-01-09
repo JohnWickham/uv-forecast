@@ -28,7 +28,7 @@ struct ForecastListView: View {
 		
 		switch entry {
 		case let uvForecast as UVForecast:
-			return AnyView(UVForecastTimelineRowView(title: self.formattedTitle(for: entry), detail: (self.showsForecastTimes ? entry.date.hourTimeString : ""), forecast: uvForecast))
+			return AnyView(UVForecastTimelineRowView(title: self.formattedTitle(for: entry), detail: ((self.showsForecastTimes ? entry.date.hourTimeString : uvForecast.formattedTemperatureString ?? "")), forecast: uvForecast))
 		case let night as Night:
 			return AnyView(NightTimelineRowView(night: night, sunsetDate: night.date, sunriseDate: night.endDate))
 		default:

@@ -73,7 +73,7 @@ struct TodayView_Previews: PreviewProvider {
 		store.loadingState = (false, true)
 		store.currentUVIndex = UVIndex(uvValue: 7.0)
 		store.locationManager.locationName = "Charlotte"
-		store.todayHighForecast = UVForecast(date: Date(timeIntervalSince1970: 1586368800), uvIndex: UVIndex(uvValue: 11.0), temperature: nil)
+		store.todayHighForecast = UVForecast(date: Date(timeIntervalSince1970: 1586368800), uvIndex: UVIndex(uvValue: 11.0), temperature: 72)
 		return store
 	}()
 	

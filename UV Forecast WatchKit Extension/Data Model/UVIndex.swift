@@ -17,6 +17,15 @@ class UVForecast: ForecastTimelineEntry {
 	/// The temperature in farenheit
 	var temperature: Double?
 	
+	var formattedTemperatureString: String? {
+		guard let temperature = self.temperature else {
+			return nil
+		}
+		
+		let rounded = Int(temperature.rounded())
+		return "\(rounded)º"
+	}
+	
 	init(date: Date, uvIndex: UVIndex, temperature: Double?) {
 		self.uvIndex = uvIndex
 		self.temperature = temperature

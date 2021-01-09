@@ -51,8 +51,9 @@ struct UVForecastTimelineRowView: View {
 			Spacer()
 			Text(detail)
 				.font(.system(.body))
+				.foregroundColor(.secondary)
 		}
-		.frame(maxWidth: 100)
+		.frame(maxWidth: 95)
 	}
 
 }
