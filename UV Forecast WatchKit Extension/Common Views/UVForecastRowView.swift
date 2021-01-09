@@ -89,7 +89,7 @@ struct NightTimelineRowView: View {
 			Spacer()
 			Image("Sunset")
 		}
-		.padding(EdgeInsets(top: 8, leading: 8, bottom: 0, trailing: 8))
+		.padding(EdgeInsets(top: 8, leading: 8, bottom: 5, trailing: 8))
 	}
 	
 	var sunriseGroup: some View {
@@ -101,7 +101,7 @@ struct NightTimelineRowView: View {
 			Spacer()
 			Image("Sunrise")
 		}
-		.padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+		.padding(EdgeInsets(top: 0, leading: 8, bottom: 8, trailing: 8))
 	}
 	
 }
