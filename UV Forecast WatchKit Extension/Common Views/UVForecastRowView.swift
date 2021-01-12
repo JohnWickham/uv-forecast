@@ -25,6 +25,7 @@ struct UVIndexLabelView: View {
 	
 }
 
+// TODO: Use grids(?) to keep the horizontal layout of row content regular
 struct UVForecastTimelineRowView: View {
 	
 	var title: String
@@ -34,9 +35,14 @@ struct UVForecastTimelineRowView: View {
 	var body: some View {
 		VStack {
 			HStack(alignment: .firstTextBaseline, spacing: 0) {
-				textGroup
+				Text(title)
+					.font(.system(.body))					
 				Spacer()
 				UVIndexLabelView(uvIndex: forecast.uvIndex)
+				Spacer()
+				Text(detail)
+					.font(.system(.body))
+					.foregroundColor(.secondary)
 			}
 			.padding(EdgeInsets(top: 5, leading: 8, bottom: 5, trailing: 8))
 			
@@ -46,12 +52,9 @@ struct UVForecastTimelineRowView: View {
 	
 	var textGroup: some View {
 		HStack(alignment: .firstTextBaseline, spacing: 0) {
-			Text(title)
-				.font(.system(.body))
+			
 			Spacer()
-			Text(detail)
-				.font(.system(.body))
-				.foregroundColor(.secondary)
+			
 		}
 		.frame(maxWidth: 95)
 	}
@@ -108,8 +111,8 @@ struct UVForecastRowView_Previews: PreviewProvider {
 				NightTimelineRowView(night: Night(date: Date(), endDate: Date() + 86400), sunsetDate: Date(), sunriseDate: Date())
 			}
 			
-			VStack {
-				UVForecastTimelineRowView(title: "Today", detail: "1 PM", forecast: UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 10), temperature: nil))
+			VStack(alignment: .leading) {
+				UVForecastTimelineRowView(title: "TODAY", detail: "1 PM", forecast: UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 10), temperature: nil))
 				UVForecastTimelineRowView(title: "SAT", detail: "12 PM", forecast: UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 8), temperature: nil))
 				UVForecastTimelineRowView(title: "SUN", detail: "1 PM", forecast: UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 11), temperature: nil))
 			}
