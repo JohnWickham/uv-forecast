@@ -11,16 +11,23 @@ import ClockKit
 class ComplicationController: NSObject, CLKComplicationDataSource {
 	
 	enum ComplicationIdentifier: String {
+		case currentUVIndexForecast = "Current UV Index"
 		case maxUVIndexForecast = "Max UV Index"
 		case upcomingUVIndexForecast = "Next Hour UV Index"
 	}
 	
 	func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
 
-		let maxUVIndexForecastDescriptor = CLKComplicationDescriptor(identifier: ComplicationIdentifier.maxUVIndexForecast.rawValue, displayName: "Current & Today’s High UV Index", supportedFamilies: CLKComplicationFamily.allCases)
-		let upcomingUVIndexForecastDescriptor = CLKComplicationDescriptor(identifier: ComplicationIdentifier.upcomingUVIndexForecast.rawValue, displayName: "Current & Next Hour UV Index", supportedFamilies: CLKComplicationFamily.allCases)
+		let supportedFamiliesForComboComplications: [CLKComplicationFamily] = [.modularLarge, .utilitarianLarge, .graphicBezel, .graphicRectangular, .graphicExtraLarge]
+		let supportedFamiliesForCurrentOnly = CLKComplicationFamily.allCases.filter { (family) -> Bool in
+			!supportedFamiliesForComboComplications.contains(family)
+		}
 		
-		handler([maxUVIndexForecastDescriptor, upcomingUVIndexForecastDescriptor])
+		let currentUVIndexForecastDescriptor = CLKComplicationDescriptor(identifier: ComplicationIdentifier.currentUVIndexForecast.rawValue, displayName: "Current UV Index", supportedFamilies: supportedFamiliesForCurrentOnly)
+		let maxUVIndexForecastDescriptor = CLKComplicationDescriptor(identifier: ComplicationIdentifier.maxUVIndexForecast.rawValue, displayName: "Current & Today’s High UV Index", supportedFamilies: [.modularLarge, .utilitarianLarge, .graphicBezel, .graphicRectangular, .graphicExtraLarge])
+		let upcomingUVIndexForecastDescriptor = CLKComplicationDescriptor(identifier: ComplicationIdentifier.upcomingUVIndexForecast.rawValue, displayName: "Current & Next Hour UV Index", supportedFamilies: supportedFamiliesForComboComplications)
+		
+		handler([currentUVIndexForecastDescriptor, maxUVIndexForecastDescriptor, upcomingUVIndexForecastDescriptor])
 		
 	}
 	
