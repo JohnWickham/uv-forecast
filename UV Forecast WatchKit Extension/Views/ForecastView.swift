@@ -59,7 +59,7 @@ struct ForecastView: View, LocationManagerDelegate {
 			day.highForecast
 		}
 		
-		return ForecastListView(timelineEntries: highForecasts, showsForecastTimes: true, timeFormat: .shortDay)
+		return ForecastListView(timelineEntries: highForecasts)
 	}
 	
 	private var highForecastHeaderView: HeaderView? {

@@ -54,14 +54,16 @@ struct TodayView: View {
 		guard let todayHighForecast = dataStore.todayHighForecast else {
 			return nil
 		}
+		
 		return HeaderView(title: "High", detail: (todayHighForecast.date.isInCurrentHour ? "Now" : todayHighForecast.date.hourTimeString), uvIndex: todayHighForecast.uvIndex)
 	}
 	
-	var forecastListView: ForecastListView? {
+	var forecastListView: TodayListView? {
 		guard let forecastTimeline = dataStore.forecastTimeline else {
 			return nil
 		}
-		return ForecastListView(timelineEntries: forecastTimeline.hourlyDaylightTimelineEntries)
+		
+		return TodayListView(timelineEntries: forecastTimeline.hourlyDaylightTimelineEntries)
 	}
 
 }

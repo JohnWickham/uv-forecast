@@ -18,8 +18,10 @@ struct UVIndexLabelView: View {
 				.foregroundColor(Color(uvIndex.color))
 		}
 		.padding(EdgeInsets(top: 2, leading: 7, bottom: 2, trailing: 7))
-		.background(Color(uvIndex.color)
-		.opacity(0.15))
+		.background(
+			Color(uvIndex.color)
+				.opacity(0.15)
+		)
 		.cornerRadius(5, antialiased: true)
 	}
 	
@@ -36,27 +38,18 @@ struct UVForecastTimelineRowView: View {
 		VStack {
 			HStack(alignment: .firstTextBaseline, spacing: 0) {
 				Text(title)
-					.font(.system(.body))					
-				Spacer()
-				UVIndexLabelView(uvIndex: forecast.uvIndex)
+					.font(.system(.body))
 				Spacer()
 				Text(detail)
 					.font(.system(.body))
 					.foregroundColor(.secondary)
+				Spacer()
+				UVIndexLabelView(uvIndex: forecast.uvIndex)
 			}
 			.padding(EdgeInsets(top: 5, leading: 8, bottom: 5, trailing: 8))
 			
 			Divider()
 		}
-	}
-	
-	var textGroup: some View {
-		HStack(alignment: .firstTextBaseline, spacing: 0) {
-			
-			Spacer()
-			
-		}
-		.frame(maxWidth: 95)
 	}
 
 }
@@ -105,9 +98,9 @@ struct UVForecastRowView_Previews: PreviewProvider {
 	static var previews: some View {
 		Group {
 			VStack {
-				UVForecastTimelineRowView(title: "10 AM", detail: "", forecast: UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 7), temperature: nil))
-				UVForecastTimelineRowView(title: "11 AM", detail: "", forecast: UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 9), temperature: nil))
-				UVForecastTimelineRowView(title: "1 PM", detail: "", forecast: UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 12), temperature: nil))
+				UVForecastTimelineRowView(title: "10 AM", detail: "76º", forecast: UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 7), temperature: nil))
+				UVForecastTimelineRowView(title: "11 AM", detail: "84º", forecast: UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 9), temperature: nil))
+				UVForecastTimelineRowView(title: "1 PM", detail: "89º", forecast: UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 12), temperature: nil))
 				NightTimelineRowView(night: Night(date: Date(), endDate: Date() + 86400), sunsetDate: Date(), sunriseDate: Date())
 			}
 			
