@@ -12,7 +12,7 @@ struct HeaderView: View {
 	
 	var title: String
 	var detail: String?
-	var uvIndex: UVIndex
+	var forecastEntry: ForecastTimelineEntry
 	
 	var body: some View {
 		
@@ -26,29 +26,47 @@ struct HeaderView: View {
 					.font(.system(.caption))
 					.foregroundColor(.secondary)
 			}
-
-			HStack(alignment: .firstTextBaseline, spacing: 5, content: {
-				Text(formattedValueString)
-					.font(.system(size: 45, weight: .medium, design: .default))
-					.foregroundColor(Color(uvIndex.color))
-				Text(uvIndex.description)
-					.fontWeight(.medium)
-					.foregroundColor(Color(uvIndex.color))
-			})
+			
+			switch forecastEntry {
+			case is Night:
+				Spacer()
+					.frame(height: 10)
+				HStack(alignment: .firstTextBaseline, spacing: 5, content: {
+					Image(systemName: "moon.stars.fill")
+						.font(.system(size: 20))
+						.foregroundColor(.purple)
+					Text(["Night–night.", "Good night.", "Sweet dreams.", "See you tomorrow.", "Sleep tight."].randomElement()!)
+						.fontWeight(.medium)
+						.foregroundColor(.purple)
+				})
+			case let uvForecast as UVForecast:
+				HStack(alignment: .firstTextBaseline, spacing: 5, content: {
+					Text(formattedValueString)
+						.font(.system(size: 45, weight: .medium, design: .default))
+						.foregroundColor(Color(uvForecast.uvIndex.color))
+					Text(uvForecast.uvIndex.description)
+						.fontWeight(.medium)
+						.foregroundColor(Color(uvForecast.uvIndex.color))
+				})
+			default:
+				fatalError()
+			}
+			
 		})
 		.padding(EdgeInsets(top: 5, leading: 8, bottom: 0, trailing: 8))
 
 	}
 	
 	var formattedValueString: String {
-		let value = uvIndex.uvValue
+		let value = (forecastEntry as! UVForecast).uvIndex.uvValue
 		return String(format: (value > 9 ? "%.f" : "%.1f"), value)
 	}
 }
 
 struct HeaderView_Previews: PreviewProvider {	
 	static var previews: some View {
-		HeaderView(title: "Now", detail: "San Francisco", uvIndex: UVIndex(uvValue: 7.0))
-			
+		HeaderView(title: "Now", detail: "San Francisco", forecastEntry: UVForecast(date: Date(), uvIndex: UVIndex(uvValue: 7.0), temperature: 72))
+		
+		HeaderView(title: "Now", detail: "San Francisco", forecastEntry: Night(date: Date(), endDate: Date()))
 	}
 }

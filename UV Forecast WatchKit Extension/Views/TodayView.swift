@@ -44,10 +44,19 @@ struct TodayView: View {
 	}
 	
 	var currentConditionsHeaderView: HeaderView? {
-		guard let currentUVIndex = dataStore.currentUVIndex else {
+		guard let currentTimelineEntry = dataStore.forecastTimeline?.hourlyDaylightTimelineEntries.first else {
 			return nil
 		}
-		return HeaderView(title: "Now", detail: dataStore.locationManager.locationName, uvIndex: currentUVIndex)
+		
+		if let sunset = dataStore.forecastTimeline?.days.first?.sunsetDate,
+		   Date() > sunset,
+		   let night = dataStore.forecastTimeline?.hourlyDaylightTimelineEntries.compactMap({ (entry) -> ForecastTimelineEntry? in
+			entry as? Night
+		}).first {
+			return HeaderView(title: "Now", detail: dataStore.locationManager.locationName, forecastEntry: night)
+		}
+
+		return HeaderView(title: "Now", detail: dataStore.locationManager.locationName, forecastEntry: currentTimelineEntry)
 	}
 	
 	var highForecastHeaderView: HeaderView? {
@@ -55,7 +64,7 @@ struct TodayView: View {
 			return nil
 		}
 		
-		return HeaderView(title: "High", detail: (todayHighForecast.date.isInCurrentHour ? "Now" : todayHighForecast.date.hourTimeString), uvIndex: todayHighForecast.uvIndex)
+		return HeaderView(title: "High", detail: (todayHighForecast.date.isInCurrentHour ? "Now" : todayHighForecast.date.hourTimeString), forecastEntry: todayHighForecast)
 	}
 	
 	var forecastListView: TodayListView? {
@@ -74,7 +83,7 @@ struct TodayView_Previews: PreviewProvider {
 		let store = DataStore(forecastTimeline: mockDataTodayTimeline)
 		store.loadingState = (false, true)
 		store.currentUVIndex = UVIndex(uvValue: 7.0)
-		store.locationManager.locationName = "Charlotte"
+		store.locationManager.locationName = "San Francisco"
 		store.todayHighForecast = UVForecast(date: Date(timeIntervalSince1970: 1586368800), uvIndex: UVIndex(uvValue: 11.0), temperature: 72)
 		return store
 	}()

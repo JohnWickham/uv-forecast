@@ -49,7 +49,7 @@ struct UVIndex: Comparable {
 	
 	var uvValue: Double
 	
-	/// E.g. "Low" or "Extremem"
+	/// E.g. "Low" or "Extreme"
 	var description: String {
 		switch uvValue {
 		case _ where uvValue < 2.99:

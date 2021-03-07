@@ -29,6 +29,7 @@ class APIClient: NSObject {
 	typealias ForecastFetchResultHandler = ((_ result: Result<ForecastFetchResult, APIError>) -> Void)
 	
 	func makeURLRequest(for location: Location) -> URLRequest {
+		// TODO: More explicit handling of time zone?
 		let requestURL = APIClient.baseURL.appendingPathComponent("\(location.latitude),\(location.longitude)")
 		return URLRequest(url: requestURL)
 	}

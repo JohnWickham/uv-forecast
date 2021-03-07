@@ -64,7 +64,7 @@ struct ForecastView: View, LocationManagerDelegate {
 	
 	private var highForecastHeaderView: HeaderView? {
 		if let highForecast = dataStore.forecastTimeline?.highDailyForecast {
-			return HeaderView(title: "8-Day High", uvIndex: highForecast.uvIndex)
+			return HeaderView(title: "8-Day High", forecastEntry: highForecast)
 		}
 		return nil
 	}
