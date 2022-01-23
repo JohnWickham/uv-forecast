@@ -34,6 +34,7 @@
 		522CE7E024252EF80079CDEE /* ForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522CE7DF24252EF80079CDEE /* ForecastView.swift */; };
 		522CE7E2242530E30079CDEE /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522CE7E1242530E30079CDEE /* HeaderView.swift */; };
 		522CE7E524253D890079CDEE /* DarkSkyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522CE7E424253D890079CDEE /* DarkSkyAPI.swift */; };
+		52849692279E0F0F0007A720 /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52849691279E0F0F0007A720 /* Secrets.plist */; };
 		529E6F8F24270A590017D512 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E6F8E24270A590017D512 /* DataStore.swift */; };
 		52BCC43E2426D7F400B67BBB /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BCC43D2426D7F400B67BBB /* ErrorView.swift */; };
 		52BCC4402426D83D00B67BBB /* UVForecastRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BCC43F2426D83D00B67BBB /* UVForecastRowView.swift */; };
@@ -117,6 +118,7 @@
 		522CE7DF24252EF80079CDEE /* ForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastView.swift; sourceTree = "<group>"; };
 		522CE7E1242530E30079CDEE /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		522CE7E424253D890079CDEE /* DarkSkyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkSkyAPI.swift; sourceTree = "<group>"; };
+		52849691279E0F0F0007A720 /* Secrets.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Secrets.plist; sourceTree = "<group>"; };
 		529E6F8E24270A590017D512 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		52BCC43D2426D7F400B67BBB /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		52BCC43F2426D83D00B67BBB /* UVForecastRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVForecastRowView.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				5219682D24460817002A24A9 /* OptionsHelper.swift */,
 				5215AC052427D99C003F3344 /* Complications */,
 				522CE7C8242526540079CDEE /* Assets.xcassets */,
+				52849691279E0F0F0007A720 /* Secrets.plist */,
 				522CE7CD242526540079CDEE /* Info.plist */,
 				522CE7CA242526540079CDEE /* Preview Content */,
 			);
@@ -362,6 +365,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52849692279E0F0F0007A720 /* Secrets.plist in Resources */,
 				522CE7CC242526540079CDEE /* Preview Assets.xcassets in Resources */,
 				522CE7C9242526540079CDEE /* Assets.xcassets in Resources */,
 			);
@@ -552,7 +556,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20210308;
+				CURRENT_PROJECT_VERSION = 20220123;
 				DEVELOPMENT_ASSET_PATHS = "\"UV Forecast WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = QEQ6263LD9;
 				ENABLE_PREVIEWS = YES;
@@ -562,7 +566,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham.UV-Forecast.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "UV Forecast";
 				SDKROOT = watchos;
@@ -578,7 +582,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20210308;
+				CURRENT_PROJECT_VERSION = 20220123;
 				DEVELOPMENT_ASSET_PATHS = "\"UV Forecast WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = QEQ6263LD9;
 				ENABLE_PREVIEWS = YES;
@@ -588,7 +592,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham.UV-Forecast.watchkitapp.watchkitextension";
 				PRODUCT_NAME = "UV Forecast";
 				SDKROOT = watchos;
@@ -605,11 +609,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20210308;
+				CURRENT_PROJECT_VERSION = 20220123;
 				DEVELOPMENT_TEAM = QEQ6263LD9;
 				IBSC_MODULE = UV_Forecast_WatchKit_Extension;
 				INFOPLIST_FILE = "UV Forecast WatchKit App/Info.plist";
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham.UV-Forecast.watchkitapp";
 				PRODUCT_NAME = "UV Forecast";
 				SDKROOT = watchos;
@@ -626,11 +630,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20210308;
+				CURRENT_PROJECT_VERSION = 20220123;
 				DEVELOPMENT_TEAM = QEQ6263LD9;
 				IBSC_MODULE = UV_Forecast_WatchKit_Extension;
 				INFOPLIST_FILE = "UV Forecast WatchKit App/Info.plist";
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham.UV-Forecast.watchkitapp";
 				PRODUCT_NAME = "UV Forecast";
 				SDKROOT = watchos;
@@ -645,9 +649,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20210308;
+				CURRENT_PROJECT_VERSION = 20220123;
 				DEVELOPMENT_TEAM = QEQ6263LD9;
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham.UV-Forecast";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -658,9 +662,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 20210308;
+				CURRENT_PROJECT_VERSION = 20220123;
 				DEVELOPMENT_TEAM = QEQ6263LD9;
-				MARKETING_VERSION = 1.5;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Wickham.UV-Forecast";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
