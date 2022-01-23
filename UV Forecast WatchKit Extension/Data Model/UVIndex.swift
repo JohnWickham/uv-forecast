@@ -22,8 +22,11 @@ class UVForecast: ForecastTimelineEntry {
 			return nil
 		}
 		
-		let rounded = Int(temperature.rounded())
-		return "\(rounded)º"
+		let temperatureFormatter = MeasurementFormatter()
+		let measurement = Measurement(value: temperature, unit: UnitTemperature.fahrenheit)
+		temperatureFormatter.numberFormatter.maximumFractionDigits = 0
+		temperatureFormatter.unitStyle = .short
+		return temperatureFormatter.string(from: measurement)
 	}
 	
 	init(date: Date, uvIndex: UVIndex, temperature: Double?) {
