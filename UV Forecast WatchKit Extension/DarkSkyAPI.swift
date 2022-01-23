@@ -22,7 +22,14 @@ enum APIError: LocalizedError {
 
 class APIClient: NSObject {
 	
-	static let APIKey: String = "accbf73888a364be5659f3fb1f453e8d"
+	static let APIKey: String = {
+		var error: Error;
+		guard let secretsFileURL = Bundle.main.url(forResource: "Secrets", withExtension: "plist") else {
+			fatalError("Couldn't load an API key from the Secrets file; see the README.")
+		}
+		let secrets = try? NSDictionary(contentsOf: secretsFileURL, error: ())
+		return secrets?["API_Key"] as? String ?? "";
+	}()
 	static let baseURL: URL = URL(string: "https://api.darksky.net/forecast/\(APIClient.APIKey)/")!
 	
 	typealias ForecastFetchResult = (currentUVIndex: UVIndex, dayHighForecast: UVForecast, forecastTimeline: ForecastTimeline)
