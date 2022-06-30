@@ -1,5 +1,5 @@
 # UV Forecast
-UV Forecast is a watchOS app that forecasts the UV index at your location. It has two views:
+[UV Forecast](https://wjwickham.com/uv-forecast) is a watchOS app that forecasts the UV index at your location. It has two views:
 - **Today** shows an hour-by-hour timeline of conditions for 48 hours (excluding nighttime hours), along with the forecasted temperature.
 - **Forecast** shows an 8-day timeline of the daily UV index high forecasts, along with the time of day that the high UV index is expected to be reached.
 
